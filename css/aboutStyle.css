@@ -1,0 +1,29 @@
+* {
+    margin: 0;
+    transition: 0.5s;
+}
+
+body {
+    font-family: Verdana, Tahoma;
+    width: 100%;
+    box-sizing: border-box;
+    background-color: #4bd2ff;
+}
+
+header h1 {
+    margin: 100px 0 5px 300px;
+    font-size: 50px;
+}
+
+div {
+    background-color: beige;
+    margin: 0 250px 100px 250px;
+    box-shadow: 0 2px 5px 0 #00818f;
+    border-radius: 10px;
+}
+
+div h5 {
+    padding: 10px 0 10px 10px;
+    font-weight: 10;
+    font-size: 20px;
+}
