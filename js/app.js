@@ -9,16 +9,9 @@ function menuFunc() {
     }
 }
 
-/*function mHover(mO) {
-    mO.innerHTML = "Deeper"
-}*/
+var setVar = setInterval(timerFun, 1000);
 
-/*function mOut(mO) {
-    mO.innerHTML = "Explore"
-}*/
-
-document.getElementById('explore-btn').addEventListener("click", displayD);
-
-function displayD() {
-    document.getElementById('exampleP').innerHTML = Date()
+function timerFun() {
+    var a = new Date();
+    const myTimeVar = document.getElementById("exampleP").innerHTML = a.toLocaleTimeString(); 
 }
