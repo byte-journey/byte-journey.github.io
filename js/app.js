@@ -13,5 +13,5 @@ var setVar = setInterval(timerFun, 1000);
 
 function timerFun() {
     var a = new Date();
-    const myTimeVar = document.getElementById("exampleP").innerHTML = a.toLocaleTimeString(); 
+    const myTimeVar = document.getElementById("time").innerHTML = a.toLocaleTimeString(); 
 }
