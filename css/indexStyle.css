@@ -98,11 +98,6 @@ header {
     padding: 12rem 0 12rem 0;
 }
 
-header h3 {
-    display: inline-flex;
-    float: right;
-}
-
 header h1 {
     font-size: 100px;
 }
