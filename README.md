@@ -1,5 +1,3 @@
-# gideo-n.github.io
-
 # **Welcome to My Personal Website!**
 
 This is the repository for my personal website, where you can learn more about me, my skills, interests and my aspirations. The website is built with HTML, CSS and JavaScript, and is hosted on GitHub Pages.
