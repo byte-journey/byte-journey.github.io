@@ -13,6 +13,6 @@ I am a web and mobile developer with a passion for building awesome mobile appli
 In my free time, I enjoy reading books on a variety of topics, including science fiction, history, and philosophy. I am also an avid gamer and enjoy playing all categories including video games, puzzle games and many more. I have high interest in photograpy as well. I take all kinds of photos especially to make others smile. Finally, I love learning new things, whether it's a new programming language, a new technology, or a new recipe.
 
 # **Contact Me**
-If you have any questions or would like to get in touch, feel free to reach out to me via [email](mailto:ggakpetor21@gmail.com) or [Twitter](https://www.linkedin.com/in/gideon-gakpetor-726378211). I am always happy to chat about software development, gaming, movies, music or anything else that's of interest.
+If you have any questions or would like to get in touch, feel free to reach out to me via [email](mailto:ggakpetor21@gmail.com) or [LinkedIn](https://www.linkedin.com/in/gideon-gakpetor-726378211). I am always happy to chat about software development, gaming, movies, music or anything else that's of interest.
 
 Thanks for stopping by, and I hope you enjoy exploring my personal website!
