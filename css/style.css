@@ -2,7 +2,15 @@ body, html {
     margin: 0;
     padding: 0;
     height: 100%;
+    width: auto;
+    overflow: hidden;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.material-icons {
+    font-size: 30px;
+    color: #007bff;
+    size: 30px;
 }
 
 .container {
@@ -17,10 +25,18 @@ body, html {
     width: 100%;
     height: 100%;
     background-image: url('../images/car.png');
-    background-size: auto;
+    background-size: cover;
     background-position: center;
     filter: blur(10px);
-    background-color: black;
+}
+/* dark overlay for blur bg */
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Adjust the last value (0.5) to change the darkness level */
 }
 
 .content {
@@ -34,10 +50,12 @@ body, html {
 h1 {
     font-size: 2.5rem;
     margin-bottom: 20px;
+    color: whitesmoke;
 }
 
 p {
     font-size: 1.2rem;
+    color: whitesmoke;
 }
 
 .time {
@@ -45,31 +63,46 @@ p {
     top: 10px;
     right: 50px;
     color: white;
+    font-style: bold;
 }
 
 .sidebar {
     position: fixed;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    align-self: center;
-    top: 0;
-    bottom: 0;
+    top: 50%;
     left: 0;
-    width: 100px;
-    height: 100px;
-    background-color: #333;
+    transform: translateY(-50%);
+    width: 80px;
+    height: fit-content;
     color: white;
     padding: 20px;
+    text-align: center;
 }
 
+/* Styles for the icons(buttons) */
 .sidebar button {
     display: block;
     width: 100%;
-    margin-bottom: 10px;
-    padding: 10px;
-    background-color: #555;
+    height: 50px;
+    margin: 10px auto;
+    background-color: transparent;
     border: none;
     color: white;
     cursor: pointer;
+    border-radius: 10px;
+    font-size: 20px;
+}
+
+/* Additional styles for the icons */
+.sidebar button i {
+    margin-right: 5px; /* Add space between icon and text */
+}
+
+footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    color: wheat;
+    padding: 10px;
+    font-size: 15px;
 }
