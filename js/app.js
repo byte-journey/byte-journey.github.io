@@ -1,17 +1,11 @@
-function menuFunc() {
-    var x = document.getElementById("navSmallScreen");
-
-    if (x.className.indexOf("myPage") == -1) {
-        x.className += "myPage";
-    }
-    else {
-        x.className = x.className.replace("myPage", "");
-    }
+function updateTime() {
+    var now = new Date();
+    var hours = now.getHours();
+    var minutes = now.getMinutes();
+    var seconds = now.getSeconds();
+    var timeString = hours + ':' + (minutes < 10 ? '0' : '') + minutes + ':' + seconds;
+    document.getElementById('time').innerHTML = timeString;
 }
 
-var setVar = setInterval(timerFun, 1000);
-
-function timerFun() {
-    var a = new Date();
-    const myTimeVar = document.getElementById("time").innerHTML = a.toLocaleTimeString(); 
-}
+updateTime();
+setInterval(updateTime, 1000);
