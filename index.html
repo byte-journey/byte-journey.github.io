@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <meta charset="UTF-8"/>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-        <link rel="stylesheet" type="text/css" href="css/style.css"/>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Byte Journey</title>
+        <link rel="stylesheet" type="text/css" href="css/style.css"/>
     </head>
 
     <body>
@@ -13,18 +13,18 @@
             <div class="overlay"></div> <!--dark overlay for blur bg-->
             <div class="content">
                 <h1>Welcome to Byte Journey</h1>
-                <p id="about-me">I am Gideon and this site is all about me.</p>
-                <p>I am an astute and a performance driven university graduate with </br>
-                    a BSc in Information Technology. I am passionate about technology and the </br>
-                    possibility of solving real world problems with it. I am always ready to </br>
-                    adjust myself to new systems to get the job done. I am very curious if comes </br>
-                    to computer systems. Computers can easily destruct me but that I get to really </br>
+                <p id="intro">I am Gideon and this site is all about me.</p>
+                <p>I am an astute and a performance driven university graduate with
+                    a BSc in Information Technology. I am passionate about technology and the
+                    possibility of solving real world problems with it. I am always ready to 
+                    adjust myself to new systems to get the job done. I am very curious if comes
+                    to computer systems. Computers can easily destruct me but that I get to really
                     on them and understand their use in making life better and easier.
                 </p>
-                <p>Yeah, I know you might wondering if the car is mine or not.</br>
-                    It looks good right, yeah, and I know you know something about</br>
-                    Artificial Intelligent(AI) right. So I guess you get it now. Yeah! </br>
-                    Feel free, go through the site, see anything, like or dislike anything </br>
+                <p>Yeah, I know you might wondering if the car is mine or not.
+                    It looks good right, yeah, and I know you know something about
+                    Artificial Intelligent(AI) right. So I guess you get it now. Yeah!
+                    Feel free, go through the site, see anything, like or dislike anything
                     and maybe we can start talking.
                 </p>
             </div>
@@ -37,13 +37,20 @@
 
             <!--sidebar - buttons-->
             <div class="sidebar">
-                <button class="sidebar-btn">About</button>
-                <button class="sidebar-btn">Portfolio</button>
-                <button class="sidebar-btn">Skills</button>
-                <button class="sidebar-btn">Interests</button>
-                <button class="sidebar-btn">Contact</button>
+                <button class="sidebar-btn" onclick="navigatePage('about.html')">About</button>
+                <button class="sidebar-btn" onclick="navigatePage('skills.html')">Skills</button>
+                <button class="sidebar-btn" onclick="navigatePage('portfolio.html')">Portfolio</button>
+                <button class="sidebar-btn" onclick="navigatePage('interest.html')">Interests</button>
+                <button class="sidebar-btn" onclick="navigatePage('contact.html')">Contact</button>
             </div>
 
+            <!--small screen menu button-->
+            <label class="small-menu-btn" for="check">
+                <input type="checkbox" id="check">
+                <span class="top"></span>
+                <span class="mid"></span>
+                <span class="bot"></span>
+            </label>    
         </div>
 
         <footer>&copy;2024. All Rights Reserved</footer>
@@ -52,4 +59,5 @@
 
 
     </body>
+    
 </html>

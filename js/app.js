@@ -1,6 +1,6 @@
 function updateTime() {
     var now = new Date();
-    var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+    var days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
     var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
     
     var dayOfWeek = days[now.getDay()];
@@ -26,3 +26,7 @@ updateTime();
 
 // Update date and time every second
 setInterval(updateTime, 1000);
+
+function navigatePage(page) {
+    window.location.href = "pages/" + page;
+}
