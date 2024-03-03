@@ -36,7 +36,7 @@
             </div>
 
             <!--sidebar - buttons-->
-            <div class="sidebar">
+            <div class="sidebar" id="side-bar">
                 <button class="sidebar-btn" onclick="navigatePage('about.html')">About</button>
                 <button class="sidebar-btn" onclick="navigatePage('skills.html')">Skills</button>
                 <button class="sidebar-btn" onclick="navigatePage('portfolio.html')">Portfolio</button>
@@ -45,7 +45,13 @@
             </div>
 
             <!--small screen menu button-->
-                
+            <input id="menu-toggle" type="checkbox">
+            <label class="menu-btn" for="menu-toggle">
+                <div class="menu-icon"></div>
+                <div class="menu-icon"></div>
+                <div class="menu-icon"></div>
+            </label>
+
         </div>
 
         <footer>&copy;2024. All Rights Reserved</footer>

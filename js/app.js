@@ -27,6 +27,48 @@ updateTime();
 // Update date and time every second
 setInterval(updateTime, 1000);
 
+// function for buttons toggle pages on the site
 function navigatePage(page) {
     window.location.href = "pages/" + page;
 }
+
+// document.addEventListener("DOMContentLoaded", function() {
+//     var menuToggle = document.getElementById("menu-toggle");
+//     var sidebar = document.getElementById("side-bar");
+//     var sidebarItems = document.querySelectorAll('.sidebar-btn');
+
+//     menuToggle.addEventListener("change", function() {
+//         if (menuToggle.checked) {
+//             sidebar.style.display = "block"; // Show the sidebar when the menu button is checked
+//         } else {
+//             sidebar.style.display = "none"; // Hide the sidebar when the menu button is unchecked
+//         }
+//     });
+// });
+
+document.addEventListener("DOMContentLoaded", function() {
+    const menuToggle = document.getElementById("menu-toggle");
+    const sidebar = document.getElementById("side-bar");
+    const sidebarItems = document.querySelectorAll('.sidebar-btn');
+
+    
+    // Function to toggle the sidebar
+    function toggleSidebar() {
+        sidebar.style.display = menuToggle.checked ? "block" : "none";
+    }
+
+    // Function to close the sidebar when an item is selected
+    function closeSidebar() {
+        menuToggle.checked = false;
+        sidebar.style.display = "none";
+    }
+
+    // Event listener for the menu button
+    menuToggle.addEventListener('change', toggleSidebar);
+
+    // Event listeners for sidebar items
+    sidebarItems.forEach(function (item) {
+        item.addEventListener('click', closeSidebar);
+    });
+});
+
