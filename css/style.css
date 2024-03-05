@@ -135,13 +135,14 @@ p {
 }
 
 footer {
-    position: absolute;
+    position: fixed;
     bottom: 0;
     left: 0;
     width: 100%;
     color: rgb(13, 141, 209);
     font-size: 15px;
     z-index: 20;
+    padding: 10px;
 }
 
 
@@ -206,7 +207,7 @@ footer {
     }
 
     .text-container {
-        max-height: calc(100vh - 150px);
+        max-height: calc(100vh - 180px);
         overflow-y: auto;
         padding: 2px;
         background-color: rgb(40, 42, 43);
@@ -284,14 +285,14 @@ footer {
     }
 
     footer {
-        position: absolute;
+        position: fixed;
         font-size: 12px; /* Decrease font size for footer */
-        bottom: 0;
         left: 0;
         width: 100%;
         background-color: rgb(40, 39, 39);
         color: rgb(13, 141, 209);
         z-index: 9999;
         margin-top: 10px;
+        padding: 10px 0;
     }
 }
