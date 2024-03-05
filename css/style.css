@@ -202,15 +202,17 @@ footer {
     p {
         font-size: 1rem; /* Decrease font size for paragraphs */
         margin: 5px 10px;
+        text-align: left;
     }
 
     .text-container {
         max-height: calc(100vh - 150px);
         overflow-y: auto;
-        padding: 5px;
+        padding: 2px;
         background-color: rgb(40, 42, 43);
         border-radius: 10px;
         margin-bottom: 5px;
+        text-align: left;
     }
     /* Hide the scrollbar */
     .text-container::-webkit-scrollbar {
@@ -290,5 +292,6 @@ footer {
         background-color: rgb(40, 39, 39);
         color: rgb(13, 141, 209);
         z-index: 9999;
+        margin-top: 10px;
     }
 }
