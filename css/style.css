@@ -202,7 +202,6 @@ footer {
     p {
         font-size: 1rem; /* Decrease font size for paragraphs */
         margin: 5px 10px;
-        text-align: justify;
     }
 
     .text-container {
@@ -290,6 +289,6 @@ footer {
         width: 100%;
         background-color: rgb(40, 39, 39);
         color: rgb(13, 141, 209);
-        z-index: 20;
+        z-index: 9999;
     }
 }
