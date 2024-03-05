@@ -1,0 +1,37 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+    overflow: auto;
+    font-family: 'Helvetica', sans-serif; /* Apply Roboto font to text container */
+    background-color: rgb(219, 219, 219);
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.container-items {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+h1 {
+    margin-bottom: 5px;
+    margin-left: 20px;
+}
+
+.about-card {
+    width: 50rem;
+    height: 450px;
+    border-width: 1px;
+    border-color: rgba(219, 234, 254, 1);
+    border-radius: 1rem;
+    background-color: rgb(255, 232, 232);
+    padding: 1rem;
+}
