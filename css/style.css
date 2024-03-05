@@ -84,7 +84,6 @@ p {
     padding: 20px;
     background-color: rgb(40, 42, 43);
     border-radius: 10px;
-    opacity: 70%;
 }
 /* Hide the scrollbar */
 .text-container::-webkit-scrollbar {
@@ -195,10 +194,26 @@ footer {
         margin-top: 40px;
     }
 
+    #intro {
+        color: rgb(0, 138, 176);
+    }
+
     p {
         font-size: 1rem; /* Decrease font size for paragraphs */
         margin: 5px 10px;
         text-align: justify;
+    }
+
+    .text-container {
+        max-height: calc(100vh - 150px);
+        overflow-y: auto;
+        padding: 5px;
+        background-color: rgb(40, 42, 43);
+        border-radius: 10px;
+    }
+    /* Hide the scrollbar */
+    .text-container::-webkit-scrollbar {
+        display: none;
     }
 
     .sidebar {
@@ -272,5 +287,6 @@ footer {
         left: 0;
         width: 100%;
         background-color: rgb(40, 39, 39);
+        color: rgb(0, 138, 176);
     }
 }
