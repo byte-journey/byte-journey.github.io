@@ -61,7 +61,7 @@ p {
 }
 
 #intro {
-    color: rgb(0, 138, 176);
+    color: rgb(13, 141, 209);
     margin-top: 5px;
 }
 
@@ -139,8 +139,9 @@ footer {
     bottom: 0;
     left: 0;
     width: 100%;
-    color: rgb(0, 138, 176);
+    color: rgb(13, 141, 209);
     font-size: 15px;
+    z-index: 20;
 }
 
 
@@ -195,7 +196,7 @@ footer {
     }
 
     #intro {
-        color: rgb(0, 138, 176);
+        color: rgb(13, 141, 209);
     }
 
     p {
@@ -210,6 +211,7 @@ footer {
         padding: 5px;
         background-color: rgb(40, 42, 43);
         border-radius: 10px;
+        margin-bottom: 5px;
     }
     /* Hide the scrollbar */
     .text-container::-webkit-scrollbar {
@@ -287,6 +289,7 @@ footer {
         left: 0;
         width: 100%;
         background-color: rgb(40, 39, 39);
-        color: rgb(0, 138, 176);
+        color: rgb(13, 141, 209);
+        z-index: 20;
     }
 }
