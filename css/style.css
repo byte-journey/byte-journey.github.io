@@ -4,7 +4,7 @@ html, body {
     height: 100%;
     width: auto;
     overflow: hidden;
-    font-family: 'Helvetica', sans-serif; /* Apply Roboto font to text container */
+    font-family: "Century Gothic", Arial, sans-serif;
 }
 
 .container {
@@ -89,7 +89,9 @@ p {
 .text-container::-webkit-scrollbar {
     display: none;
 } 
-
+.text-container p {
+    line-height: 1.8;
+}
 .sidebar {
     position: absolute;
     top: 50%;
