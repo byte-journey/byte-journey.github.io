@@ -1,0 +1,26 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: auto;
+    overflow: auto;
+    font-family: "Century Gothic", Arial, sans-serif;
+}
+
+.skills_intro_container {
+    background-color: rgb(220, 219, 218);
+    display: flex;
+    align-items: center;
+    /* text-align: center; */
+}
+
+#intro_text {
+    /* position: relative; */
+    width: 100%;
+    margin-left: 10rem;
+    margin-right: 10rem;
+}
+
+#first_topic {
+    text-align: center;
+}
