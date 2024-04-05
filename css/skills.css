@@ -7,20 +7,146 @@ html, body {
     font-family: "Century Gothic", Arial, sans-serif;
 }
 
-.skills_intro_container {
+.skills-intro-container {
     background-color: rgb(220, 219, 218);
     display: flex;
     align-items: center;
     /* text-align: center; */
 }
 
-#intro_text {
+#intro-text {
     /* position: relative; */
     width: 100%;
     margin-left: 10rem;
     margin-right: 10rem;
 }
 
-#first_topic {
+#first-topic {
     text-align: center;
+    margin: 20px;
+}
+
+.programming-category {
+    background-color: rgb(210, 188, 170);
+    width: 100%;
+    align-items: center;
+    /* background-image: url('../images/program.jpg'); */
+    background-size: cover;
+}
+
+#arduino p {
+    margin-left: 5rem;
+    margin-right: 5rem;
+}
+
+#arduino h2 {
+    margin-left: 5rem;
+    margin-top: 20px;
+}
+
+#arduino {
+    border-radius: 1rem;
+    background-color: rgb(80, 104, 89);
+    box-shadow: black;
+    margin-left: 5rem;
+    margin-right: 5rem;
+    color: whitesmoke;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    opacity: 95%;
+}
+
+#software-dev {
+    background-color: #6767ff;
+    border-radius: 1rem;
+    box-shadow: black;
+    margin-left: 5rem;
+    margin-right: 5rem;
+    margin-top: 20px;
+    color: whitesmoke;
+    padding-bottom: 10px;
+    opacity: 95%;
+    padding-top: 10px;
+}
+
+#software-dev p {
+    margin-left: 5rem;
+    margin-right: 5rem;
+}
+
+#software-dev h2 {
+    margin-left: 5rem;
+    margin-top: 20px;
+}
+
+/*
+
+small screens 
+
+*/
+
+@media only screen and (max-width: 768px) {  
+    #intro-text {
+        width: 100%;
+        margin-left: 2rem;
+        margin-right: 2rem;
+    }
+    
+    h2{
+        font-size: 15px;
+    }
+
+    p{
+        font-size: 12px;
+    }
+
+    #first-topic {
+        text-align: center;
+        font-size: 15px;
+    }
+
+    #arduino p {
+        margin-left: 1rem;
+        margin-right: 1rem;
+    }
+    
+    #arduino h2 {
+        margin-left: 1rem;
+        margin-top: 20px;
+    }
+    
+    #arduino {
+        border-radius: 1rem;
+        background-color: rgb(80, 104, 89);
+        box-shadow: black;
+        margin-left: 1rem;
+        margin-right: 1rem;
+        color: whitesmoke;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        opacity: 95%;
+    }
+    
+    #software-dev {
+        background-color: #4a4aa3;
+        border-radius: 1rem;
+        box-shadow: black;
+        margin-left: 1rem;
+        margin-right: 1rem;
+        margin-top: 20px;
+        color: whitesmoke;
+        padding-bottom: 10px;
+        opacity: 95%;
+        padding-top: 10px;
+    }
+    
+    #software-dev p {
+        margin-left: 1rem;
+        margin-right: 1rem;
+    }
+    
+    #software-dev h2 {
+        margin-left: 1rem;
+        margin-top: 20px;
+    }
 }
