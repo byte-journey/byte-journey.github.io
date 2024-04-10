@@ -57,7 +57,7 @@ html, body {
 }
 
 #software-dev {
-    background-color: #6767ff;
+    background-color: #27275c;
     border-radius: 1rem;
     box-shadow: black;
     margin-left: 5rem;
@@ -75,6 +75,29 @@ html, body {
 }
 
 #software-dev h2 {
+    margin-left: 5rem;
+    margin-top: 20px;
+}
+
+#web-dev {
+    background-color: #D16E58;
+    border-radius: 1rem;
+    box-shadow: black;
+    margin-left: 5rem;
+    margin-right: 5rem;
+    margin-top: 20px;
+    color: whitesmoke;
+    padding-bottom: 10px;
+    opacity: 95%;
+    padding-top: 10px;
+}
+
+#web-dev p {
+    margin-left: 5rem;
+    margin-right: 5rem;
+}
+
+#web-dev h2 {
     margin-left: 5rem;
     margin-top: 20px;
 }
@@ -146,6 +169,29 @@ small screens
     }
     
     #software-dev h2 {
+        margin-left: 1rem;
+        margin-top: 20px;
+    }
+
+    #web-dev {
+        background-color: #D16E58;
+        border-radius: 1rem;
+        box-shadow: black;
+        margin-left: 1rem;
+        margin-right: 1rem;
+        margin-top: 20px;
+        color: whitesmoke;
+        padding-bottom: 10px;
+        opacity: 95%;
+        padding-top: 10px;
+    }
+    
+    #web-dev p {
+        margin-left: 1rem;
+        margin-right: 1rem;
+    }
+    
+    #web-dev h2 {
         margin-left: 1rem;
         margin-top: 20px;
     }
