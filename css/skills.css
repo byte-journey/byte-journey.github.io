@@ -21,7 +21,16 @@ html, body {
     margin-right: 10rem;
 }
 
+#intro-text p {
+    font-size: 20px;
+}
+
 #first-topic {
+    text-align: center;
+    margin: 20px;
+}
+
+#second-topic {
     text-align: center;
     margin: 20px;
 }
@@ -34,14 +43,24 @@ html, body {
     background-size: cover;
 }
 
+.media-category {
+    background-color: rgb(170, 210, 180);
+    width: 100%;
+    align-items: center;
+    /* background-image: url('../images/program.jpg'); */
+    background-size: cover;
+}
+
 #arduino p {
     margin-left: 5rem;
     margin-right: 5rem;
+    font-size: 20px;
 }
 
 #arduino h2 {
     margin-left: 5rem;
     margin-top: 20px;
+    font-size: 35px;
 }
 
 #arduino {
@@ -72,11 +91,13 @@ html, body {
 #software-dev p {
     margin-left: 5rem;
     margin-right: 5rem;
+    font-size: 20px;
 }
 
 #software-dev h2 {
     margin-left: 5rem;
     margin-top: 20px;
+    font-size: 35px;
 }
 
 #web-dev {
@@ -95,12 +116,117 @@ html, body {
 #web-dev p {
     margin-left: 5rem;
     margin-right: 5rem;
+    font-size: 20px;
 }
 
 #web-dev h2 {
     margin-left: 5rem;
     margin-top: 20px;
+    font-size: 35px;
 }
+
+#photography {
+    background-color: #462f2f;
+    border-radius: 1rem;
+    box-shadow: black;
+    margin-left: 5rem;
+    margin-right: 5rem;
+    margin-top: 20px;
+    color: whitesmoke;
+    padding-bottom: 10px;
+    opacity: 95%;
+    padding-top: 10px;
+}
+
+#photography p {
+    margin-left: 5rem;
+    margin-right: 5rem;
+    font-size: 20px;
+}
+
+#photography h2 {
+    margin-left: 5rem;
+    margin-top: 20px;
+    font-size: 35px;
+}
+
+#videography {
+    background-color: #f7ffac;
+    border-radius: 1rem;
+    box-shadow: black;
+    margin-left: 5rem;
+    margin-right: 5rem;
+    margin-top: 20px;
+    color: whitesmoke;
+    padding-bottom: 10px;
+    opacity: 95%;
+    padding-top: 10px;
+    color: black;
+}
+
+#videography p {
+    margin-left: 5rem;
+    margin-right: 5rem;
+    font-size: 20px;
+}
+
+#videography h2 {
+    margin-left: 5rem;
+    margin-top: 20px;
+    font-size: 35px;
+}
+
+#sketchup {
+    background-color: #96f1ff;
+    border-radius: 1rem;
+    box-shadow: black;
+    margin-left: 5rem;
+    margin-right: 5rem;
+    margin-top: 20px;
+    color: whitesmoke;
+    padding-bottom: 10px;
+    opacity: 95%;
+    padding-top: 10px;
+    color: black;
+}
+
+#sketchup p {
+    margin-left: 5rem;
+    margin-right: 5rem;
+    font-size: 20px;
+}
+
+#sketchup h2 {
+    margin-left: 5rem;
+    margin-top: 20px;
+    font-size: 35px;
+}
+
+#printing {
+    background-color: #0068bc;
+    border-radius: 1rem;
+    box-shadow: black;
+    margin-left: 5rem;
+    margin-right: 5rem;
+    margin-top: 20px;
+    color: whitesmoke;
+    padding-bottom: 10px;
+    opacity: 95%;
+    padding-top: 10px;
+}
+
+#printing p {
+    margin-left: 5rem;
+    margin-right: 5rem;
+    font-size: 20px;
+}
+
+#printing h2 {
+    margin-left: 5rem;
+    margin-top: 20px;
+    font-size: 35px;
+}
+
 
 /*
 
@@ -115,27 +241,34 @@ small screens
         margin-right: 2rem;
     }
     
-    h2{
+    /* h2{
         font-size: 15px;
     }
 
     p{
         font-size: 12px;
-    }
+    } */
 
     #first-topic {
         text-align: center;
-        font-size: 15px;
+        font-size: 20px;
+    }
+
+    #second-topic {
+        text-align: center;
+        font-size: 20px;
     }
 
     #arduino p {
         margin-left: 1rem;
         margin-right: 1rem;
+        font-size: 16px;
     }
     
     #arduino h2 {
         margin-left: 1rem;
         margin-top: 20px;
+        font-size: 25px;
     }
     
     #arduino {
@@ -166,11 +299,13 @@ small screens
     #software-dev p {
         margin-left: 1rem;
         margin-right: 1rem;
+        font-size: 16px;
     }
     
     #software-dev h2 {
         margin-left: 1rem;
         margin-top: 20px;
+        font-size: 25px;
     }
 
     #web-dev {
@@ -189,10 +324,114 @@ small screens
     #web-dev p {
         margin-left: 1rem;
         margin-right: 1rem;
+        font-size: 16px;
     }
     
     #web-dev h2 {
         margin-left: 1rem;
         margin-top: 20px;
+        font-size: 25px;
+    }
+
+    #photography {
+        background-color: #462f2f;
+        border-radius: 1rem;
+        box-shadow: black;
+        margin-left: 1rem;
+        margin-right: 1rem;
+        margin-top: 20px;
+        color: whitesmoke;
+        padding-bottom: 10px;
+        opacity: 95%;
+        padding-top: 10px;
+    }
+    
+    #photography p {
+        margin-left: 1rem;
+        margin-right: 1rem;
+        font-size: 16px;
+    }
+    
+    #photography h2 {
+        margin-left: 1rem;
+        margin-top: 20px;
+        font-size: 25px;
+    }
+    
+    #videography {
+        background-color: #f7ffac;
+        border-radius: 1rem;
+        box-shadow: black;
+        margin-left: 1rem;
+        margin-right: 1rem;
+        margin-top: 20px;
+        color: whitesmoke;
+        padding-bottom: 10px;
+        opacity: 95%;
+        padding-top: 10px;
+        color: black;
+    }
+    
+    #videography p {
+        margin-left: 1rem;
+        margin-right: 1rem;
+        font-size: 16px;
+    }
+    
+    #videography h2 {
+        margin-left: 1rem;
+        margin-top: 20px;
+        font-size: 25px;
+    }
+    
+    #sketchup {
+        background-color: #96f1ff;
+        border-radius: 1rem;
+        box-shadow: black;
+        margin-left: 1rem;
+        margin-right: 1rem;
+        margin-top: 20px;
+        color: whitesmoke;
+        padding-bottom: 10px;
+        opacity: 95%;
+        padding-top: 10px;
+        color: black;
+    }
+    
+    #sketchup p {
+        margin-left: 1rem;
+        margin-right: 1rem;
+        font-size: 16px;
+    }
+    
+    #sketchup h2 {
+        margin-left: 1rem;
+        margin-top: 20px;
+        font-size: 25px;
+    }
+    
+    #printing {
+        background-color: #0068bc;
+        border-radius: 1rem;
+        box-shadow: black;
+        margin-left: 1rem;
+        margin-right: 1rem;
+        margin-top: 20px;
+        color: whitesmoke;
+        padding-bottom: 10px;
+        opacity: 95%;
+        padding-top: 10px;
+    }
+    
+    #printing p {
+        margin-left: 1rem;
+        margin-right: 1rem;
+        font-size: 16px;
+    }
+    
+    #printing h2 {
+        margin-left: 1rem;
+        margin-top: 20px;
+        font-size: 25px;
     }
 }
