@@ -1,301 +1,365 @@
-html, body {
+/* Global styles */
+body {
     margin: 0;
-    padding: 0;
-    height: 100%;
-    width: auto;
-    overflow: hidden;
-    font-family: "Century Gothic", Arial, sans-serif;
+    font-family: Arial, sans-serif;
+    background-color: #dbdbdb;
 }
 
-.container {
-    position: relative;
-    height: 100%;
+html {
+    scroll-behavior: smooth;
 }
 
 
-.blur-bg {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-image: url('../images/car.png');
-    background-size: cover;
-    background-position: center;
-    filter: blur(10px);
-}
-/* dark overlay for blur bg */
-.overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5); /* Adjust this value to change the darkness level */
-}
-
-.content {
-    display: flex;
-    position: relative;
-    z-index: 1;
-    text-align: center;
-    color: black;
-    justify-content: center;
+/* Main content container */
+.main-container {
     align-items: center;
-    flex-direction: column;
-    z-index: 1;
+    max-width: 100%;
+    margin: 0 auto;
+    min-height: calc(100vh - 60px); /* Subtract nav height */
+    bottom: auto;
+    padding: 0 30px 0 30px;
+}
+
+/* Welcome Text Styling */
+.intro-content {
+    text-align: start;
+    position: relative; /* Position independently */
+    margin-bottom: -150px;
+    margin-top: 100px;
+    margin-left: 10%;   
+}
+
+
+#start-text {
+    font-size: 2.5em;
+    font-weight: bold;
+    color: rgb(10, 85, 182);
+}
+
+/* first text-pic-container */
+.text-pic-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 5px;
+    margin: 0 auto;
+    max-width: 80%;
+}
+
+/* Text section styling */
+.text-section {
+    font-size: 2em;
+    min-width: 300px;
+    max-width: 500px; /* Limit maximum width */
+    
+}
+
+/* Dynamic text animation container */
+.dynamic-text {
+    color: #007bff;
+    font-weight: bold;
+    min-height: 1.2em;
+    display: inline-block;
+    overflow-wrap: break-word; /* Enable word wrapping */
+    word-wrap: break-word;
+    max-width: 500px; /* Ensure text stays within container */
+}
+
+/* Subtext Styling */
+.subtext {
+    margin-top: 10px; /* Space below dynamic text */
+    color: #555;
+    font-size: 1em;
     text-align: center;
 }
 
-h1 {
-    font-size: 2.5rem;
-    margin-bottom: 0;
-    color: whitesmoke;
-}
-
-p {
-    font-size: 1.2rem;
-    color: whitesmoke;
-    max-width: 30em;
-    margin-top: 5px;
-    text-align: justify;
-}
-
-#intro {
-    color: rgb(13, 141, 209);
-    margin-top: 5px;
-}
-
-.time {
-    position: absolute;
-    top: 10px;
-    right: 50px;
-    color: white;
-    font-style: bold;
-    font-size: 10px;
-    color: yellowgreen saddlebrown;
-}
-.time p {
-    margin: 5px 0;
-}
-
-.text-container {
-    max-height: calc(100vh - 200px);
-    overflow-y: auto;
-    padding: 20px;
-    background-color: rgb(40, 42, 43);
+/* Image styling */
+.image-section img {
+    width: 400px;
+    height: 400px;
+    object-fit: cover;
     border-radius: 10px;
-}
-/* Hide the scrollbar */
-.text-container::-webkit-scrollbar {
-    display: none;
-} 
-.text-container p {
-    line-height: 1.8;
-}
-.sidebar {
-    position: absolute;
-    top: 50%;
-    left: 0;
-    transform: translateY(-50%);
-    background-color: rgb(155, 155, 155);
-    width: 100px;
-    height: fit-content;
-    padding: 10px 15px;
-    border-radius: 10px;
-    z-index: 2;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
 }
 
-.sidebar-btn {
-    position: block;
-    padding: 5px 15px;
-    margin: 8px 0;
-    width: 100px;
-    border-radius: 50px;
-    cursor: pointer;
-    border: 0;
-    background-color: white;
-    box-shadow: rgb(0 0 0 / 5%) 0 0 8px;
-    letter-spacing: 1.0px;
-    text-transform: uppercase;
-    font-size: 12px;
-    transition: all 0.5s ease; 
-}
-
-.sidebar button:hover {
-    background-color: #186594;
-    box-shadow: 0px 15px 20px rgba(36, 105, 161, 0.4);
-    color: #fff;
-    transform: translateY(-7px);
-}
-
-.sidebar button:active {
-    transform: translateY(-1px);
-}
-
-.menu-btn { /*This hides the menu button toggle on large screens*/
-    display: none;
-}
-
-footer {
-    position: fixed;
+/* Navigation header styling */
+.nav-header {
+    position: relative;
     bottom: 0;
-    left: 0;
     width: 100%;
-    color: rgb(13, 141, 209);
-    font-size: 15px;
-    z-index: 20;
-    padding: 10px;
+    background-color: #333;
+    transition: transform 0.3s ease-in-out;
+    z-index: 1000;
+}
+
+/* Sticky navigation state */
+.nav-header.sticky {
+    position: fixed;
+    top: 0;
+    bottom: auto;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+/* Navigation menu */
+.nav-header ul {
+    list-style: none;
+    display: flex;
+    justify-content: start;
+    margin: 0;
+    padding: 15px 0;
+    background-color: #333;
+}
+
+/* Navigation items */
+.nav-header li {
+    margin: 0 20px;
+    float: left;
+    padding: 0;
+}
+
+/* Navigation links */
+.nav-header a {
+    color: white;
+    text-decoration: none;
+    font-size: 1.1em;
+    transition: color 0.3s ease;
+}
+
+.nav-header a:hover {
+    color: #007bff;
+}
+
+/* About section container */
+.about-section {
+    padding: 80px 20px;
+    background-color: #fff;
+    margin-top: 60px; /* Space for fixed nav */
+}
+
+/* About content wrapper */
+.about-container {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+/* Main about heading */
+.about-section h2 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 40px;
+    font-size: 2.5em;
+}
+
+/* Content grid layout */
+.about-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.about-content h3 {
+    color: #007bff;
+    margin-bottom: 20px;
+}
+
+/* Section headings */
+.highlights ul {
+    list-style: none;
+    padding: 0;
+}
+
+.highlights li {
+    margin-bottom: 10px;
+    padding-left: 20px;
+    position: relative;
+}
+
+.highlights li:before {
+    content: "→";
+    position: absolute;
+    left: 0;
+    color: #007bff;
+}
+
+/* Footer styling */
+footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #f8f9fa;
+    border-top: 1px solid #dee2e6;
+}
+
+/* Animation keyframes */
+@keyframes slideUp {
+    0% { transform: translateY(20px); opacity: 0; }
+    100% { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes slideDown {
+    0% { transform: translateY(0); opacity: 1; }
+    100% { transform: translateY(-20px); opacity: 0; }
+}
+
+.animate-up {
+    animation: slideUp 0.5s ease forwards;
+}
+
+.animate-down {
+    animation: slideDown 0.5s ease forwards;
+}
+
+.menu-toggle {
+    display: none; /* Hide by default for larger screens */
 }
 
 
 
-/* These are the settings small screens */
-
-
-
-@media only screen and (max-width: 768px) {
-    html, body {
-        margin: 0;
-        padding: 0;
-        height: 100%;
-        width: auto;
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+/* Responsive styles for tablets */
+@media (max-width: 768px) {
+    html {
+        scroll-behavior: smooth;
     }
-
-    .container {
-        position: relative;
-        height: 100%;
-    }
-
-    .blur-bg {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-image: url('../images/car.png');
-        background-size: cover;
-        background-position: center;
-        filter: blur(10px);
-    }
-    /* dark overlay for blur bg */
-    .overlay {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-color: rgba(0, 0, 0, 0.5); /* Adjust this value to change the darkness level */
-    }
-
-    .content {
-        position: relative;
-        padding: 20px;
-    } 
     
-    h1 {
-        font-size: 1.2rem; /* Decrease font size for headings */
-        margin-top: 40px;
+    .container {
+        flex-direction: column;
+        text-align: center;
+        gap: 20px;
     }
 
-    #intro {
-        color: rgb(13, 141, 209);
+    .text-section {
+        font-size: 1.5em;
+        min-width: auto;
     }
 
-    p {
-        font-size: 1rem; /* Decrease font size for paragraphs */
-        margin: 5px 10px;
-        text-align: left;
+    .image-section img {
+        width: 300px;
+        height: 300px;
     }
 
-    .text-container {
-        max-height: calc(100vh - 180px);
-        overflow-y: auto;
-        padding: 2px;
-        background-color: rgb(40, 42, 43);
-        border-radius: 10px;
-        margin-bottom: 20px;
-        text-align: left;
-    }
-    /* Hide the scrollbar */
-    .text-container::-webkit-scrollbar {
-        display: none;
+    .menu-toggle {
+        display: block;
     }
 
-    .sidebar {
-        display: none;
-        position: fixed;
-        top: 30%;
-        left: 5%;
-        border-radius: 5px;
+    .nav-header ul {
+        flex-direction: column;
+        display: none; /* Initially hidden */
+        background-color: #333;
+        position: absolute;
+        top: 50px; /* Below button */
+        left: 0;
+        width: 100%;
+        padding: 10px 0;
+    }
+
+    .nav-header ul.active {
+        display: flex; /* Show when active */
+    }
+    
+    .nav-header li {
+        margin: 10px 0;
+        text-align: center;
+    }
+
+    .about-section {
+        padding: 40px 20px;
+    }
+    
+    .about-section h2 {
+        font-size: 2em;
+    }
+}
+
+
+/* Responsive styles for mobile */
+@media (max-width: 480px) {
+    html {
+        scroll-behavior: smooth;
+    }
+    
+    body {
+        font-size: 14px;
+    }
+    .main-container {
+        align-items: center;
+        max-width: 100%;
+        margin: 0 auto;
+        min-height: calc(100vh - 60px); /* Subtract nav height */
+        bottom: auto;
+        padding: 0 10px 0 10px;
+    }
+
+    /* Welcome Text Styling */
+    .intro-content {
+        text-align: start;
+        position: relative; /* Position independently */
+        margin-top: 50px;
+        margin-left: 10%;
+        font-size: 10px; 
+        margin-bottom: -150px;
     }    
 
-    .sidebar-btn {
-        padding: 5px 10px; /* Adjust button padding for smaller screens */
-        margin: 8px 10px; /* Adjust button margin for smaller screens */
-        width: 80px; /* Decrease button width for small screens */
-        font-size: 10px; /* Decrease font size for buttons */
-        border-radius: 5px;
+    #start-text {
+        font-size: 2.5em;
+        font-weight: bold;
+        text-decoration: none;
+        color: rgb(10, 85, 182);
     }
 
-    /* code for small menu button starts */
+    .welcome-text {
+        text-align: center;
+        font-size: 1.5em;
+    }
 
-    .menu-btn {
+    .main-container {
+        align-items: center;
+    }
+
+    /* first text-pic-container */
+    .text-pic-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        margin-top: 160px;
+        max-width: 80%;
+        gap: 30px;
+}
+
+    .text-section {
+        font-size: 1.2em;
+        text-align: center;
+    }
+
+    .image-section img {
+        width: 250px;
+        height: 250px;
+    }
+
+    .nav-header ul {
+        display: none; /* Hide menu for mobile */
+    }
+
+    .menu-toggle {
         display: block;
-        position: fixed;
-        top: 20px;
-        left: 20px;
-        z-index: 1000; /* Ensure it's above other content */
-        cursor: pointer;
-    }
-
-    .menu-icon {
-        width: 25px;
-        height: 3px;
-        background-color: white;
-        margin: 4px 0;
-        transition: transform 0.3s ease; /* Smooth transition for the menu icon */
-    }
-
-    /* Rotate the menu icon to close icon when sidebar is open */
-    #menu-toggle:checked + .menu-btn .menu-icon:nth-child(1) {
-        transform: rotate(45deg) translate(5px, 5px);
-    }
-    
-    #menu-toggle:checked + .menu-btn .menu-icon:nth-child(2) {
-        opacity: 0;
-    }
-    
-    #menu-toggle:checked + .menu-btn .menu-icon:nth-child(3) {
-        transform: rotate(-45deg) translate(5px, -5px);
-    }
-    
-    /* code for small menu button starts */  
-      
-
-    .time {
-        position: absolute;
-        top: 10px;
-        right: 15px;
+        text-align: center;
+        background-color: #007bff;
         color: white;
-        font-style: bold;
-        color: yellowgreen saddlebrown;
-        width: fit-content;
+        padding: 10px 15px;
+        border: none;
+        cursor: pointer;
+        font-size: 1.1em;
+        border-radius: 5px;
+        margin: 10px auto;
     }
-    .time p {
-        margin: 1px 0;
+
+    .about-section {
+        padding: 20px 10px;
+    }
+
+    .about-container {
+        width: 100%;
     }
 
     footer {
-        position: fixed;
-        font-size: 12px; /* Decrease font size for footer */
-        left: 0;
-        width: 100%;
-        background-color: rgb(40, 39, 39);
-        color: rgb(13, 141, 209);
-        z-index: 9999;
-        margin-top: 10px;
-        padding: 5px 5px;
+        font-size: 0.9em;
     }
 }

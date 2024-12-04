@@ -10,68 +10,65 @@
     </head>
 
     <body>
-        <div class="container">
-            <div class="blur-bg"></div> <!--blur effect for bg image-->
-            <div class="overlay"></div> <!--dark overlay for blur bg-->
-            <div class="content">
-                <h1>Welcome to Byte Journey</h1>
-                <p id="intro">I am Gideon and this site is all about me.</p>
-                <div class="text-container">
-                    <p>I am a highly motivated, performance-driven and results-oriented 
-                        professional with a Bachelor of Science in Information Technology,
-                        and this website is my digital home—a place where I share my passions,
-                        experiences, and a bit about who I am. My journey in the world of 
-                        technology has been fueled by a deep-seated passion for innovation 
-                        and problem-solving.</br></br>                        
-                        Drawing from my experience and knowledge in IT, I'm constantly inspired 
-                        by the ever-evolving world of Computers, Data, and digital devices. 
-                        From solving complex challenges to embracing the beauty of simplicity, 
-                        I'm dedicated to making a positive impact through my work.</br></br>
-                        But beyond my professional endeavors, I'm also a huge fan of Art, Movies,
-                        Video games, Music, Bible discussions and more. Whether it's a 
-                        music not from a known culture or an art with a blur meaning, I find joy
-                        in exploring new horizons and immersing myself in creativity.</br></br>
-                        So feel free to take a look around, explore the pages, and discover more 
-                        about me and what I love. And if you have any questions, ideas, or just 
-                        want to say hello, don't hesitate to reach out through my Contact page.
-                        I'd love to connect with you!</br></br>
+        <div class="main-container"> 
+            <!-- Intro content container -->
+            <div class="intro-content">
+                <h1 id="welcome-text">Hi! Welcome </br>I am Gideon Gakpetor</h1>                
+                <p id="start-text">I'm a</p>              
+            </div>
 
-                        Once again, welcome to my corner of the web. I hope you enjoy your stay!
-                    </p>
+            <!-- Sub picture content container -->
+            <div class="text-pic-container">          
+                <div class="text-section">
+                    <span class="dynamic-text"></span>
+                </div>
+                <div class="image-section">
+                    <img src="../byte-journey.github.io/images/myself.jpg" alt="Profile Image">
                 </div>
             </div>
+        </div>
 
-            <!--time reading-->
-            <div class="time">
-                <p id="date"></p>
-                <p id="time"></p>
-            </div>
+        <!-- Navigation Bar -->
+        <nav class="nav-header">
+            <button class="menu-toggle">Menu</button> <!-- Menu toggle button for smaller screens -->
+            <ul>
+                <li><a href="../byte-journey.github.io/index.html">Home</a></li>
+                <li><a href="../byte-journey.github.io/pages/about.html">About</a></li>
+                <li><a href="../byte-journey.github.io/pages/skills.html">Skills</a></li>
+                <li><a href="../byte-journey.github.io/pages/contact.html">Contact</a></li>
+                <li><a href="../byte-journey.github.io/pages/portfolio.html">Portfolio</a></li>
+            </ul>
+        </nav>
 
-            <div class="menu">
-                <!--sidebar - buttons-->
-                <div class="sidebar" id="side-bar">
-                    <button class="sidebar-btn" onclick="navigatePage('about.html')">About</button>
-                    <button class="sidebar-btn" onclick="navigatePage('skills.html')">Skills</button>
-                    <button class="sidebar-btn" onclick="navigatePage('interest.html')">Interests</button>
-                    <button class="sidebar-btn" onclick="navigatePage('portfolio.html')">Portfolio</button>
-                    <button class="sidebar-btn" onclick="navigatePage('contact.html')">Contact</button>
+        <div class="about-section">
+            <div class="about-container">
+                <h2>About Me</h2>
+                <div class="about-content">
+                    <div class="summary">
+                        <h3>Professional Summary</h3>
+                        <p>Brief compelling statement about your experience in software development and embedded systems</p>
+                    </div>
+                    
+                    <div class="highlights">
+                        <h3>Key Highlights</h3>
+                        <ul>
+                            <li>Years of experience in embedded systems</li>
+                            <li>Notable projects or achievements</li>
+                            <li>Specializations (e.g., specific microcontrollers, RTOS)</li>
+                        </ul>
+                    </div>
+        
+                    <div class="interests">
+                        <h3>Current Focus</h3>
+                        <p>Your current professional interests and career goals</p>
+                    </div>
                 </div>
-
-                <!--small screen menu button-->
-                <input id="menu-toggle" type="checkbox">
-                <label class="menu-btn" for="menu-toggle">
-                    <div class="menu-icon"></div>
-                    <div class="menu-icon"></div>
-                    <div class="menu-icon"></div>
-                </label>
             </div>
-
         </div>
 
         <footer>&copy;2024. All Rights Reserved</footer>
 
         <script type="text/javascript" src="js/app.js"></script>
-
 
     </body>
     

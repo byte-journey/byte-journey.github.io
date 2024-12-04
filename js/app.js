@@ -1,74 +1,82 @@
-function updateTime() {
-    var now = new Date();
-    var days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
-    var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+const roles = [
+    "Mobile Software Developer",
+    "Embedded Systems Programmer",
+    "Web Developer (Frontend)",
+    "Photographer",
+    "WordPress Web Dev"   
+];
+
+const dynamicText = document.querySelector('.dynamic-text');
+let currentIndex = 0;
+
+function updateText() {
+    dynamicText.classList.add('animate-down');
     
-    var dayOfWeek = days[now.getDay()];
-    var month = months[now.getMonth()];
-    var dayOfMonth = now.getDate();
-    var year = now.getFullYear();
-    var hours = now.getHours();
-    var minutes = now.getMinutes();
-    var seconds = now.getSeconds();
+    setTimeout(() => {
+        currentIndex = (currentIndex + 1) % roles.length;
+        dynamicText.textContent = roles[currentIndex];
+        dynamicText.classList.remove('animate-down');
+        dynamicText.classList.add('animate-up');
+    }, 500);
 
-    // Format date string
-    var dateString = dayOfWeek + ', ' + month + ' ' + dayOfMonth + ', ' + year;
-
-    // Format time string
-    var timeString = hours + ':' + (minutes < 10 ? '0' : '') + minutes + ':' + (seconds < 10 ? '0' : '') + seconds;
-
-    document.getElementById('date').innerHTML = dateString;
-    document.getElementById('time').innerHTML = timeString;
+    setTimeout(() => {
+        dynamicText.classList.remove('animate-up');
+    }, 1000);
 }
 
-// Initial call to display date and time
-updateTime();
+// Set initial text
+dynamicText.textContent = roles[0];
 
-// Update date and time every second
-setInterval(updateTime, 1000);
+// Start animation loop
+setInterval(updateText, 3000);
 
-// function for buttons toggle pages on the site
-function navigatePage(page) {
-    window.location.href = "pages/" + page;
-}
+// Block to handle sticky navigation bar
+window.addEventListener('scroll', function () {
+    const navHeader = document.querySelector('.nav-header');
+    const navBottom = navHeader.getBoundingClientRect().top;
 
-// document.addEventListener("DOMContentLoaded", function() {
-//     var menuToggle = document.getElementById("menu-toggle");
-//     var sidebar = document.getElementById("side-bar");
-//     var sidebarItems = document.querySelectorAll('.sidebar-btn');
-
-//     menuToggle.addEventListener("change", function() {
-//         if (menuToggle.checked) {
-//             sidebar.style.display = "block"; // Show the sidebar when the menu button is checked
-//         } else {
-//             sidebar.style.display = "none"; // Hide the sidebar when the menu button is unchecked
-//         }
-//     });
-// });
-
-document.addEventListener("DOMContentLoaded", function() {
-    const menuToggle = document.getElementById("menu-toggle");
-    const sidebar = document.getElementById("side-bar");
-    const sidebarItems = document.querySelectorAll('.sidebar-btn');
-
-    
-    // Function to toggle the sidebar
-    function toggleSidebar() {
-        sidebar.style.display = menuToggle.checked ? "block" : "none";
+    if (navBottom <= 0) {
+        navHeader.classList.add('sticky');
+    } else {
+        navHeader.classList.remove('sticky');
     }
+});
 
-    // Function to close the sidebar when an item is selected
-    function closeSidebar() {
-        menuToggle.checked = false;
-        sidebar.style.display = "none";
-    }
+// Menu toggle button functionality for small screens
+document.addEventListener('DOMContentLoaded', () => {
+    const menuToggle = document.querySelector('.menu-toggle');
+    const navMenu = document.querySelector('.nav-header ul');
 
-    // Event listener for the menu button
-    menuToggle.addEventListener('change', toggleSidebar);
-
-    // Event listeners for sidebar items
-    sidebarItems.forEach(function (item) {
-        item.addEventListener('click', closeSidebar);
+    menuToggle.addEventListener('click', () => {
+        navMenu.classList.toggle('active'); // Toggle menu visibility
     });
+
+    // Sticky navigation bar scroll effect
+    window.addEventListener('scroll', () => {
+        const navHeader = document.querySelector('.nav-header');
+        const navBottom = navHeader.getBoundingClientRect().top;
+
+        if (navBottom <= 0) {
+            navHeader.classList.add('sticky');
+        } else {
+            navHeader.classList.remove('sticky');
+        }
+    });
+});
+
+
+// Load the header from the external file
+document.addEventListener("DOMContentLoaded", function () {
+    fetch('header.html')
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`Failed to fetch header: ${response.statusText}`);
+            }
+            return response.text();
+        })
+        .then(data => {
+            document.getElementById('header').innerHTML = data;
+        })
+        .catch(error => console.error('Error loading header:', error));
 });
 
