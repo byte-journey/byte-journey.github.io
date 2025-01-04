@@ -294,6 +294,14 @@ html, body {
     font-size: 35px;
 }
 
+/* Footer styling */
+footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #f8f9fa;
+    border-top: 1px solid #dee2e6;
+}
+
 
 /*
 
