@@ -1,12 +1,15 @@
 /* Global styles */
-body {
+body, html {
     margin: 0;
+    padding: 0%;
     font-family: Montserrat, sans-serif;
     background-color: #dbdbdb;
-}
-
-html {
     scroll-behavior: smooth;
+    height: 100%;
+    width: 100%;
+    flex-direction: column;
+    display: flex;
+
 }
 
 /* Navigation header styling */
@@ -69,6 +72,42 @@ html {
     width: 100%;
 }
 
+/* Center content container */
+.container {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+/* Big box container */
+.big-box {
+    display: flex;
+    width: 70%;
+    height: 80vh; /* Adjust height as needed */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 15px;
+    overflow: hidden;
+}
+
+/* Left side styling */
+.left-side {
+    flex: 1;
+    background-color: #4ed3ff;
+    color: whitesmoke;
+    text-align: center;
+    padding-left: 50px;
+    padding-right: 50px;
+}
+
+/* Right side styling */
+.right-side {
+    flex: 1;
+    background-color: #ffffff; /* Orange */
+}
+
 /* Footer styling */
 footer {
     text-align: center;
@@ -76,4 +115,6 @@ footer {
     background-color: #f8f9fa;
     border-top: 1px solid #dee2e6;
     position: relative;
+    z-index: 10;
+    width: 100%;
 }
