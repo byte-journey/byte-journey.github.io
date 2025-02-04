@@ -1,0 +1,125 @@
+/* Global styles */
+html, body {
+    margin: 0;
+    font-family: Montserrat, sans-serif;
+    background-color: #dbdbdb;
+    scroll-behavior: smooth;
+}
+
+* {
+    box-sizing: border-box;   
+}
+
+/* Navigation header styling */
+.nav-header {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Keeps space between logo & links */
+    bottom: 0;
+    width: 100%;
+    max-width: 100%;
+    background-color: #333;
+    transition: transform 0.3s ease-in-out;
+    z-index: 1000;
+    padding: 5px;
+}
+
+/* Sticky navigation state */
+.nav-header.sticky {
+    position: fixed;
+    top: 0;
+    bottom: auto;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.nav-header img {
+    width: 50px;
+    height: 50px;
+}
+
+/* Navigation menu */
+.nav-header ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    align-items: center ;
+    margin: 0;
+    padding: 0;
+    background-color: #333;
+}
+
+/* Navigation items */
+.nav-header li {
+    margin: 0 20px;
+    padding: 0;
+}
+
+/* Navigation items hover effect*/
+.nav-header li:hover{    
+    text-decoration: underline;
+    text-decoration-color: tomato;
+}
+
+/* Navigation links */
+.nav-header a {
+    color: white;
+    text-decoration: none;
+    font-size: 1.1em;
+    transition: color 0.3s ease;
+}
+
+.nav-header a:hover {
+    color: #ffffff;
+    left: 0;
+    width: 0;
+    transition: width 0.3s color 0.5s ease;
+}
+
+.nav-header a:hover::after {
+    width: 100%; /* Full underline */
+}
+
+/* For active or focused links */
+.nav-header a:focus::after {
+    width: 100%;
+}
+
+/* NAV BUTTONS */
+.nav-buttons {
+    gap: 10px; /* Adds space between buttons */
+    margin-right: 20px;
+}
+
+/* BUTTONS STYLE */
+.nav-btn {
+    padding: 8px 15px;
+    border-radius: 15px;
+    font-weight: bold;
+}
+
+.nav-btn:hover {
+    background-color: grey;
+    transition: 0.5s ease;
+}
+
+.call-btn {
+    background-color: #28a745; /* Green */
+    color: rgb(21, 21, 21);
+}
+
+.email-btn {
+    background-color: #007bff; /* Blue */
+    color: white;
+}
+
+/* Footer styling */
+footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #f8f9fa;
+    border-top: 1px solid #dee2e6;
+    position: relative;
+    z-index: 10;
+    width: 100%;
+}

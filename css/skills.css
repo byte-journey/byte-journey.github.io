@@ -1,20 +1,29 @@
 html, body {
     margin: 0;
-    padding: 0;
+    padding: 0%;
     height: 100%;
-    width: auto;
-    overflow: auto;
-    font-family: "Century Gothic", Arial, sans-serif;
+    width: 100%;
+    max-width: 100%;
+    scroll-behavior: smooth;
+    font-family: Montserrat, sans-serif;
+}
+
+* {
+    box-sizing: border-box;
 }
 
 /* Navigation header styling */
 .nav-header {
     position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Keeps space between logo & links */
     bottom: 0;
     width: 100%;
     background-color: #333;
     transition: transform 0.3s ease-in-out;
     z-index: 1000;
+    padding: 5px;
 }
 
 /* Sticky navigation state */
@@ -23,6 +32,11 @@ html, body {
     top: 0;
     bottom: auto;
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.nav-header img {
+    width: 50px;
+    height: 50px;
 }
 
 /* Navigation menu */
@@ -41,6 +55,12 @@ html, body {
     padding: 0;
 }
 
+/* Navigation items hover effect*/
+.nav-header li:hover{    
+    text-decoration: underline;
+    text-decoration-color: tomato;
+}
+
 /* Navigation links */
 .nav-header a {
     color: white;
@@ -51,8 +71,6 @@ html, body {
 
 .nav-header a:hover {
     color: #ffffff;
-    text-decoration: underline;
-    text-decoration-color: tomato;
     left: 0;
     width: 0;
     transition: width 0.3s color 0.5s ease;
@@ -65,6 +83,34 @@ html, body {
 /* For active or focused links */
 .nav-header a:focus::after {
     width: 100%;
+}
+
+/* NAV BUTTONS */
+.nav-buttons {
+    gap: 10px; /* Adds space between buttons */
+    margin-right: 20px;
+}
+
+/* BUTTONS STYLE */
+.nav-btn {
+    padding: 8px 15px;
+    border-radius: 15px;
+    font-weight: bold;
+}
+
+.nav-btn:hover {
+    background-color: grey;
+    transition: 0.5s ease;
+}
+
+.call-btn {
+    background-color: #28a745; /* Green */
+    color: rgb(21, 21, 21);
+}
+
+.email-btn {
+    background-color: #007bff; /* Blue */
+    color: white;
 }
 
 /* About section container */
@@ -89,7 +135,7 @@ html, body {
 }
 
 #intro-text p {
-    font-size: 20px;
+    font-size: 18px;
 }
 
 #first-topic {

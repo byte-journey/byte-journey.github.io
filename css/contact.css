@@ -1,7 +1,7 @@
 /* Global styles */
 body, html {
     margin: 0;
-    padding: 0%;
+    padding: 0;
     font-family: Montserrat, sans-serif;
     background-color: #dbdbdb;
     scroll-behavior: smooth;
@@ -10,8 +10,10 @@ body, html {
     max-width: 100%;
     flex-direction: column;
     display: flex;
-    overflow-x: hidden;
+}
 
+* {
+    box-sizing: border-box;
 }
 
 /* Navigation header styling */
@@ -98,7 +100,7 @@ body, html {
 /* BUTTONS STYLE */
 .nav-btn {
     padding: 8px 15px;
-    border-radius: 5px;
+    border-radius: 15px;
     font-weight: bold;
 }
 
@@ -179,14 +181,14 @@ body, html {
     /* flex-direction: column;
     gap: 10px; */
     margin-bottom: 30px;
-    gap: 20px;
+    gap: 25px;
     grid-template-columns: repeat(2, 1fr);
     
 }
 
 .contact-buttons img {
     height: 30px;
-    height: 30px;
+    margin-bottom: 5px;
 }
 
 .btn {
