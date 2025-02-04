@@ -7,19 +7,26 @@ body, html {
     scroll-behavior: smooth;
     height: 100%;
     width: 100%;
+    max-width: 100%;
     flex-direction: column;
     display: flex;
+    overflow-x: hidden;
 
 }
 
 /* Navigation header styling */
 .nav-header {
     position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Keeps space between logo & links */
     bottom: 0;
     width: 100%;
+    max-width: 100%;
     background-color: #333;
     transition: transform 0.3s ease-in-out;
     z-index: 1000;
+    padding: 5px;
 }
 
 /* Sticky navigation state */
@@ -30,13 +37,19 @@ body, html {
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 
+.nav-header img {
+    width: 50px;
+    height: 50px;
+}
+
 /* Navigation menu */
 .nav-header ul {
     list-style: none;
     display: flex;
     justify-content: center;
+    align-items: center ;
     margin: 0;
-    padding: 15px 0;
+    padding: 0;
     background-color: #333;
 }
 
@@ -44,6 +57,12 @@ body, html {
 .nav-header li {
     margin: 0 20px;
     padding: 0;
+}
+
+/* Navigation items hover effect*/
+.nav-header li:hover{    
+    text-decoration: underline;
+    text-decoration-color: tomato;
 }
 
 /* Navigation links */
@@ -56,8 +75,6 @@ body, html {
 
 .nav-header a:hover {
     color: #ffffff;
-    text-decoration: underline;
-    text-decoration-color: tomato;
     left: 0;
     width: 0;
     transition: width 0.3s color 0.5s ease;
@@ -70,6 +87,34 @@ body, html {
 /* For active or focused links */
 .nav-header a:focus::after {
     width: 100%;
+}
+
+/* NAV BUTTONS */
+.nav-buttons {
+    gap: 10px; /* Adds space between buttons */
+    margin-right: 20px;
+}
+
+/* BUTTONS STYLE */
+.nav-btn {
+    padding: 8px 15px;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+.nav-btn:hover {
+    background-color: grey;
+    transition: 0.5s ease;
+}
+
+.call-btn {
+    background-color: #28a745; /* Green */
+    color: rgb(21, 21, 21);
+}
+
+.email-btn {
+    background-color: #007bff; /* Blue */
+    color: white;
 }
 
 /* Center content container */
@@ -92,20 +137,76 @@ body, html {
     overflow: hidden;
 }
 
+/* Left and right side common styling */
+.left-side, .right-side {
+    width: 50%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
 /* Left side styling */
 .left-side {
-    flex: 1;
     background-color: #4ed3ff;
-    color: whitesmoke;
-    text-align: center;
-    padding-left: 50px;
-    padding-right: 50px;
+    color: rgb(43, 43, 43);
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+}
+
+.left-side h1 {
+    margin-bottom: -5px;
+    margin-top: -50px;
+    font-size: 45px;
+}
+
+.left-side p {
+    line-height: 1.8em;
+    font-size: 20px;
 }
 
 /* Right side styling */
 .right-side {
-    flex: 1;
-    background-color: #ffffff; /* Orange */
+    background-color: #ffffff;
+    padding: 20px;
+}
+
+/* Social buttons */
+.contact-buttons {
+    display: grid;
+    /* flex-direction: column;
+    gap: 10px; */
+    margin-bottom: 30px;
+    gap: 20px;
+    grid-template-columns: repeat(2, 1fr);
+    
+}
+
+.contact-buttons img {
+    height: 30px;
+    height: 30px;
+}
+
+.btn {
+    display: flex;
+    align-items: center; /* Vertically centers content */
+    justify-content: center; /* Horizontally centers content */
+    text-decoration: none;
+    flex-direction: column;
+    background-color: rgb(152, 152, 152);
+    color: rgb(30, 30, 30);
+    border-radius: 5px;
+    width: 150px;
+    height: 130px;
+    font-weight: bold;
+    transition: 0.3s ease-in-out;
+}
+
+.btn:hover {
+    background-color: #4ed3ff;
+    opacity: 100%;
 }
 
 /* Footer styling */
