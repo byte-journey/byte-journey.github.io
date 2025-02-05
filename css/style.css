@@ -179,6 +179,27 @@ html {
     color: rgb(21, 21, 21);
 }
 
+/* Menu button (Hidden on Large Screens) */
+/* .menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    font-size: 1.8em;
+    color: white;
+    cursor: pointer;
+} */
+
+.hamburger {
+    display: none;
+    height: 25px;
+    width: 25px;
+    transform: 0.2s;
+    margin-left: auto; /* Pushes it to the far right*/
+    margin-right: 30px;
+    margin-bottom: 20px;
+    margin-top: -5px;
+}
+
 .email-btn {
     background-color: #007bff; /* Blue */
     color: white;
@@ -270,30 +291,116 @@ footer {
 
 
 
-/* Responsive styles for tablets */
+/* 📱 Mobile & Small Screens */
 @media (max-width: 768px) {
-    html {
+    html, body {
         scroll-behavior: smooth;
+    }
+    * {
+        box-sizing: border-box;
     }
     
     .container {
         flex-direction: column;
         text-align: center;
-        gap: 20px;
+        gap: 15px;
     }
 
     .text-section {
-        font-size: 1.5em;
+        font-size: 1.2em;
         min-width: auto;
     }
 
     .image-section img {
-        width: 300px;
-        height: 300px;
+        width: 20em;
+        height: 20em;
     }
 
-    .menu-toggle {
+    /*.menu-toggle {
         display: block;
+        background: none;
+        border: none;
+        font-size: 1.5em;
+        color: white;
+        cursor: pointer;
+        margin-left: auto; /* Pushes it to the far right 
+    }*/
+
+    .hamburger {
+        display: block;
+        height: 35px;
+        width: 35px;
+        transform: 0.2s;
+        margin-left: auto; /* Pushes it to the far right*/
+        margin-top: 1px;
+        margin-bottom: -2px;
+        margin-right: 10px;
+        padding: 0;
+    }
+    .hamburger .checkbox {
+        position: absolute;
+        opacity: 0;
+        height: 100%;
+        width: 100%;
+        cursor: pointer;
+    }
+    .line {
+        transition: 0.5s;
+        stroke-width: 6px;
+        stroke: whitesmoke;
+    }
+    .lineTop {
+        stroke-dasharray: 40 40;
+        stroke-dashoffset: 25;
+    }
+    .lineBottom {
+        stroke-dasharray: 40 40;
+        stroke-dashoffset: 60;
+    }
+    .lineMid {
+        stroke-dasharray: 40 40;
+    }
+    .hamburger .checkbox:checked + svg .line {
+        stroke: crimson;
+    }
+    .hamburger .checkbox:checked + svg .lineTop {
+        stroke-dashoffset: 0;
+        transform-origin: left;
+        transform: rotateZ(45deg) translate(-7px, -5px);
+    }
+    .hamburger .checkbox:checked + svg .lineMid {
+        stroke-dashoffset: 40;
+    }
+    .hamburger .checkbox:checked + svg .lineBottom {
+        stroke-dashoffset: 0;
+        transform-origin: left;
+        transform: rotateZ(-45deg) translate(-5px, 5px);
+    }
+
+    /* Make nav layout stack properly */
+    .nav-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px;
+    }
+
+    /* Center the logo */
+    .nav-header img {
+        position: absolute;
+        width: 40px;
+        height: 40px;
+    }
+
+    /* Contact buttons stay on the right */
+    .nav-buttons {
+        position: absolute;
+        right: 60px;
+        font-size: 10px;
+    }
+
+    .nav-btn {
+        border-radius: 10px;
     }
 
     .nav-header ul {
@@ -316,106 +423,41 @@ footer {
         text-align: center;
     }
 
+    .main-container {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .intro-content {
+        display: flex;
+        font-size: 20px;
+        flex-direction: column;
+    }
+
+    .intro-content h1, #start-text {
+        font-size: 20px;
+    }
+
+    .intro-content #start-text {
+        margin-top: -10px;
+    }
+    
+    .text-pic-container {
+        display: flex;
+        flex-direction: column;
+        margin-top: 10rem;
+    }
+
+    .dynamic-text {
+        font-size: 15px;
+        margin-bottom: 20px;
+    }
+    
     .about-section {
         padding: 40px 20px;
     }
     
     .about-section h2 {
         font-size: 2em;
-    }
-}
-
-
-/* Responsive styles for mobile */
-@media (max-width: 480px) {
-    html {
-        scroll-behavior: smooth;
-    }
-    
-    body {
-        font-size: 14px;
-    }
-    .main-container {
-        align-items: center;
-        max-width: 100%;
-        margin: 0 auto;
-        min-height: calc(100vh - 60px); /* Subtract nav height */
-        bottom: auto;
-        padding: 0 10px 0 10px;
-    }
-
-    /* Welcome Text Styling */
-    .intro-content {
-        text-align: start;
-        position: relative; /* Position independently */
-        margin-top: 50px;
-        margin-left: 10%;
-        font-size: 10px; 
-        margin-bottom: -150px;
-    }    
-
-    #start-text {
-        font-size: 2.5em;
-        font-weight: bold;
-        text-decoration: none;
-        color: rgb(10, 85, 182);
-    }
-
-    .welcome-text {
-        text-align: center;
-        font-size: 1.5em;
-    }
-
-    .main-container {
-        align-items: center;
-    }
-
-    /* first text-pic-container */
-    .text-pic-container {
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        margin-top: 160px;
-        max-width: 80%;
-        gap: 30px;
-}
-
-    .text-section {
-        font-size: 1.2em;
-        text-align: center;
-    }
-
-    .image-section img {
-        width: 250px;
-        height: 250px;
-    }
-
-    .nav-header ul {
-        display: none; /* Hide menu for mobile */
-    }
-
-    .menu-toggle {
-        display: block;
-        text-align: center;
-        background-color: #007bff;
-        color: white;
-        padding: 10px 15px;
-        border: none;
-        cursor: pointer;
-        font-size: 1.1em;
-        border-radius: 5px;
-        margin: 10px auto;
-    }
-
-    .about-section {
-        padding: 20px 10px;
-    }
-
-    .about-container {
-        width: 100%;
-    }
-
-    footer {
-        font-size: 0.9em;
     }
 }

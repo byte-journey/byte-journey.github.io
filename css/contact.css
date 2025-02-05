@@ -160,13 +160,13 @@ body, html {
 
 .left-side h1 {
     margin-bottom: -5px;
-    margin-top: -50px;
+    margin-top: -10px;
     font-size: 45px;
 }
 
 .left-side p {
     line-height: 1.8em;
-    font-size: 20px;
+    font-size: 16px;
 }
 
 /* Right side styling */
@@ -178,17 +178,15 @@ body, html {
 /* Social buttons */
 .contact-buttons {
     display: grid;
-    /* flex-direction: column;
-    gap: 10px; */
-    margin-bottom: 30px;
+    margin-bottom: 10px;
     gap: 25px;
     grid-template-columns: repeat(2, 1fr);
-    
+    box-shadow: #333;    
 }
 
 .contact-buttons img {
     height: 30px;
-    margin-bottom: 5px;
+    margin-bottom: 10px;
 }
 
 .btn {
@@ -204,6 +202,7 @@ body, html {
     height: 130px;
     font-weight: bold;
     transition: 0.3s ease-in-out;
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3); /* Soft shadow */
 }
 
 .btn:hover {
@@ -217,7 +216,20 @@ footer {
     padding: 20px;
     background-color: #f8f9fa;
     border-top: 1px solid #dee2e6;
-    position: relative;
     z-index: 10;
     width: 100%;
+}
+
+
+
+
+/* 📱 Mobile & Small Screens */
+@media (max-width: 768px) {
+    html, body {
+        height: 100%;
+        width: 100%;
+    }
+    * {
+        box-sizing: border-box;
+    }
 }

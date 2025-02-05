@@ -44,7 +44,7 @@ window.addEventListener('scroll', function () {
 
 // Menu toggle button functionality for small screens
 document.addEventListener('DOMContentLoaded', () => {
-    const menuToggle = document.querySelector('.menu-toggle');
+    const menuToggle = document.querySelector('.hamburger');
     const navMenu = document.querySelector('.nav-header ul');
 
     menuToggle.addEventListener('click', () => {
