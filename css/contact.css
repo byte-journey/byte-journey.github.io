@@ -109,6 +109,10 @@ body, html {
     transition: 0.5s ease;
 }
 
+.hamburger {
+    display: none;
+}
+
 .call-btn {
     background-color: #28a745; /* Green */
     color: rgb(21, 21, 21);
@@ -222,8 +226,12 @@ footer {
 
 
 
+/* 
 
-/* 📱 Mobile & Small Screens */
+Mobile & Small Screens 
+
+*/
+
 @media (max-width: 768px) {
     html, body {
         height: 100%;
@@ -231,5 +239,102 @@ footer {
     }
     * {
         box-sizing: border-box;
+    }
+
+    /* Make nav layout stack properly */
+    .nav-header {
+        display: absolute                                                                                                                       ;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px;
+    }
+
+    /* Center the logo */
+    .nav-header img {
+        position: absolute;
+        width: 40px;
+        height: 40px;
+    }
+
+    /* Contact buttons stay on the right */
+    .nav-buttons {
+        position: absolute;
+        right: 60px;
+        font-size: 10px;
+    }
+
+    .nav-btn {
+        border-radius: 10px;
+    }
+
+    .nav-header ul {
+        flex-direction: column;
+        display: none; /* Initially hidden */
+        background-color: #333;
+        position: absolute;
+        top: 50px; /* Below button */
+        left: 0;
+        width: 100%;
+        padding: 10px 0;
+    }
+
+    .nav-header ul.active {
+        display: flex; /* Show when active */
+    }
+    
+    .nav-header li {
+        margin: 10px 0;
+        text-align: center;
+    }
+
+    .hamburger {
+        display: block;
+        height: 35px;
+        width: 35px;
+        transform: 0.2s;
+        margin-left: auto; /* Pushes it to the far right*/
+        margin-top: 1px;
+        margin-bottom: -2px;
+        margin-right: 10px;
+        padding: 0;
+    }
+    .hamburger .checkbox {
+        position: absolute;
+        opacity: 0;
+        height: 100%;
+        width: 100%;
+        cursor: pointer;
+    }
+    .line {
+        transition: 0.5s;
+        stroke-width: 6px;
+        stroke: whitesmoke;
+    }
+    .lineTop {
+        stroke-dasharray: 40 40;
+        stroke-dashoffset: 25;
+    }
+    .lineBottom {
+        stroke-dasharray: 40 40;
+        stroke-dashoffset: 60;
+    }
+    .lineMid {
+        stroke-dasharray: 40 40;
+    }
+    .hamburger .checkbox:checked + svg .line {
+        stroke: crimson;
+    }
+    .hamburger .checkbox:checked + svg .lineTop {
+        stroke-dashoffset: 0;
+        transform-origin: left;
+        transform: rotateZ(45deg) translate(-7px, -5px);
+    }
+    .hamburger .checkbox:checked + svg .lineMid {
+        stroke-dashoffset: 40;
+    }
+    .hamburger .checkbox:checked + svg .lineBottom {
+        stroke-dashoffset: 0;
+        transform-origin: left;
+        transform: rotateZ(-45deg) translate(-5px, 5px);
     }
 }

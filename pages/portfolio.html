@@ -13,8 +13,38 @@
     <body>
         <!-- Navigation Bar -->
         <nav class="nav-header">
+            <!-- Menu Button (Hamburger Icon) -->
+            <div class="hamburger" onclick="toggleMenu()">
+                <input class="checkbox" type="checkbox" />
+                <svg fill="none" viewBox="0 0 50 50" height="5  0" width="50">
+                  <path
+                    class="lineTop line"
+                    stroke-linecap="round"
+                    stroke-width="4"
+                    stroke="black"
+                    d="M6 11L44 11"
+                  ></path>
+                  <path
+                    stroke-linecap="round"
+                    stroke-width="4"
+                    stroke="black"
+                    d="M6 24H43"
+                    class="lineMid line"
+                  ></path>
+                  <path
+                    stroke-linecap="round"
+                    stroke-width="4"
+                    stroke="black"
+                    d="M6 37H43"
+                    class="lineBottom line"
+                  ></path>
+                </svg>
+            </div>
+
+            <!-- Site logo -->
             <img clas="site-logo" src="/images/site logo.png" alt="Website Logo">
 
+            <!-- Navigation links -->
             <ul>
                 <li><a href="/index.html">Home</a></li>
                 <li><a href="/pages/about.html">About</a></li>
@@ -23,6 +53,7 @@
                 <li><a href="/pages/portfolio.html">Portfolio</a></li>
             </ul>
 
+            <!-- Contact buttons -->
             <div class="nav-buttons">
                 <a href="tel:+233540340066" class="nav-btn call-btn">Call</a>
                 <a href="mailto:ggakpetor21@gmail.com" class="nav-btn email-btn">Send a Mail</a>
