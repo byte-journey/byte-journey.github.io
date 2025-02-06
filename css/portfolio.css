@@ -240,4 +240,13 @@ Mobile & Small Screens
         transform-origin: left;
         transform: rotateZ(-45deg) translate(-5px, 5px);
     }
+
+    /* Footer styling */
+    footer {
+        text-align: center;
+        padding: 20px;
+        background-color: #f8f9fa;
+        border-top: 1px solid #dee2e6;
+        font-size: 10px;
+    }
 }
