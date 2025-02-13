@@ -368,6 +368,7 @@ Mobile & Small Screens
         width: 120px; 
         height: 100px;
         font-size: 12px; /* Adjust font size */
+        border-radius: 5px;
     }
 
     .contact-buttons {

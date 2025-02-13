@@ -43,26 +43,59 @@ window.addEventListener('scroll', function () {
 });
 
 // Menu toggle button functionality for small screens
-document.addEventListener('DOMContentLoaded', () => {
+// document.addEventListener('DOMContentLoaded', () => {
+//     const menuToggle = document.querySelector('.hamburger');
+//     const navMenu = document.querySelector('.nav-header ul');
+
+//     // Check if elements exist
+//     if (menuToggle && navMenu) {
+//         menuToggle.addEventListener("click", () => {
+//             navMenu.classList.toggle("active"); // Toggle menu visibility
+//         });
+//     } else {
+//         console.warn("Menu elements not found on this page.");
+//     }
+
+//     // Sticky navigation bar scroll effect
+//     window.addEventListener('scroll', () => {
+//         const navHeader = document.querySelector('.nav-header');
+//         const navBottom = navHeader.getBoundingClientRect().top;
+
+//         if (navBottom <= 0) {
+//             navHeader.classList.add('sticky');
+//         } else {
+//             navHeader.classList.remove('sticky');
+//         }
+//     });
+
+//     console.log('JavaScript code is being executed');
+// });
+
+function toggleMenu() {
     const menuToggle = document.querySelector('.hamburger');
     const navMenu = document.querySelector('.nav-header ul');
 
-    menuToggle.addEventListener('click', () => {
-        navMenu.classList.toggle('active'); // Toggle menu visibility
-    });
+    // Check if elements exist
+    if (menuToggle && navMenu) {
+        navMenu.classList.toggle("active"); // Toggle menu visibility
+        menuToggle.classList.toggle("open"); // Toggle button animation
+    } else {
+        console.warn("Menu elements not found on this page.");
+    }
+}
 
-    // Sticky navigation bar scroll effect
-    window.addEventListener('scroll', () => {
-        const navHeader = document.querySelector('.nav-header');
-        const navBottom = navHeader.getBoundingClientRect().top;
+document.addEventListener("DOMContentLoaded", function () {
+    const menuCheckbox = document.querySelector('.hamburger .checkbox');
+    const navMenu = document.querySelector('.nav-header ul');
 
-        if (navBottom <= 0) {
-            navHeader.classList.add('sticky');
-        } else {
-            navHeader.classList.remove('sticky');
+    if (menuCheckbox && navMenu) {
+        // Ensure the checkbox is unchecked when navigating back
+        if (menuCheckbox.checked) {
+            menuCheckbox.checked = false;
         }
-    });
+    }
 });
+
 
 
 // Load the header from the external file
@@ -79,4 +112,3 @@ document.addEventListener("DOMContentLoaded", function () {
         })
         .catch(error => console.error('Error loading header:', error));
 });
-
