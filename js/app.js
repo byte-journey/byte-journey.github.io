@@ -3,12 +3,13 @@ const roles = [
     "Embedded Systems Programmer",
     "Web Developer (Frontend)",
     "Photographer",
-    "WordPress Web Dev"   
+    "WordPress Developer"   
 ];
 
 const dynamicText = document.querySelector('.dynamic-text');
 let currentIndex = 0;
 
+//Roles change animation on home page
 function updateText() {
     dynamicText.classList.add('animate-down');
     
@@ -71,6 +72,7 @@ window.addEventListener('scroll', function () {
 //     console.log('JavaScript code is being executed');
 // });
 
+//Mobile menu toggle function
 function toggleMenu() {
     const menuToggle = document.querySelector('.hamburger');
     const navMenu = document.querySelector('.nav-header ul');
@@ -84,6 +86,7 @@ function toggleMenu() {
     }
 }
 
+//Event listener for mobile menu toggle hamburger
 document.addEventListener("DOMContentLoaded", function () {
     const menuCheckbox = document.querySelector('.hamburger .checkbox');
     const navMenu = document.querySelector('.nav-header ul');
@@ -96,23 +99,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 });
 
-
-
-// Load the header from the external file
-document.addEventListener("DOMContentLoaded", function () {
-    fetch('header.html')
-        .then(response => {
-            if (!response.ok) {
-                throw new Error(`Failed to fetch header: ${response.statusText}`);
-            }
-            return response.text();
-        })
-        .then(data => {
-            document.getElementById('header').innerHTML = data;
-        })
-        .catch(error => console.error('Error loading header:', error));
-});
-
+//Expandable div toggle function on skills page
 function toggleSkill(skillId) {
     const skillDiv = document.getElementById(skillId);
     const content = skillDiv.querySelector('.skill-content');

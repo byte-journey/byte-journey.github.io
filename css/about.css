@@ -178,6 +178,9 @@ footer {
 @media screen and (max-width: 768px) {
     html, body {
         font-size: 13px;
+        width: 100%;
+        margin: 0;
+        padding: 0;
     }
 
     * {
@@ -218,9 +221,20 @@ footer {
         background-color: #333;
         position: absolute;
         top: 50px; /* Below button */
-        left: 0;
-        width: 100%;
-        padding: 10px 0;
+        right: 0;
+        width: 40%;
+        padding: 15px;
+        border-radius: 0 0 15px 15px;
+        transition: ease-in 0.5s;
+    }
+
+    /* Align text to the right */
+    .nav-header ul li {
+        padding: 8px 10px;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start; /* Align text to the right */
+        font-size: 18px;
     }
 
     .nav-header ul.active {
