@@ -83,9 +83,12 @@
         <h2 id="first-topic">Programming, Development and Electronics</h2>
 
         <div class="programming-category">
-            <div id="arduino">
-                <h2>Arduino</h2>
-                <p>
+            <div id="arduino" class="skill">
+                <div class="skill-header" onclick="toggleSkill('arduino')">
+                    <h2>Arduino</h2>
+                    <span class="toggle-icon">▼</span>
+                </div>
+                <p class="skill-content">
                     Arduino stands as an open-source electronics platform that combines user-friendly hardware 
                     and software, tailored for designers, hobbyists, and anyone fascinated by interactive 
                     creations. Arduino is a good choice for DIY (Do-It-Yourself) ways
@@ -116,10 +119,15 @@
                     knowledge. I eagerly anticipate continuing my journey with Arduino and sharing my 
                     insights with fellow enthusiasts passionate about electronics and programming.
                 </p>
+                <p class="toggle-text" onclick="toggleSkill('arduino')">Show more</p>
             </div>
-            <div id="software-dev">
-                <h2>Software Development: Crafting Digital Solutions</h2>
-                <p>
+
+            <div id="software-dev" class="skill">
+                <div class="skill-header" onclick="toggleSkill('software-dev')">
+                    <h2>Software Development: Crafting Digital Solutions</h2>
+                    <span class="toggle-icon">▼</span>
+                </div>
+                <p class="skill-content">
                     Software development is like being a digital architect, where as a developer, you 
                     have the opportunity to design and construct programs that address real-world issues. 
                     It's a dynamic field, constantly evolving, which adds to its excitement and complexity.
@@ -149,10 +157,15 @@
                     technologies. I'm eager to continue my growth as a software developer, contributing to 
                     innovative projects that have a meaningful impact.
                 </p>
+                <p class="toggle-text" onclick="toggleSkill('software-dev')">Show more</p>
             </div>
-            <div id="web-dev">
-                <h2>Website Development: Crafting Digital Experiences</h2>
-                <p>
+
+            <div id="web-dev" class="skill">
+                <div class="skill-header" onclick="toggleSkill('web-dev')">
+                    <h2>Website Development: Crafting Digital Experiences</h2>
+                    <span class="toggle-icon">▼</span>
+                </div>
+                <p class="skill-content">
                     Website development is an intricate art form that allows me to weave together creativity 
                     and functionality, resulting in captivating digital experiences for users. It's a dynamic
                     field where I'm passionate about transforming ideas into visually appealing and
@@ -182,15 +195,19 @@
                     let's embark on this journey of digital transformation and make a lasting impact in 
                     the digital world.
                 </p>
+                <p class="toggle-text" onclick="toggleSkill('web-dev')">Show more</p>
             </div>
         </div>
 
         <h2 id="second-topic">Media Production</h2>
 
         <div class="media-category">
-            <div id="photography">
-                <h2>Photography (and Editing)</h2>
-                <p>
+            <div id="photography" class="skill">
+                <div class="skill-header" onclick="toggleSkill('photography')">
+                    <h2>Photography (including Editing)</h2>
+                    <span class="toggle-icon">▼</span>
+                </div>
+                <p class="skill-content">
                     Photography is more than just taking pictures; it's about capturing moments, telling 
                     stories, and evoking emotions. My passion for photography and editing allows me to 
                     blend technical skills with creativity, resulting in images that resonate with viewers.
@@ -226,10 +243,14 @@
                     website allows me to connect with others who share a passion for photography and to inspire 
                     those who appreciate the art of capturing moments.
                 </p>
+                <p class="toggle-text" onclick="toggleSkill('photography')">Show more</p>
             </div>
-            <div id="videography">
-                <h2>Videography (and Editing)</h2>
-                <p>
+            <div id="videography" class="skill">
+                <div class="skill-header" onclick="toggleSkill('videography')">
+                    <h2>Videography (including Editing)</h2>
+                    <span class="toggle-icon">▼</span>
+                </div>
+                <p class="skill-content">
                     Videography is more than just recording videos; it’s about telling stories, capturing emotions, 
                     and creating visual narratives that resonate with audiences. My passion for videography and 
                     editing allows me to blend technical skills with creativity, producing videos that leave a 
@@ -261,12 +282,23 @@
                     me to connect with others who share a passion for videography and to inspire those who 
                     appreciate the art of visual storytelling.
                 </p>
+                <p class="toggle-text" onclick="toggleSkill('videography')">Show more</p>
             </div>
-            <div id="sketchup">
-                <h2>Sketchup for 3D Design</h2>
+
+            <div id="sketchup" class="skill">
+                <div class="skill-header" onclick="toggleSkill('sketchup')">
+                    <h2>Sketchup for 3D Design</h2>
+                    <span class="toggle-icon">▼</span>
+                </div>
+                <p class="toggle-text" onclick="toggleSkill('sketchup')">Show more</p>
             </div>
-            <div id="printing">
-                <h2>Photocopy and Printing</h2>
+
+            <div id="printing" class="skill">
+                <div class="skill-header" onclick="toggleSkill('printing')">
+                    <h2>Photocopy and Printing</h2>
+                    <span class="toggle-icon">▼</span>
+                </div>
+                <p class="toggle-text" onclick="toggleSkill('printing')">Show more</p>
             </div>
         </div>
 

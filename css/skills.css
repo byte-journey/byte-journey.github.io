@@ -144,40 +144,107 @@ html, body {
 
 #first-topic {
     text-align: center;
-    margin: 20px;
+    margin: 60px;
+    font-size: 2rem;
+    font-weight: 900;
+    background: linear-gradient(90deg, #007bff, #00ffcc, #ff6600);
+    
+    /* Standard property for better compatibility */
+    background-clip: text;
+    -webkit-background-clip: text;
+    
+    /* Required to make gradient visible on text */
+    -webkit-text-fill-color: transparent;
 }
 
 #second-topic {
     text-align: center;
-    margin: 20px;
+    margin: 60px;
+    font-size: 2rem;
+    font-weight: 900;
+    background: linear-gradient(270deg, #edcd2c, #e2c977, #ff6600);
+    
+    /* Standard property for better compatibility */
+    background-clip: text;
+    -webkit-background-clip: text;
+    
+    /* Required to make gradient visible on text */
+    -webkit-text-fill-color: transparent;
 }
 
 .programming-category {
-    background-color: rgb(210, 188, 170);
     width: 100%;
     align-items: center;
-    /* background-image: url('../images/program.jpg'); */
     background-size: cover;
 }
 
 .media-category {
-    background-color: rgb(170, 210, 180);
     width: 100%;
     align-items: center;
-    /* background-image: url('../images/program.jpg'); */
     background-size: cover;
 }
 
-#arduino p {
+/* Skill Box Styling */
+.skill {
+    border-radius: 1rem;
+    box-shadow: black;
     margin-left: 5rem;
     margin-right: 5rem;
+    color: whitesmoke;
+    padding-right: 2%;
+    opacity: 95%;
+    transition: all 0.3s ease-in-out;
+}
+
+/* Skill Header: Title + Arrow */
+.skill-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    font-size: 35px;
+}
+
+.skill-header span {
+    margin-top: -10px;
+}
+
+/* Hidden Content */
+.skill-content {
+    display: none;
+    margin: 0 5rem;
     font-size: 20px;
 }
 
-#arduino h2 {
+/* Toggle Text (Show More / Show Less) */
+.toggle-text {
     margin-left: 5rem;
-    margin-top: 20px;
+    cursor: pointer;
+    color: rgb(33, 33, 33);
+    font-size: 18px;
+    text-decoration: underline;
+}
+
+/* Rotate Arrow When Expanded */
+.skill.expanded .toggle-icon {
+    transform: rotate(180deg);
+}
+
+/* Show Content When Expanded */
+.skill.expanded .skill-content {
+    display: block;
+}
+
+#arduino h2, #software-dev h2, #web-dev h2 {
+    margin-left: 2rem;
+    margin-top: 1rem;
     font-size: 35px;
+}
+
+#arduino p, #software-dev p, #web-dev p {
+    margin-left: 2rem;
+    margin-right: 5rem;
+    font-size: 20px;
 }
 
 #arduino {
@@ -193,7 +260,7 @@ html, body {
 }
 
 #software-dev {
-    background-color: #27275c;
+    background-color: #3b3b93;
     border-radius: 1rem;
     box-shadow: black;
     margin-left: 5rem;
@@ -203,18 +270,6 @@ html, body {
     padding-bottom: 10px;
     opacity: 95%;
     padding-top: 10px;
-}
-
-#software-dev p {
-    margin-left: 5rem;
-    margin-right: 5rem;
-    font-size: 20px;
-}
-
-#software-dev h2 {
-    margin-left: 5rem;
-    margin-top: 20px;
-    font-size: 35px;
 }
 
 #web-dev {
@@ -230,18 +285,6 @@ html, body {
     padding-top: 10px;
 }
 
-#web-dev p {
-    margin-left: 5rem;
-    margin-right: 5rem;
-    font-size: 20px;
-}
-
-#web-dev h2 {
-    margin-left: 5rem;
-    margin-top: 20px;
-    font-size: 35px;
-}
-
 #photography {
     background-color: #462f2f;
     border-radius: 1rem;
@@ -255,16 +298,16 @@ html, body {
     padding-top: 10px;
 }
 
-#photography p {
-    margin-left: 5rem;
-    margin-right: 5rem;
-    font-size: 20px;
+#photography h2, #videography h2, #sketchup h2, #printing h2 {
+    margin-left: 2rem;
+    margin-top: 1rem;
+    font-size: 35px;
 }
 
-#photography h2 {
-    margin-left: 5rem;
-    margin-top: 20px;
-    font-size: 35px;
+#photography p, #videography p, #sketchup p, #printing p {
+    margin-left: 2rem;
+    margin-right: 5rem;
+    font-size: 20px;
 }
 
 #videography {
@@ -281,18 +324,6 @@ html, body {
     color: black;
 }
 
-#videography p {
-    margin-left: 5rem;
-    margin-right: 5rem;
-    font-size: 20px;
-}
-
-#videography h2 {
-    margin-left: 5rem;
-    margin-top: 20px;
-    font-size: 35px;
-}
-
 #sketchup {
     background-color: #96f1ff;
     border-radius: 1rem;
@@ -307,18 +338,6 @@ html, body {
     color: black;
 }
 
-#sketchup p {
-    margin-left: 5rem;
-    margin-right: 5rem;
-    font-size: 20px;
-}
-
-#sketchup h2 {
-    margin-left: 5rem;
-    margin-top: 20px;
-    font-size: 35px;
-}
-
 #printing {
     background-color: #0068bc;
     border-radius: 1rem;
@@ -330,18 +349,6 @@ html, body {
     padding-bottom: 10px;
     opacity: 95%;
     padding-top: 10px;
-}
-
-#printing p {
-    margin-left: 5rem;
-    margin-right: 5rem;
-    font-size: 20px;
-}
-
-#printing h2 {
-    margin-left: 5rem;
-    margin-top: 20px;
-    font-size: 35px;
 }
 
 /* Footer styling */
@@ -362,6 +369,10 @@ small screens
 @media only screen and (max-width: 768px) {
     html, body {
         scroll-behavior: smooth;
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        padding: 0;
     }
     * {
         box-sizing: border-box;
@@ -469,14 +480,6 @@ small screens
         margin-left: 2rem;
         margin-right: 2rem;
     }
-    
-    /* h2{
-        font-size: 15px;
-    }
-
-    p{
-        font-size: 12px;
-    } */
 
     #first-topic {
         text-align: center;

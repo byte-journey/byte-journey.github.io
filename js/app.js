@@ -112,3 +112,21 @@ document.addEventListener("DOMContentLoaded", function () {
         })
         .catch(error => console.error('Error loading header:', error));
 });
+
+function toggleSkill(skillId) {
+    const skillDiv = document.getElementById(skillId);
+    const content = skillDiv.querySelector('.skill-content');
+    const toggleText = skillDiv.querySelector('.toggle-text');
+    const icon = skillDiv.querySelector('.toggle-icon');
+
+    if (skillDiv.classList.contains('expanded')) {
+        // Collapse the section
+        skillDiv.classList.remove('expanded');
+        toggleText.textContent = 'Show more';
+    } else {
+        // Expand the section
+        skillDiv.classList.add('expanded');
+        toggleText.textContent = 'Show less';
+    }
+}
+
