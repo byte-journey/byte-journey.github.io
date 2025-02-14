@@ -177,7 +177,7 @@ Mobile & Small Screens
         position: absolute;
         top: 50px; /* Below button */
         right: 0;
-        width: 40%;
+        width: 60%;
         padding: 15px;
         border-radius: 0 0 15px 15px;
         transition: ease-in 0.5s;
