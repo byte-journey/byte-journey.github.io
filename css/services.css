@@ -1,0 +1,331 @@
+/* Global styles */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Montserrat, sans-serif;
+    background-color: #dbdbdb;
+    width: 100%;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+* { box-sizing: border-box; }
+
+/* Main content container */
+.main-container {
+    align-items: center;
+    width: 100%;
+    margin: 0;
+    min-height: calc(100vh - 60px); /* Subtract nav height */
+    bottom: auto;
+    padding: 0;
+}
+
+/* Navigation header styling */
+.nav-header {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Keeps space between logo & links */
+    bottom: 0;
+    width: 100%;
+    max-width: 100%;
+    background-color: #333;
+    transition: transform 0.3s ease-in-out;
+    z-index: 1000;
+    padding: 5px;
+}
+
+/* Sticky navigation state */
+.nav-header.sticky {
+    position: fixed;
+    top: 0;
+    bottom: auto;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.nav-header img {
+    width: 50px;
+    height: 50px;
+}
+
+/* Navigation menu */
+.nav-header ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    margin: 0;
+    padding: 15px 0;
+    background-color: #333;
+}
+
+/* Navigation items */
+.nav-header li {
+    margin: 0 20px;
+    padding: 0;
+}
+
+/* Navigation items hover effect*/
+.nav-header li:hover{    
+    text-decoration: underline;
+    text-decoration-color: tomato;
+}
+
+/* Navigation links */
+.nav-header a {
+    color: white;
+    text-decoration: none;
+    font-size: 1.1em;
+    transition: color 0.3s ease;
+}
+
+.nav-header a:hover {
+    color: #ffffff;
+    left: 0;
+    width: 0;
+    transition: width 0.3s color 0.5s ease;
+}
+
+.nav-header a:hover::after {
+    width: 100%; /* Full underline */
+}
+
+/* For active or focused links */
+.nav-header a:focus::after {
+    width: 100%;
+}
+
+/* NAV BUTTONS */
+.nav-buttons {
+    gap: 10px; /* Adds space between buttons */
+    margin-right: 20px;
+}
+
+/* BUTTONS STYLE */
+.nav-btn {
+    padding: 8px 15px;
+    border-radius: 15px;
+    font-weight: bold;
+}
+
+.nav-btn:hover {
+    background-color: grey;
+    transition: 0.5s ease;
+}
+
+.call-btn {
+    background-color: #28a745; /* Green */
+    color: rgb(21, 21, 21);
+}
+
+.hamburger {
+    display: none;
+}
+
+.email-btn {
+    background-color: #007bff; /* Blue */
+    color: white;
+}
+
+/* Header container styling */
+.services-header {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background-color: #f8f9fa;
+    border-bottom: 1px solid #dee2e6;
+}
+
+.services-header-center {
+    margin: 10px 0;
+}
+
+.hire-me-btn {
+    padding: 12px 24px;
+    font-size: 1rem;
+    font-weight: bold;
+    color: #fff;
+    background: linear-gradient(90deg, #28a745, #007bff);
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.hire-me-btn:hover {
+    background: linear-gradient(90deg, #007bff, #28a745);
+    transition: ease 2.5s;
+}
+
+.services-header-right {
+    max-width: 500px;
+    font-size: .0.5rem;
+    color: #444;
+    line-height: 1.5;
+}
+
+/* Footer styling */
+footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #f8f9fa;
+    border-top: 1px solid #dee2e6;
+}
+
+
+
+/* 
+
+📱 Mobile & Small Screens 
+
+*/
+@media (max-width: 768px) {
+    html, body {
+        scroll-behavior: smooth;
+        padding: 0;
+        margin: 0;
+        overflow-x: hidden;
+    }
+    * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+    }
+
+    /* Main content container */
+    .main-container {
+        align-items: center;
+        width: 100%;
+        min-height: calc(100vh - 50px); /* Subtract nav height */
+        bottom: auto;
+    }
+
+    .hamburger {
+        display: flex;
+        transform: 0.2s;
+        margin-left: auto; /* Pushes it to the far right*/
+        margin-top: 1px;
+        margin-right: 25px;
+        padding: 0;
+    }
+    .hamburger .checkbox {
+        position: absolute;
+        opacity: 0;
+        height: 100%;
+        width: 100%;
+        cursor: pointer;
+    }
+    .line {
+        transition: 0.5s;
+        stroke-width: 6px;
+        stroke: whitesmoke;
+    }
+    .lineTop {
+        stroke-dasharray: 40 40;
+        stroke-dashoffset: 25;
+    }
+    .lineBottom {
+        stroke-dasharray: 40 40;
+        stroke-dashoffset: 60;
+    }
+    .lineMid {
+        stroke-dasharray: 40 40;
+    }
+    .hamburger .checkbox:checked + svg .line {
+        stroke: crimson;
+    }
+    .hamburger .checkbox:checked + svg .lineTop {
+        stroke-dashoffset: 0;
+        transform-origin: left;
+        transform: rotateZ(45deg) translate(-7px, -5px);
+    }
+    .hamburger .checkbox:checked + svg .lineMid {
+        stroke-dashoffset: 40;
+    }
+    .hamburger .checkbox:checked + svg .lineBottom {
+        stroke-dashoffset: 0;
+        transform-origin: left;
+        transform: rotateZ(-45deg) translate(-5px, 5px);
+    }
+
+    /* Make nav layout stack properly */
+    .nav-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding-bottom: 10px;
+        padding-top: 10px;
+    }
+
+    /* Center the logo */
+    .nav-header img {
+        position: absolute;
+        width: 40px;
+        height: 40px;
+        margin-left: 5px;
+    }
+
+    /* Contact buttons stay on the right */
+    .nav-buttons {
+        position: absolute;
+        right: 60px;
+        font-size: 10px;
+    }
+
+    .nav-btn {
+        border-radius: 10px;
+    }
+
+    .nav-header ul {
+        flex-direction: column;
+        display: none; /* Initially hidden */
+        background-color: #333;
+        position: absolute;
+        top: 50px; /* Below button */
+        right: 0;
+        width: 60%;
+        padding: 15px;
+        border-radius: 0 0 15px 15px;
+        transition: ease-in 0.5s;
+    }
+
+    /* Align text to the right */
+    .nav-header ul li {
+        padding: 8px 10px;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start; /* Align text to the right */
+        font-size: 18px;
+    }
+
+    .nav-header ul.active {
+        display: flex; /* Show when active */
+    }
+    
+    .nav-header li {
+        margin: 10px 0;
+        text-align: center;
+    }
+
+    .services-header {
+        flex-direction: column;
+        text-align: center;
+        padding: 15px;
+    }
+    .services-header-right {
+        max-width: 100%;
+        margin-top: 12px;
+    }
+
+    /* Footer styling */
+    footer {
+        text-align: center;
+        padding: 20px;
+        background-color: #f8f9fa;
+        border-top: 1px solid #dee2e6;
+        font-size: 10px;
+    }
+}
