@@ -238,6 +238,7 @@ Mobile & Small Screens
         width: 100%;
         margin: 0;
         padding: 0;
+        overflow-x: hidden;
     }
     * {
         box-sizing: border-box;
@@ -280,6 +281,7 @@ Mobile & Small Screens
         padding: 15px;
         border-radius: 0 0 15px 15px;
         transition: ease-in 0.5s;
+        align-items: start;
     }
 
     /* Align text to the left */
@@ -365,15 +367,19 @@ Mobile & Small Screens
     }
 
     .left-side {
-        padding: 60px;
+        padding: 15px;
     }
 
     .left-side h1 {
         font-size: 25px; /* heading text size for mobile */
+        margin-top: 35px;
     }
 
     .left-side p {
         font-size: 13px; /* Adjust paragraph size */
+        margin-left: 35px;
+        margin-right: 35px;
+        margin-bottom: 35px;
     }
 
     /* Reduce the size of the contact buttons */
@@ -385,9 +391,13 @@ Mobile & Small Screens
     }
 
     .contact-buttons {
-        gap: 18px; /* Reduce spacing */
-        margin-top: 35px;
-        margin-bottom: 35px;
+        gap: 20px; /* Reduce spacing */
+        margin: 50px;
+    }
+
+    .btn {
+        width: 150px;
+        height: 120px;
     }
 
     /* Footer styling */
@@ -396,6 +406,6 @@ Mobile & Small Screens
         padding: 20px;
         background-color: #f8f9fa;
         border-top: 1px solid #dee2e6;
-        font-size: 10px;
+        font-size: 15px;
     }
 }
