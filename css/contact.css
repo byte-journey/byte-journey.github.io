@@ -384,8 +384,8 @@ Mobile & Small Screens
 
     /* Reduce the size of the contact buttons */
     .btn {
-        width: 120px; 
-        height: 100px;
+        width: 150px; 
+        height: 120px;
         font-size: 12px; /* Adjust font size */
         border-radius: 5px;
     }
@@ -393,11 +393,6 @@ Mobile & Small Screens
     .contact-buttons {
         gap: 20px; /* Reduce spacing */
         margin: 50px;
-    }
-
-    .btn {
-        width: 150px;
-        height: 120px;
     }
 
     /* Footer styling */
@@ -408,4 +403,19 @@ Mobile & Small Screens
         border-top: 1px solid #dee2e6;
         font-size: 15px;
     }
+}
+
+@media screen and (max-width: 430px) {
+    /* Reduce the size of the contact buttons */
+    .btn {
+        width: 100px; 
+        height: 80px;
+        font-size: 12px; /* Adjust font size */
+        border-radius: 5px;
+    }
+
+    .contact-buttons {
+        gap: 20px; /* Reduce spacing */
+        margin: 50px;
+    }    
 }

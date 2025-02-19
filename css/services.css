@@ -140,6 +140,11 @@ html {
     border-bottom: 1px solid #dee2e6;
 }
 
+.services-header-left h2 {
+    font-family: Montserrat Black, sans-serif; 
+    font-size: 60px;
+}
+
 .services-header-center {
     margin: 10px 0;
 }
@@ -317,6 +322,13 @@ footer {
         text-align: center;
         padding: 15px;
     }
+
+    .services-header-left h2 {
+        font-family: Montserrat Black, sans-serif; 
+        font-size: 35px;
+        line-height: 1.5em;
+    }
+
     .services-header-right {
         max-width: 100%;
         margin-top: 12px;

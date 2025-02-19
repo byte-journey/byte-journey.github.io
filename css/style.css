@@ -308,9 +308,15 @@ footer {
         min-width: auto;
     }
 
+    .image-section {
+        text-align: center;
+        justify-content: center;
+        width: 120%;
+    }
+
     .image-section img {
-        width: 20em;
-        height: 20em;
+        width: 100%;
+        height: 30em;
     }
 
     /*.menu-toggle {
