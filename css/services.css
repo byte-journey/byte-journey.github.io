@@ -172,6 +172,78 @@ html {
     line-height: 1.5;
 }
 
+.services-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 10px;
+}
+
+/* General styling for service cards */
+.service-card {
+    position: relative;
+    background: rgba(92, 92, 92, 0.1); /* Transparent background */
+    border-radius: 10px;
+    margin: 20px;
+    width: 100%;
+    max-width: 85%;
+    backdrop-filter: blur(15px); /* Frosted glass effect */
+    overflow: hidden;
+    transition: transform 0.3s ease-in-out;
+}
+
+.service-card:hover {
+    transform: scale(1.05); /* Slight zoom effect on hover */
+    will-change: transform;
+    backface-visibility: hidden;
+}
+
+/* Service title with gradient background */
+.service-title {
+    position: absolute;
+    background: linear-gradient(45deg, #000000, #c0c0c0);
+    color: white;
+    padding: 5px 15px;
+    border-radius: 10px;
+    border-bottom-right-radius: 10px;
+    font-weight: bold;
+    font-size: 3em;
+    margin-bottom: 10px;    
+    box-shadow: 3px 3px 3px rgba(58, 212, 255, 0.3); /* Soft shadow */
+}
+
+/* Service content area */
+.service-description {
+    margin-top: 100px;
+    text-align: left;
+    color: black;
+    width: 60%;
+    margin-left: 80px;
+    line-height: 25px;
+}
+
+.service-description p {
+    font-size: 16px;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.service-description ul li {
+    padding-left: 20px;
+    list-style-type: disc;
+    font-size: 18px;
+}
+
+/* Service icon in top-right corner */
+.service-icon {
+    position: absolute;
+    top: 50%;
+    right: 50px;
+    transform: translateY(-50%);
+    font-size: 500%;
+    color: #fff;
+}
+
 /* Footer styling */
 footer {
     text-align: center;
@@ -332,6 +404,77 @@ footer {
     .services-header-right {
         max-width: 100%;
         margin-top: 12px;
+    }
+
+    .services-container {
+        align-items: center;
+    }
+
+    /* Mobile styling for service cards */
+    .service-card {
+        position: relative;
+        background: rgba(92, 92, 92, 0.1); /* Transparent background */
+        border-radius: 10px;
+        margin: 20px;
+        width: 100%;
+        max-width: 95%;
+        backdrop-filter: blur(15px); /* Frosted glass effect */
+        overflow: hidden;
+        transition: transform 0.3s ease-in-out;
+    }
+
+    .service-card:hover {
+        transform: none; /* Slight zoom effect on hover */
+        perspective: 1000px;
+        backface-visibility: hidden;
+    }
+
+    /* Service title with gradient background */
+    .service-title {
+        position: absolute;
+        background: linear-gradient(45deg, #000000, #c0c0c0);
+        color: white;
+        padding: 5px 15px;
+        border-radius: 10px;
+        border-bottom-right-radius: 10px;
+        font-weight: bold;
+        font-size: 18px;
+        margin-bottom: 10px;    
+        box-shadow: 3px 3px 3px rgba(58, 212, 255, 0.3); /* Soft shadow */
+    }
+
+    /* Service content area */
+    .service-description {
+        margin-top: 60px;
+        text-align: left;
+        color: black;
+        width: 60%;
+        margin-left: 50px;
+        line-height: 25px;
+        margin-bottom: 20px;
+    }
+
+    .service-description p {
+        font-size: 15px;
+        margin-bottom: 10px;
+        font-weight: bold;
+    }
+
+    .service-description ul li {
+        padding-left: 20px;
+        list-style-type: disc;
+        font-size: 15px;
+        margin-left: 25px;
+    }
+
+    /* Service icon in top-right corner */
+    .service-icon {
+        position: absolute;
+        top: 50%;
+        right: 50px;
+        transform: translateY(-50%);
+        font-size: 350%;
+        color: #fff;
     }
 
     /* Footer styling */

@@ -117,3 +117,14 @@ function toggleSkill(skillId) {
     }
 }
 
+// Function to handle button tap color effect on mobile screens
+document.querySelectorAll('.btn').forEach(button => {
+    button.addEventListener('click', function() {
+        this.style.backgroundColor = "#ff5733"; // Temporary color change
+        setTimeout(() => {
+            this.style.backgroundColor = ""; // Reverts to original
+        }, 200); // Reset after 200ms
+    });
+});
+
+
