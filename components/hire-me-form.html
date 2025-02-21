@@ -1,0 +1,36 @@
+<!-- hire-me-form.html -->
+<div id="hireMeFormOverlay" class="hire-me-overlay">
+    <div class="hire-me-popup">
+        <span class="close-btn" onclick="closeHireMeForm()">&times;</span>
+        <h2>Hire Me</h2>
+        <form id="hireMeForm">
+            <label for="name">Your Name:</label>
+            <input type="text" id="name" name="name" required>
+            
+            <label for="contact">Contact Information:</label>
+            <input type="text" id="contact" name="contact" required>
+            
+            <label for="service">Select Service:</label>
+            <select id="service" name="service">
+                <option value="-Select-">- Select -</option>
+                <option value="web-development">Web Development</option>
+                <option value="photo-editing">Photo Editing</option>
+                <option value="flyer-design">Flyer Design</option>
+                <option value="video-editing">Video Editing</option>
+                <option value="it-support">IT Support</option>
+            </select>
+            
+            <label for="details">Additional Requests:</label>
+            <textarea id="details" name="details"></textarea>
+            
+            <label for="location">Location:</label>
+            <input type="text" id="location" name="location">
+            
+            <button type="submit">Submit Request</button>
+        </form>
+        <div class="contact-buttons">
+            <a href="tel:+233540340066" class="form-call-btn">Call</a>
+            <a href="mailto:ggakpetor21@gmail.com" class="form-email-btn">Send Email</a>
+        </div>
+    </div>
+</div>
