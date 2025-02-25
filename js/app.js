@@ -127,16 +127,6 @@ document.querySelectorAll('.btn').forEach(button => {
     });
 });
 
-// Function to show the "Hire Me" pop-up
-function showHireMeForm() {
-    document.getElementById("hireMePopup").classList.add("active");
-}
-
-// Function to hide the "Hire Me" pop-up
-function closeHireMeForm() {
-    document.getElementById("hireMePopup").classList.remove("active");
-}
-
 
 
 
