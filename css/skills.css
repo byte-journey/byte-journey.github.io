@@ -216,6 +216,10 @@ html, body {
     font-size: 20px;
 }
 
+.skill-header .toggle-icon {
+    font-size: 30px;
+}
+
 /* Toggle Text (Show More / Show Less) */
 .toggle-text {
     margin-left: 5rem;
@@ -493,6 +497,10 @@ small screens
         margin-right: 2rem;
     }
 
+    .skill-header .toggle-icon {
+        font-size: 30px;
+    }
+
     #first-topic {
         text-align: center;
         font-size: 20px;
@@ -710,5 +718,9 @@ small screens
         margin-left: 1rem;
         margin-top: 10px;
         font-size: 15px;
+    }
+
+    .skill-header .toggle-icon {
+        font-size: 25px;
     }
 }
