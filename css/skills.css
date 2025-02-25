@@ -688,3 +688,27 @@ small screens
         font-size: 15px;
     }
 }
+
+@media screen and (max-width: 320px) {
+    /* Menu item styling */
+    .nav-header ul {
+        flex-direction: column;
+        display: none; /* Initially hidden */
+        background-color: #333;
+        position: absolute;
+        top: 50px; /* Below button */
+        right: 0;
+        width: 60%;
+        padding: 15px;
+        border-radius: 0 0 15px 15px;
+        transition: ease-in 0.5s;
+        line-height: 3px;
+    }  
+    
+    #arduino h2, #software-dev h2, #web-dev h2, #photography h2, 
+    #videography h2, #sketchup h2, #printing h2 {
+        margin-left: 1rem;
+        margin-top: 10px;
+        font-size: 15px;
+    }
+}

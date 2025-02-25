@@ -406,7 +406,22 @@ Mobile & Small Screens
     }
 }
 
-@media screen and (max-width: 430px) {
+@media screen and (max-width: 320px) {
+    /* Menu item styling */
+    .nav-header ul {
+        flex-direction: column;
+        display: none; /* Initially hidden */
+        background-color: #333;
+        position: absolute;
+        top: 50px; /* Below button */
+        right: 0;
+        width: 60%;
+        padding: 15px;
+        border-radius: 0 0 15px 15px;
+        transition: ease-in 0.5s;
+        line-height: 3px;
+    }
+    
     /* Reduce the size of the contact buttons */
     .btn {
         width: 100px; 

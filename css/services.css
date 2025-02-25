@@ -172,6 +172,14 @@ html {
     line-height: 1.5;
 }
 
+/* Service category name styling */
+.service-category {
+    align-items: center;
+    font-size: 15px;
+    margin: 25px;
+    text-align: center;
+}
+
 .services-container {
     display: flex;
     flex-direction: column;
@@ -259,7 +267,8 @@ footer {
 📱 Mobile & Small Screens 
 
 */
-@media (max-width: 768px) {
+@media (max-width: 768px), (max-height:862px) {
+     
     html, body {
         scroll-behavior: smooth;
         padding: 0;
@@ -404,6 +413,14 @@ footer {
     .services-header-right {
         max-width: 100%;
         margin-top: 12px;
+    }
+
+    /* Service category name styling */
+    .service-category {
+        align-items: center;
+        font-size: 15px;
+        margin: 25px;
+        text-align: center;
     }
 
     .services-container {
@@ -560,5 +577,76 @@ footer {
         background-color: #f8f9fa;
         border-top: 1px solid #dee2e6;
         font-size: 15px;
+    }
+}
+
+@media screen and (max-width: 320px) {
+    /* Menu item styling */
+    .nav-header ul {
+        flex-direction: column;
+        display: none; /* Initially hidden */
+        background-color: #333;
+        position: absolute;
+        top: 50px; /* Below button */
+        right: 0;
+        width: 60%;
+        padding: 15px;
+        border-radius: 0 0 15px 15px;
+        transition: ease-in 0.5s;
+        line-height: 3px;
+    }
+
+    /* Service category name styling */
+    .service-category {
+        align-items: center;
+        font-size: 15px;
+        margin: 25px;
+        text-align: center;
+    }
+
+    /* Service title with gradient background */
+    .service-title {
+        position: absolute;
+        background: linear-gradient(45deg, #000000, #c0c0c0);
+        color: white;
+        padding: 5px 15px;
+        border-radius: 10px;
+        border-bottom-right-radius: 10px;
+        font-weight: bold;
+        font-size: 1em;
+        margin-bottom: 10px;    
+        box-shadow: 3px 3px 3px rgba(58, 212, 255, 0.3); /* Soft shadow */
+    }
+
+    /* Service content area */
+    .service-description {
+        margin-top: 65px;
+        text-align: left;
+        color: black;
+        width: 60%;
+        margin-left: 15px;
+        line-height: 16px;
+    }
+
+    .service-description p {
+        font-size: 12px;
+        margin-bottom: 10px;
+        font-weight: bold;
+    }
+
+    .service-description ul li {
+        padding-left: 10px;
+        list-style-type: disc;
+        font-size: 12px;
+    }
+
+    /* Service icon in top-right corner */
+    .service-icon {
+        position: absolute;
+        top: 50%;
+        right: 25px;
+        transform: translateY(-50%);
+        font-size: 200%;
+        color: #fff;
     }
 }
