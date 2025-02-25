@@ -63,6 +63,7 @@ html {
     overflow-wrap: break-word; /* Enable word wrapping */
     word-wrap: break-word;
     max-width: 500px; /* Ensure text stays within container */
+    text-align: center;
 }
 
 /* Subtext Styling */
