@@ -136,8 +136,8 @@ body, html {
 /* Big box container */
 .big-box {
     display: flex;
-    width: 70%;
-    height: 80vh; /* Adjust height as needed */
+    width: 80%;
+    height: 100vh; /* Adjust height as needed */
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     border-radius: 15px;
     overflow: hidden;
@@ -182,8 +182,9 @@ body, html {
 /* Social buttons */
 .contact-buttons {
     display: grid;
-    margin-bottom: 10px;
-    gap: 25px;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    gap: 50px;
     grid-template-columns: repeat(2, 1fr);
     box-shadow: #333;    
 }
@@ -421,7 +422,7 @@ Mobile & Small Screens
         transition: ease-in 0.5s;
         line-height: 3px;
     }
-    
+
     /* Reduce the size of the contact buttons */
     .btn {
         width: 100px; 

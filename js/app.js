@@ -127,6 +127,34 @@ document.querySelectorAll('.btn').forEach(button => {
     });
 });
 
+//Back to top button function 👇
+
+// Show/Hide Back to Top Button on Scroll
+document.addEventListener('scroll', () => {
+    const button = document.getElementById('backToTop');
+    if (window.scrollY > 450) {
+        button.classList.add('show');
+    } else {
+        button.classList.remove('show');
+    }
+});
+
+// Smooth Scroll to Top
+function scrollToTop() {
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+    });
+}
+
+// Load the back-to-top button
+fetch('/components/back-to-top.html')
+.then(response => response.text())
+.then(html => {
+    document.getElementById('back-to-top-container').innerHTML = html;
+});
+
+
 
 
 

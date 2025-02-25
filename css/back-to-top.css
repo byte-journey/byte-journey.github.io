@@ -1,0 +1,37 @@
+/* Back to Top Button Styling */
+.back-to-top {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    padding: 10px 15px;
+    font-size: 18px;
+    background: #007bff;
+    color: white;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 1.5s, visibility 5.0s;
+    z-index: 1000;
+    font-family: Montserrat, sans-serif;
+    font-weight: 800;
+}
+
+/* Button visible when user scrolls */
+.back-to-top.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Hover effect */
+.back-to-top:hover {
+    background: #00448c;
+    transition: ease 1.0s;
+}
+
+@media screen and (max-width: 768px) and (max-width: 320px) {
+    .back-to-top {
+        font-size: 10px;
+    }    
+}
