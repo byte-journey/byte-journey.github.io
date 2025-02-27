@@ -279,7 +279,7 @@ footer {
 📱 Mobile & Small Screens 
 
 */
-@media (max-width: 768px) {
+@media screen and (max-width: 768px) {
      
     html, body {
         scroll-behavior: smooth;
@@ -614,6 +614,10 @@ footer {
         font-size: 15px;
         margin: 25px;
         text-align: center;
+    }
+
+    .service-card:active {
+        max-height: 500px; /* Expanded height on hover */
     }
 
     /* Service title with gradient background */
