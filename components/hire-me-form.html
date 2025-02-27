@@ -1,36 +1,67 @@
-<!-- hire-me-form.html -->
-<div id="hireMeFormOverlay" class="hire-me-overlay">
-    <div class="hire-me-popup">
-        <span class="close-btn" onclick="closeHireMeForm()">&times;</span>
-        <h2>Hire Me</h2>
-        <form id="hireMeForm">
-            <label for="name">Your Name:</label>
-            <input type="text" id="name" name="name" required>
-            
-            <label for="contact">Contact Information:</label>
-            <input type="text" id="contact" name="contact" required>
-            
-            <label for="service">Select Service:</label>
-            <select id="service" name="service">
-                <option value="-Select-">- Select -</option>
-                <option value="web-development">Web Development</option>
-                <option value="photo-editing">Photo Editing</option>
-                <option value="flyer-design">Flyer Design</option>
-                <option value="video-editing">Video Editing</option>
-                <option value="it-support">IT Support</option>
-            </select>
-            
-            <label for="details">Additional Requests:</label>
-            <textarea id="details" name="details"></textarea>
-            
-            <label for="location">Location:</label>
-            <input type="text" id="location" name="location">
-            
-            <button type="submit">Submit Request</button>
-        </form>
-        <div class="contact-buttons">
-            <a href="tel:+233540340066" class="form-call-btn">Call</a>
-            <a href="mailto:ggakpetor21@gmail.com" class="form-email-btn">Send Email</a>
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Hire Me Form Overlay</title>
+        <link rel="stylesheet" type="text/css" href="/css/hire-me-form.css">
+        <script defer src="/js/hire-me-form.js"></script>
+    </head>
+
+    <body onload="showHireMeForm()">
+
+        <!-- Hire Me Button (Triggers the Popup) -->
+        <!-- <button class="hire-me-btn" onclick="openHireMeForm()">Hire Me</button> -->
+        
+        <!-- Hire Me Form Overlay -->
+        <div id="hireMeFormOverlay" class="overlay">
+
+            <div class="container">
+                <!-- Close Button -->
+                <span class="close-btn" onclick="closeHireMeForm()">&times;</span>
+                <div class="heading">Hire Me</div>
+                
+                <!-- Form Content -->
+                <form action="" class="form" method="post">
+                    <label for="name">Your Name</label>
+                    <input required="*" class="input" type="text" name="name" id="name" placeholder="Enter your name">
+                    
+                    <label for="contact">Contact Info</label>
+                    <input required="*" class="input" type="text" name="contact" id="contact" placeholder="Phone or email">
+
+                    <label for="service">Select Service</label>
+                    <select id="service" name="service" required>
+                        <option value="">-- Choose a service --</option>
+                        <option value="web-dev">Web Development</option>
+                        <option value="mobile-dev">Mobile Development</option>
+                        <option value="embedded-dev">Embedded Development</option>
+                        <option value="github">GitHub Service</option>
+                        <option value="data">Data Analysis in Excel</option>
+                        <option value="photo-editing">Photo Editing</option>
+                        <option value="video-editing">Video Editing</option>
+                        <option value="designing">Flyer & Poster Design</option>
+                        <option value="3d">3D Modeling</option>
+                        <option value="templates">Word & Powerpoint Templates</option>
+                        <option value="it-support">IT Support</option>
+                    </select>
+
+                    <label for="details">Additional Request</label>
+                    <textarea class="textarea" name="details" id="details" placeholder="Describe your project..."></textarea>
+
+                    <label for="location">Your Location</label>
+                    <input type="text" id="location" name="location" placeholder="City, Country" required="*">
+
+                    <!-- Submit and Alternative Contact Buttons -->
+                    <button type="submit" class="submit-btn">Submit Request</button>
+                </form>
+
+                <div class="contact-buttons-container">
+                    <span class="title">Or Contact direct using</span>
+                </div>
+            </div>
         </div>
-    </div>
-</div>
+
+        <script type="text/javascript" src="/js/hire-me-form.js"></script>
+    </body>
+</html>
