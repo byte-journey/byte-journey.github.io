@@ -147,7 +147,7 @@ html, body {
     margin: 60px;
     font-size: 2rem;
     font-weight: 900;
-    background: linear-gradient(90deg, #007bff, #00ffcc, #ff6600);
+    background: linear-gradient(90deg, #007bff, #0eab8c, #ff6600);
     
     /* Standard property for better compatibility */
     background-clip: text;
@@ -162,7 +162,7 @@ html, body {
     margin: 60px;
     font-size: 2rem;
     font-weight: 900;
-    background: linear-gradient(270deg, #edcd2c, #e2c977, #ff6600);
+    background: linear-gradient(270deg,);
     
     /* Standard property for better compatibility */
     background-clip: text;

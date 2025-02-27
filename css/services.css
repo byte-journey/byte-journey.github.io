@@ -175,9 +175,18 @@ html {
 /* Service category name styling */
 .service-category {
     align-items: center;
-    font-size: 15px;
+    font-size: 50px;
+    font-weight: 1000;
     margin: 25px;
     text-align: center;
+    background: linear-gradient(90deg, #007bff, #0dc6d3, #28a745);
+    
+    /* Standard property for better compatibility */
+    background-clip: text;
+    -webkit-background-clip: text;
+    
+    /* Required to make gradient visible on text */
+    -webkit-text-fill-color: transparent;   
 }
 
 .services-container {
@@ -185,6 +194,7 @@ html {
     flex-direction: column;
     align-items: center;
     margin: 10px;
+    position: relative;
 }
 
 /* General styling for service cards */
@@ -197,19 +207,21 @@ html {
     max-width: 85%;
     backdrop-filter: blur(15px); /* Frosted glass effect */
     overflow: hidden;
-    transition: transform 0.3s ease-in-out;
+    transition: transform 0.3s ease-in-out, max-height 0.5s ease;
+    max-height: 8em; /* Collapsed height */
 }
 
 .service-card:hover {
-    transform: scale(1.05); /* Slight zoom effect on hover */
-    will-change: transform;
-    backface-visibility: hidden;
+    transform: scale(1.1); /* Slight zoom effect on hover */
+    max-height: 1000px; /* Expanded height on hover */
+    transition: .5s ease-in;
 }
 
 /* Service title with gradient background */
 .service-title {
     position: absolute;
     background: linear-gradient(45deg, #000000, #c0c0c0);
+    background-repeat: no-repeat;
     color: white;
     padding: 5px 15px;
     border-radius: 10px;
@@ -267,7 +279,7 @@ footer {
 📱 Mobile & Small Screens 
 
 */
-@media (max-width: 768px), (max-height:862px) {
+@media (max-width: 768px) {
      
     html, body {
         scroll-behavior: smooth;
