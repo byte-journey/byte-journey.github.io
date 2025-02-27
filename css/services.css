@@ -616,8 +616,10 @@ footer {
         text-align: center;
     }
 
-    .service-card:active {
-        max-height: 500px; /* Expanded height on hover */
+    
+
+    .expanded {
+        max-height: 1000px; /* Expanded height */
     }
 
     /* Service title with gradient background */

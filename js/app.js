@@ -155,6 +155,14 @@ fetch('/components/back-to-top.html')
 });
 
 
+// Touch event effect for mobile screens service card
+const serviceCards = document.querySelectorAll('.service-card');
+serviceCards.forEach(card => {
+    card.addEventListener('touchstart', () => {
+        card.classList.toggle('expanded');
+    });
+});
+
 
 
 
