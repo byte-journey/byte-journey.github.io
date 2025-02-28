@@ -30,10 +30,46 @@
 }
   
 .heading {
+  position: relative;
   text-align: center;
   font-weight: 900;
   font-size: 30px;
   color: rgb(16, 137, 211);
+}
+
+.heading::before {
+  width: 18px;
+  height: 18px;
+}
+
+.heading::after {
+  width: 18px;
+  height: 18px;
+  animation: pulse 1s linear infinite alternate;
+}
+
+.heading::before,
+.heading::after {
+  position: absolute;
+  content: "";
+  height: 16px;
+  width: 16px;
+  border-radius: 50%;
+  left: 10px;
+  top: 10px;
+  background-color: rgb(16, 137, 211);
+}
+
+/* Pulse Animation */
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(2);
+    opacity: 0.5;
+  }
 }
 
   /* Close Button */
@@ -89,7 +125,7 @@
   color: rgb(170, 170, 170);
 }
   
-  .form .input:focus {
+  .form .input:focus, #location:focus, #details:focus {
     outline: none;
     border-inline: 1.5px solid #12b1d1;
   }
@@ -106,7 +142,7 @@
     );
     color: white;
     padding-block: 15px;
-    margin: 20px auto;
+    margin: 30px auto;
     border-radius: 20px;
     box-shadow: rgba(133, 189, 215, 0.8784313725) 0px 20px 10px -15px;
     border: none;
@@ -124,14 +160,15 @@
   }
   
   .contact-buttons-container {
-    margin-top: 25px;
+    margin-top: 35px;
   }
   
   .contact-buttons-container .title {
     display: block;
     text-align: center;
     font-size: 10px;
-    color: rgb(170, 170, 170);
+    color: rgb(131, 131, 131);
+    margin-top: 10px;
   }
   
   .contact-buttons-container .social-accounts {
@@ -139,11 +176,11 @@
     display: flex;
     justify-content: center;
     gap: 15px;
-    margin-top: 5px;
+    margin-top: 15px;
   }
   
   .contact-buttons-container .social-accounts .social-button {
-    background: linear-gradient(45deg, rgb(0, 0, 0) 0%, rgb(112, 112, 112) 100%);
+    background: linear-gradient(45deg, rgb(16, 137, 211) 0%, rgb(18, 177, 209) 100%);
     border: 5px solid white;
     padding: 5px;
     border-radius: 50%;
@@ -159,6 +196,14 @@
     fill: white;
     margin: auto;
   }
+
+  .social-button {
+    color: white;
+  }
+
+  .social-button img {
+    width: 15px;
+  }
   
   .contact-buttons-container .social-accounts .social-button:hover {
     transform: scale(1.2);
@@ -168,3 +213,17 @@
     transform: scale(0.9);
   }
   
+@media screen and (max-width: 768px) {
+  .heading::before,
+  .heading::after {
+    position: absolute;
+    content: "";
+    height: 16px;
+    width: 16px;
+    border-radius: 50%;
+    left: 5px;
+    top: 10px;
+    background-color: rgb(16, 137, 211);
+    }
+    
+}
