@@ -21,17 +21,20 @@
                 <!-- Close Button -->
                 <span class="close-btn" onclick="closeHireMeForm()">&times;</span>
                 <div class="heading">Hire Me</div>
+                <p style=
+                    "font-style: italic; 
+                    font-size: 12px;">🤝 From Concept to Completion – I’m Here to Deliver!</p>
                 
                 <!-- Form Content -->
                 <form action="" class="form" method="post">
-                    <label for="name">Your Name</label>
+                    <label for="name" class="label">Your Name</label>
                     <input required="*" class="input" type="text" name="name" id="name" placeholder="Enter your name">
                     
-                    <label for="contact">Contact Info</label>
+                    <label for="contact" class="label">Contact Info</label>
                     <input required="*" class="input" type="text" name="contact" id="contact" placeholder="Phone or email">
 
-                    <label for="service">Select Service</label>
-                    <select id="service" name="service" required>
+                    <label for="service" class="label">Select Service</label>
+                    <select id="service" class="input" name="service" required>
                         <option value="">-- Choose a service --</option>
                         <option value="web-dev">Web Development</option>
                         <option value="mobile-dev">Mobile Development</option>
@@ -46,10 +49,10 @@
                         <option value="it-support">IT Support</option>
                     </select>
 
-                    <label for="details">Additional Request</label>
+                    <label for="details"class="label">Additional Request</label>
                     <textarea class="textarea" name="details" id="details" placeholder="Describe your project..."></textarea>
 
-                    <label for="location">Your Location</label>
+                    <label for="location" class="label">Your Location</label>
                     <input type="text" id="location" name="location" placeholder="City, Country" required="*">
 
                     <!-- Submit and Alternative Contact Buttons -->
@@ -57,7 +60,7 @@
                 </form>
 
                 <div class="contact-buttons-container">
-                    <span class="title">Or Contact direct using</span>
+                    <span class="title">Contact or Follow me 👇</span>
                 </div>
             </div>
         </div>
