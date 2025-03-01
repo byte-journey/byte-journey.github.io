@@ -6,7 +6,6 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Hire Me Form Overlay</title>
         <link rel="stylesheet" type="text/css" href="/css/hire-me-form.css">
-        <script defer src="/js/hire-me-form.js"></script>
     </head>
 
     <body onload="showHireMeForm()">
@@ -26,7 +25,7 @@
                     font-size: 12px;">🤝 From Concept to Completion – I’m Here to Deliver!</p>
                 
                 <!-- Form Content -->
-                <form action="" class="form" method="post">
+                <form action="https://formspree.io/f/mbldnygj" class="form" id="hireMeForm" method="POST">
                     <label for="name" class="label">Your Name</label>
                     <input required="*" class="input" type="text" name="name" id="name" placeholder="Enter your name">
                     
@@ -36,17 +35,17 @@
                     <label for="service" class="label">Select Service</label>
                     <select id="service" class="input" name="service" required>
                         <option value="">-- Choose a service --</option>
-                        <option value="web-dev">Web Development</option>
-                        <option value="mobile-dev">Mobile Development</option>
-                        <option value="embedded-dev">Embedded Development</option>
-                        <option value="github">GitHub Service</option>
-                        <option value="data">Data Analysis in Excel</option>
-                        <option value="photo-editing">Photo Editing</option>
-                        <option value="video-editing">Video Editing</option>
-                        <option value="designing">Flyer & Poster Design</option>
-                        <option value="3d">3D Modeling</option>
-                        <option value="templates">Word & Powerpoint Templates</option>
-                        <option value="it-support">IT Support</option>
+                        <option value="Web Development">Web Development</option>
+                        <option value="Mobile Development">Mobile Development</option>
+                        <option value="Embedded Development">Embedded Development</option>
+                        <option value="Github">GitHub Service</option>
+                        <option value="Data in Excel">Data Analysis in Excel</option>
+                        <option value="Photo Editing">Photo Editing</option>
+                        <option value="Video Editing">Video Editing</option>
+                        <option value="Flyer Design">Flyer & Poster Design</option>
+                        <option value="3d Design">3D Modeling</option>
+                        <option value="Document Templates">Word & Powerpoint Templates</option>
+                        <option value="IT Support">IT Support</option>
                     </select>
 
                     <label for="details"class="label">Additional Details</label>
@@ -58,6 +57,9 @@
                     <!-- Submit and Alternative Contact Buttons -->
                     <button type="submit" class="submit-btn">Submit Request</button>
                 </form>
+
+                <!-- Message Container -->
+                <div id="formMessage" style="display:none;"></div>
 
                 <div class="contact-buttons-container">
                     <span class="title">Contact or Follow me 👇</span>
