@@ -614,9 +614,7 @@ footer {
         font-size: 15px;
         margin: 25px;
         text-align: center;
-    }
-
-    
+    }    
 
     .expanded {
         max-height: 1000px; /* Expanded height */

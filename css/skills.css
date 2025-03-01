@@ -161,8 +161,8 @@ html, body {
     text-align: center;
     margin: 60px;
     font-size: 2rem;
-    font-weight: 900;
-    background: linear-gradient(270deg,);
+    font-weight: 900;    
+    background: linear-gradient(270deg, #ae6806, #4c7e34, #e99e49);
     
     /* Standard property for better compatibility */
     background-clip: text;
