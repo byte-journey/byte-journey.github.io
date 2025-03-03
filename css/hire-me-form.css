@@ -239,6 +239,15 @@ Responsive: Adjusted codes for smaller screens
     max-width: 85%;
   }
 
+  .input, .textarea {
+    font-size: 16px;
+  }
+
+  .input:active, 
+  .textarea:active {
+    max-width: 90%;
+  }
+
   .close-btn {
     top: 10px; /* Adjust position for smaller screens */
     right: 15px;
@@ -250,7 +259,14 @@ Responsive: Adjusted codes for smaller screens
 @media screen and (max-width: 320px) {
   .container {
     max-width: 85%;
-  }  
+  }
+  
+  .input, .textarea {
+    font-size: 16px;
+  }
 
-  .input:active, textarea:active {}
+  .input:active, 
+  .textarea:active {
+    max-width: 90%;
+  }
 }
