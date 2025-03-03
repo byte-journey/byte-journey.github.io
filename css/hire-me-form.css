@@ -225,7 +225,14 @@
     top: 10px;  
     background-color: rgb(16, 137, 211);
   }
-
   
-    
+  .container {
+    max-width: 85%;
+  } 
+}
+
+@media screen and (max-width: 320px) {
+  .container {
+    max-width: 85%;
+  }  
 }
