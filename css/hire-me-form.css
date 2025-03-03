@@ -1,4 +1,6 @@
+/* Form Container */
 .container {
+  width: 80%;
   max-width: 500px;
   background: #dcdcdc;
   background: linear-gradient(
@@ -6,15 +8,17 @@
     rgb(255, 255, 255) 0%,
     rgb(244, 247, 251) 100%
   );
-  border-radius: 20px;
   padding: 25px 35px;
   border: 5px solid rgb(255, 255, 255);
-  box-shadow: rgba(133, 189, 215, 0.8784313725) 0px 30px 30px -20px;
+  box-shadow: rgba(133, 189, 215, 0.88) 0px 30px 30px -20px;
   margin: 20px;
   max-height: 85%;
-  overflow-y: auto;
+  overflow: auto;
+  clip-path: inset(0 round 25px); /* Keeps rounded corners */
+  position: relative; /* Critical for anchoring children */
 }
 
+/* Overlay (background behind the form) */
 #hireMeFormOverlay {
   display: none; /* Hidden by default */
   position: fixed; /* Stay in place relative to the viewport */
@@ -71,20 +75,19 @@
   }
 }
 
-  /* Close Button */
+ /* Close Button (Anchored to the form) */
 .close-btn {
-  position: absolute;
-  top: 20px;
-  right: 100px;
-  font-size: 2.5rem;
+  position: absolute; /* Anchor to .container */
+  top: 20px; /* Position within the form */
+  right: 15px; /* Keep it inside the form */
+  font-size: 2rem;
   font-weight: 500;
   cursor: pointer;
-  color: rgb(16, 137, 211);
-  background-color: #fff;
-  padding-left: 12px;
-  padding-right: 12px;
+  color: white;
+  background-color: rgb(198, 69, 69);
   border-radius: 30px;
-
+  padding: 1px 10px;
+  z-index: 10000; /* Keep it above form content */
 }
   
 .form {
@@ -201,17 +204,23 @@
   color: white;
 }
 
-  .social-button img {
-    width: 15px;
-  }
+social-button img {
+  width: 15px;
+}
   
-  .contact-buttons-container .social-accounts .social-button:hover {
-    transform: scale(1.2);
-  }
+.contact-buttons-container .social-accounts .social-button:hover {
+  transform: scale(1.2);
+}
   
-  .contact-buttons-container .social-accounts .social-button:active {
-    transform: scale(0.9);
-  }
+.contact-buttons-container .social-accounts .social-button:active {
+  transform: scale(0.9);
+}
+
+
+/*
+Responsive: Adjusted codes for smaller screens
+ */
+
   
 @media screen and (max-width: 768px) {
   .heading::before,
@@ -228,11 +237,20 @@
   
   .container {
     max-width: 85%;
-  } 
+  }
+
+  .close-btn {
+    top: 10px; /* Adjust position for smaller screens */
+    right: 15px;
+    font-size: 1rem; /* Slightly smaller button */
+    padding: 0 5px;
+  }
 }
 
 @media screen and (max-width: 320px) {
   .container {
     max-width: 85%;
   }  
+
+  .input:active, textarea:active {}
 }
