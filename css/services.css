@@ -279,6 +279,8 @@ footer {
 📱 Mobile & Small Screens 
 
 */
+
+
 @media screen and (max-width: 768px) {
      
     html, body {
@@ -450,6 +452,7 @@ footer {
         backdrop-filter: blur(15px); /* Frosted glass effect */
         overflow: hidden;
         transition: transform 0.3s ease-in-out;
+        max-height: max-content;
     }
 
     .service-card:hover {
