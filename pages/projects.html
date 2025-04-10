@@ -21,6 +21,11 @@
         <link rel="stylesheet" type="text/css" href="/css/projects.css">
         <link rel="icon" type="image/png" href="/favicon.png">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet">
+
+        <!-- Highlight.js for code highlighting -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script>
     </head>
 
     <body>
@@ -75,11 +80,209 @@
                 </div>
             </nav>
 
-            <h1>⚠️ This page is under construction</h1>
+            <!-- Intro Section -->
+            <section class="intro">
+                <h1>🚀 Explore My Projects</h1>
+                <p>
+                    Welcome to my project gallery! Dive into the innovative solutions I've crafted 
+                    across different fields—from web development to embedded systems and beyond.
+                </p>
+            </section>
+
+            <!-- Projects Container -->
+            <div id="projects-container">
+                
+                <!-- Skill Section Template -->
+                <section class="skill-section" id="arduino-section">
+                    <h2 class="skill-title">🔌 Arduino Projects</h2>
+                    <div class="carousel-wrapper">
+                        <!-- <button class="carousel-btn left">⬅️</button> -->
+                        <div class="project-carousel">
+                            <div class="project-card" onclick="openCodeViewer('ir-controlled-motor')">
+                                <div class="card-content">
+                                    <h3>Remote-Controlled DC Motor</h3>
+                                    <p>Turn motor ON/OFF using IR-Remote.</p>
+                                </div>
+                                <div class="card-hover">
+                                    <h4>Prerequisites:</h4>
+                                    <ul>
+                                        <li>Arduino UNO R3</li>
+                                        <li>IRremote Library</li>
+                                        <li>L293D Motor Driver</li>
+                                        <li>DC Motor</li>
+                                        <li>IR Receiver</li>
+                                        <li>Power supply</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- <button class="carousel-btn right">➡️</button> -->
+                    </div>
+                </section>
+
+                <section class="skill-section" id="web-section">
+                    <h2 class="skill-title">🌐 Web Development</h2>
+                    <div class="carousel-wrapper">
+                        <!-- <button class="carousel-btn left" onclick="scrollCarousel('web-carousel', -1)">⬅️</button> -->
+                        <div class="project-carousel" id="web-carousel">
+                            <a href="https://byte-journey.github.io" target="_blank" class="project-card">
+                                <div class="card-content">
+                                    <h3>Portfolio Website</h3>
+                                    <p>A personal website showcasing skills and projects.</p>
+                                </div>
+                                <div class="card-hover">
+                                    <h4>Prerequisites:</h4>
+                                    <ul>
+                                        <li>HTML5</li>
+                                        <li>CSS3</li>
+                                        <li>JavaScript</li>
+                                    </ul>
+                                </div>
+                            </a>
+                            <a href="https://papasplacehotel.com" target="_blank" class="project-card">
+                                <div class="card-content">
+                                    <h3>Papa's Place Website</h3>
+                                    <p>A business website for Papa's Place Hotel.</p>
+                                </div>
+                                <div class="card-hover">
+                                    <h4>Prerequisites:</h4>
+                                    <ul>
+                                        <li>WordPress</li>
+                                    </ul>
+                                </div>
+                            </a>
+                        </div>
+                        <!-- <button class="carousel-btn right" onclick="scrollCarousel('web-carousel', 1)">➡️</button> -->
+                    </div>
+                </section>
+
+                <section class="skill-section" id="mobile-section">
+                    <h2 class="skill-title">📱 Mobile Apps</h2>
+                    <div class="carousel-wrapper">
+                        <!-- <button class="carousel-btn left" onclick="scrollCarousel('mobile-carousel', -1)">⬅️</button> -->
+                        <div class="project-carousel" id="mobile-carousel">
+                            <div class="project-card" onclick="openCodeViewer('mobile-expense-tracker')">
+                                <div class="card-content">
+                                    <h3>Expense Tracker</h3>
+                                    <p>Track daily expenses with ease.</p></b>
+                                    <h5>⚠️Project under construction!</h5>
+                                </div>
+                                <div class="card-hover">
+                                    <h4>Prerequisites:</h4>
+                                    <ul>
+                                        <li>Kotlin</li>
+                                        <li>SQLite</li>
+                                        <li>Android Studio</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- <button class="carousel-btn right" onclick="scrollCarousel('mobile-carousel', 1)">➡️</button> -->
+                    </div>
+                </section>
+
+                <section class="skill-section" id="media-section">
+                    <h2 class="skill-title">📸 Media Projects</h2>
+                    <div class="carousel-wrapper">
+                        <!-- <button class="carousel-btn left" onclick="scrollCarousel('media-carousel', -1)">⬅️</button> -->
+                        <div class="project-carousel" id="media-carousel">
+                            <div class="project-card" onclick="showVideoModal(this)" data-video-id="1U4h4SSGALNyOLt_uf4XabBLD20lLgpR3">
+                                <div class="card-content">
+                                    <h3>Alewah Promo Video</h3>
+                                    <p>A stunning promotional video for a Alewah Festival of Arts, 2019.</p>
+                                </div>
+                                <div class="card-hover">
+                                    <h4>Prerequisites:</h4>
+                                    <ul>
+                                        <li>Adobe Premiere</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- <button class="carousel-btn right" onclick="scrollCarousel('media-carousel', 1)">➡️</button> -->
+                    </div>
+                </section>
+            </div>
         </div>
 
         <footer>Byte Journey &copy; 2025. All Rights Reserved</footer>
-        <script type="text/javascript" src="/js/app.js"></script>
+        
+
+
+
+    <!-- Project Modal -->
+    <div id="project-modal" class="modal">
+        <div class="modal-content">
+        <span class="close-button" onclick="closeProjectModal()">&times;</span>
+        
+        <div class="tabs">
+            <button class="tab-btn active" onclick="showTab('code')">Code</button>
+            <button class="tab-btn" onclick="showTab('images')">Images</button>
+            <button class="tab-btn" onclick="showTab('video')">Video</button>
+        </div>
+    
+        <!-- CODE TAB -->
+        <div id="tab-content-code" class="tab-content active">
+            <div class="code-toolbar">
+            <button class="copy-btn" onclick="copyCode()">📋 Copy</button>
+            </div>
+            <pre><code id="project-code" class="language-cpp">// Your code will be loaded here</code></pre>
+        </div>
+    
+        <!-- IMAGES TAB -->
+        <div id="tab-content-images" class="tab-content">
+            <div id="project-images" class="media-gallery">
+            <!-- Images will be inserted here -->
+            </div>
+        </div>
+    
+        <!-- VIDEO TAB -->
+        <div id="tab-content-video" class="tab-content">
+            <video id="project-video" controls style="max-width: 100%; border-radius: 10px;"></video>
+        </div>
+        </div>
+    </div>  
+
+    <!-- Video Modal View -->
+    <div id="video-modal" style="
+    display: none;
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background-color: rgba(0,0,0,0.8);
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    box-sizing: border-box;
+    flex-direction: column;">
+
+    <span onclick="closeVideoModal()" style="
+        color: white;
+        font-size: 32px;
+        cursor: pointer;
+        margin-bottom: 10px;
+        text-align: center;
+        user-select: none;">&#10005;</span> <!-- This is the × sign -->
+    
+    <div style="
+        position: relative;
+        width: 100%;
+        max-width: 800px;
+        aspect-ratio: 16 / 9;">
+        <iframe
+            id="video-frame"
+            width="100%"
+            height="100%"
+            style="border: none;"
+            allowfullscreen>
+        </iframe>
+    </div>
+</div>
+
+
+
+    <script type="text/javascript" src="/js/app.js"></script>  
         
     </body>
 </html>

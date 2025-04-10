@@ -43,35 +43,6 @@ window.addEventListener('scroll', function () {
     }
 });
 
-// Menu toggle button functionality for small screens
-// document.addEventListener('DOMContentLoaded', () => {
-//     const menuToggle = document.querySelector('.hamburger');
-//     const navMenu = document.querySelector('.nav-header ul');
-
-//     // Check if elements exist
-//     if (menuToggle && navMenu) {
-//         menuToggle.addEventListener("click", () => {
-//             navMenu.classList.toggle("active"); // Toggle menu visibility
-//         });
-//     } else {
-//         console.warn("Menu elements not found on this page.");
-//     }
-
-//     // Sticky navigation bar scroll effect
-//     window.addEventListener('scroll', () => {
-//         const navHeader = document.querySelector('.nav-header');
-//         const navBottom = navHeader.getBoundingClientRect().top;
-
-//         if (navBottom <= 0) {
-//             navHeader.classList.add('sticky');
-//         } else {
-//             navHeader.classList.remove('sticky');
-//         }
-//     });
-
-//     console.log('JavaScript code is being executed');
-// });
-
 //Mobile menu toggle function
 function toggleMenu() {
     const menuToggle = document.querySelector('.hamburger');
@@ -162,6 +133,212 @@ serviceCards.forEach(card => {
         card.classList.toggle('expanded');
     });
 });
+
+
+
+document.addEventListener('DOMContentLoaded', () => {
+    // Select all carousel wrappers
+    const wrappers = document.querySelectorAll('.carousel-wrapper');
+  
+    wrappers.forEach(wrapper => {
+        const prevButton = wrapper.querySelector('.carousel-btn.left');
+        const nextButton = wrapper.querySelector('.carousel-btn.right');
+        const carousel = wrapper.querySelector('.project-carousel');
+    
+        // Check that the required elements exist
+        if (!prevButton || !nextButton || !carousel) {
+            console.error('Missing required carousel elements in wrapper:', wrapper);
+            return;
+        }
+    
+        // Function to update button visibility
+        const updateButtonVisibility = () => {
+            // Hide the left button if at the start
+            if (carousel.scrollLeft === 0) {
+            prevButton.style.display = 'none';
+            } else {
+            prevButton.style.display = 'block';
+            }
+            // Hide the right button if scrolled to the end
+            if (carousel.scrollLeft + carousel.clientWidth >= carousel.scrollWidth - 1) {
+            nextButton.style.display = 'none';
+            } else {
+            nextButton.style.display = 'block';
+            }
+        };
+    
+        // Call initially
+        updateButtonVisibility();
+    
+        // Add click events
+        prevButton.addEventListener('click', () => {
+            carousel.scrollBy({ left: -300, behavior: 'smooth' });
+        });
+    
+        nextButton.addEventListener('click', () => {
+            carousel.scrollBy({ left: 300, behavior: 'smooth' });
+        });
+    
+        // Update buttons as user scrolls
+        carousel.addEventListener('scroll', updateButtonVisibility);
+    });
+});
+
+
+// Project codeview toggle function
+function openCodeViewer(projectId) {
+    // Example data (normally, you'd load dynamically or from JSON)
+    const projects = {
+      'ir-controlled-motor': {
+        code: `// Wiring
+/*
+// Arduino/Motor driver/Dc Motor:
+ Connect GND from the arduino board to (negative pin) of the power supply on the bread board.
+ Connect EN1(first pin) on the motor driver to a D(6) pin with analog function on the arduino board.
+ Connect pins 2 and 7(IN1 and IN2) from driver to D(3,5) pins on the arduino board.
+ Connect pins 3 and 6(OUT1 and OUT2) on the driver to the dc motor.(red terminal to pin3 and black to pin6).
+ Connect pin4 on the driver to GND
+ Connect pin8 from the motor driver chip to the positive voltage from power supply through the bread board.
+
+ //IR Receiver Wiring:
+ G terminal to GND
+ R terminal to 5V
+ Y terminal to digital(9) pin
+*/
+
+#include <IRremote.hpp>
+
+#define IR_RECEIVE_PIN 9 // Pin for IR receiver
+#define MOTOR_PIN 6       // PWM Pin for motor control 
+#define MOTOR_IN1 3        // Direction pin 1
+#define MOTOR_IN2 5        // Direction pin 2 
+
+const unsigned long POWER_BUTTON_CODE = 0xBA45FF00; // Power button IR code
+bool motorState = false; // Motor OFF initially
+
+void setup() {
+    Serial.begin(19200);
+    IrReceiver.begin(IR_RECEIVE_PIN, ENABLE_LED_FEEDBACK);
+    pinMode(MOTOR_PIN, OUTPUT);
+    pinMode(MOTOR_IN1, OUTPUT);
+    pinMode(MOTOR_IN2, OUTPUT);
+    
+    stopMotor(); // Start with motor OFF
+}
+
+void loop() {
+
+    if (IrReceiver.decode()) {
+      unsigned long irCode = IrReceiver.decodedIRData.decodedRawData; // Store received IR code
+      
+      if (irCode == POWER_BUTTON_CODE) {
+            motorState = !motorState; // Toggle motor state
+            
+            if (motorState) {
+                startMotor();
+                Serial.println("Motor ON");
+            } else {
+                stopMotor();
+                Serial.println("Motor OFF");
+            }
+        }
+
+      IrReceiver.resume();
+    }
+}
+
+// Function to start the motor
+void startMotor() {
+    digitalWrite(MOTOR_IN1, LOW);
+    digitalWrite(MOTOR_IN2, HIGH);
+    analogWrite(MOTOR_PIN, 255); // Adjust speed (0-255)
+}
+
+// Function to stop the motor
+void stopMotor() {
+    digitalWrite(MOTOR_IN1, LOW);
+    digitalWrite(MOTOR_IN2, LOW);
+    analogWrite(MOTOR_PIN, 0); // Ensure no power is sent
+}`,
+        images: [
+          '/images/doorbell1.jpg',
+          '/images/doorbell2.jpg',
+          '/images/doorbell3.jpg'
+        ],
+        video: '/videos/doorbell-demo.mp4'
+      }
+    };
+  
+    const project = projects[projectId];
+    if (!project) return;
+  
+    const codeBlock = document.getElementById("project-code");
+    codeBlock.textContent = project.code;
+    hljs.highlightElement(codeBlock);
+
+  
+    const imageContainer = document.getElementById("project-images");
+    imageContainer.innerHTML = '';
+    project.images.forEach(src => {
+        const img = document.createElement('img');
+        img.src = src;
+        img.className = 'project-image';
+        imageContainer.appendChild(img);
+    });
+  
+    const video = document.getElementById("project-video");
+    video.src = project.video;
+  
+    document.getElementById("project-modal").style.display = 'block';
+}
+  
+function showTab(tabId) {
+    const tabs = document.querySelectorAll('.tab-content');
+    const buttons = document.querySelectorAll('.tab-btn');
+  
+    tabs.forEach(tab => tab.classList.remove('active'));
+    buttons.forEach(btn => btn.classList.remove('active'));
+  
+    document.getElementById(`tab-content-${tabId}`).classList.add('active');
+    event.target.classList.add('active');
+}
+  
+function closeProjectModal() {
+    document.getElementById("project-modal").style.display = "none";
+}
+  
+// Copy to clipboard function
+function copyCode() {
+    const codeText = document.getElementById("project-code").innerText;
+    navigator.clipboard.writeText(codeText).then(() => {
+      alert("Code copied to clipboard!");
+    }, () => {
+      alert("Failed to copy code.");
+    });
+}
+
+// Function to handle video card click events
+function showVideoModal(cardElement) {
+    const videoId = cardElement.getAttribute("data-video-id");
+    const videoUrl = `https://drive.google.com/file/d/${videoId}/preview`;
+    const iframe = document.getElementById("video-frame");
+    iframe.src = videoUrl;
+    document.getElementById("video-modal").style.display = "flex";
+}
+
+function closeVideoModal() {
+    const modal = document.getElementById("video-modal");
+    const iframe = document.getElementById("video-frame");
+    iframe.src = "";
+    modal.style.display = "none";
+}
+
+  
+  
+  
+  
+  
+  
 
 
 

@@ -1,0 +1,17 @@
+[
+    {
+        "id": "portfolio-website",
+        "title": "Portfolio Website",
+        "description": "A personal website to showcasing my skills and projects.",
+        "prerequisites": ["HTML5", "CSS3", "JavaScript"],
+        "link": "https://byte-journey.github.io"
+    },
+
+    {
+        "id": "hotel-website",
+        "title": "Papa's Place Website",
+        "description": "A business for Papa's Place Hotel in Sogakope, Ghana.",
+        "prerequisites": ["Wordpress"],
+        "link": "https://www.papasplacehotel.com"
+    }
+]
