@@ -412,16 +412,33 @@ html {
     display: block;
 }
   
+/* Container for image gallery */
 .media-gallery {
-    display: flex;
-    gap: 10px;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 16px;
+    padding: 20px;
+    justify-items: center;
+    margin-top: 35px;
 }
   
+/* Style for each image */
 .project-image {
-    width: 100px;
+    width: 100%;
+    max-width: 100%;
     height: auto;
-    border-radius: 8px;
+    object-fit: cover;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    transition: transform 0.3s ease;
+}
+
+#project-video {
+    margin-top: 35px;
+}
+  
+.project-image:hover {
+    transform: scale(1.05);
 }
 
 /* Code copy toolbar */
@@ -882,13 +899,14 @@ footer {
     .intro h1 {
         text-align: center;
         font-size: 16px;
+        margin-top: -1px;
     }
 
     .intro p {
         max-width: 90%;
         margin: 0 auto;
         line-height: 1.5;
-        font-size: 14px;
+        font-size: 12px;
     }
 
     /* Skill Section */

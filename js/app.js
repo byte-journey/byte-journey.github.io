@@ -189,84 +189,132 @@ document.addEventListener('DOMContentLoaded', () => {
 function openCodeViewer(projectId) {
     // Example data (normally, you'd load dynamically or from JSON)
     const projects = {
-      'ir-controlled-motor': {
-        code: `// Wiring
-/*
-// Arduino/Motor driver/Dc Motor:
- Connect GND from the arduino board to (negative pin) of the power supply on the bread board.
- Connect EN1(first pin) on the motor driver to a D(6) pin with analog function on the arduino board.
- Connect pins 2 and 7(IN1 and IN2) from driver to D(3,5) pins on the arduino board.
- Connect pins 3 and 6(OUT1 and OUT2) on the driver to the dc motor.(red terminal to pin3 and black to pin6).
- Connect pin4 on the driver to GND
- Connect pin8 from the motor driver chip to the positive voltage from power supply through the bread board.
+        'ir-controlled-motor': {
+            // Project code here
+            code: `// Wiring
+            /*
+            // Arduino/Motor driver/Dc Motor:
+            Connect GND from the arduino board to (negative pin) of the power supply on the bread board.
+            Connect EN1(first pin) on the motor driver to a D(6) pin with analog function on the arduino board.
+            Connect pins 2 and 7(IN1 and IN2) from driver to D(3,5) pins on the arduino board.
+            Connect pins 3 and 6(OUT1 and OUT2) on the driver to the dc motor.(red terminal to pin3 and black to pin6).
+            Connect pin4 on the driver to GND
+            Connect pin8 from the motor driver chip to the positive voltage from power supply through the bread board.
 
- //IR Receiver Wiring:
- G terminal to GND
- R terminal to 5V
- Y terminal to digital(9) pin
-*/
+            //IR Receiver Wiring:
+            G terminal to GND
+            R terminal to 5V
+            Y terminal to digital(9) pin
+            */
 
-#include <IRremote.hpp>
+            #include <IRremote.hpp>
 
-#define IR_RECEIVE_PIN 9 // Pin for IR receiver
-#define MOTOR_PIN 6       // PWM Pin for motor control 
-#define MOTOR_IN1 3        // Direction pin 1
-#define MOTOR_IN2 5        // Direction pin 2 
+            #define IR_RECEIVE_PIN 9 // Pin for IR receiver
+            #define MOTOR_PIN 6       // PWM Pin for motor control 
+            #define MOTOR_IN1 3        // Direction pin 1
+            #define MOTOR_IN2 5        // Direction pin 2 
 
-const unsigned long POWER_BUTTON_CODE = 0xBA45FF00; // Power button IR code
-bool motorState = false; // Motor OFF initially
+            const unsigned long POWER_BUTTON_CODE = 0xBA45FF00; // Power button IR code
+            const unsigned long SPEED_UP_BUTTON_CODE = 0xF609FF00; // Up button IR code
+            const unsigned long SPEED_DOWN_BUTTON_CODE = 0xF807FF00; // Up button IR code
 
-void setup() {
-    Serial.begin(19200);
-    IrReceiver.begin(IR_RECEIVE_PIN, ENABLE_LED_FEEDBACK);
-    pinMode(MOTOR_PIN, OUTPUT);
-    pinMode(MOTOR_IN1, OUTPUT);
-    pinMode(MOTOR_IN2, OUTPUT);
-    
-    stopMotor(); // Start with motor OFF
-}
+            bool motorState = false; // Motor OFF initially
+            int motorSpeed = 150;    // Initial speed when turned ON
 
-void loop() {
+            void setup() {
+                Serial.begin(19200);
+                IrReceiver.begin(IR_RECEIVE_PIN, ENABLE_LED_FEEDBACK);
 
-    if (IrReceiver.decode()) {
-      unsigned long irCode = IrReceiver.decodedIRData.decodedRawData; // Store received IR code
-      
-      if (irCode == POWER_BUTTON_CODE) {
-            motorState = !motorState; // Toggle motor state
-            
-            if (motorState) {
-                startMotor();
-                Serial.println("Motor ON");
-            } else {
-                stopMotor();
-                Serial.println("Motor OFF");
+                pinMode(MOTOR_PIN, OUTPUT);
+                pinMode(MOTOR_IN1, OUTPUT);
+                pinMode(MOTOR_IN2, OUTPUT);
+                
+                stopMotor(); // Start with motor OFF
             }
+
+            void loop() {
+
+                if (IrReceiver.decode()) {
+                unsigned long irCode = IrReceiver.decodedIRData.decodedRawData; // Store received IR code
+                
+                if (irCode == POWER_BUTTON_CODE) {
+                        motorState = !motorState; // Toggle motor state 
+                        
+                        if (motorState) {
+                        motorSpeed = 150;
+                            startMotor();
+                            Serial.println("Motor ON");
+                        } else {
+                            stopMotor();
+                            Serial.println("Motor OFF");
+                        }
+                    }
+
+                    if (motorState && irCode == SPEED_UP_BUTTON_CODE) {
+                        increaseSpeed();
+                    }
+
+                    if (motorState && irCode == SPEED_DOWN_BUTTON_CODE) {
+                        decreaseSpeed();
+                    }
+
+                IrReceiver.resume();
+                }
+            }
+
+            // Function to start the motor
+            void startMotor() {
+                digitalWrite(MOTOR_IN1, LOW);
+                digitalWrite(MOTOR_IN2, HIGH);
+                analogWrite(MOTOR_PIN, 150); // Adjust speed (0-255)
+            }
+
+            // Function to stop the motor
+            void stopMotor() {
+                digitalWrite(MOTOR_IN1, LOW);
+                digitalWrite(MOTOR_IN2, LOW);
+                analogWrite(MOTOR_PIN, 0); // Ensure no power is sent
+            }
+
+            // Function to gradually increase speed
+            void increaseSpeed() {
+                if (motorSpeed < 255) {
+                    motorSpeed += 50; // Increase speed in steps
+                    if (motorSpeed > 255) {
+                        motorSpeed = 255; // Max speed limit
+                    }
+                    analogWrite(MOTOR_PIN, motorSpeed);
+                    Serial.print("Speed Increased: ");
+                    Serial.println(motorSpeed);
+                } else {
+                    Serial.println("Motor is already at max speed!");
+                }
+            }
+
+            // Function to gradually decrease speed
+            void decreaseSpeed() {
+                if (motorSpeed > 150) {
+                    motorSpeed -= 50; // Decrease speed in steps
+                    if (motorSpeed < 150) {
+                        motorSpeed = 150; // Min speed limit
+                    }
+                    analogWrite(MOTOR_PIN, motorSpeed);
+                    Serial.print("Speed Decrease: ");
+                    Serial.println(motorSpeed);
+                } else {
+                    Serial.println("Motor is already at min speed!");
+                }
+            }`,
+            // Project images here
+            images: [
+            '/images/arduino/ard0.jpeg',
+            '/images/arduino/ard1.jpeg',
+            '/images/arduino/ard2.jpeg',
+            '/images/arduino/ard3.jpeg'
+            ],
+            // Project video here
+            video: '/videos/doorbell-demo.mp4'
         }
-
-      IrReceiver.resume();
-    }
-}
-
-// Function to start the motor
-void startMotor() {
-    digitalWrite(MOTOR_IN1, LOW);
-    digitalWrite(MOTOR_IN2, HIGH);
-    analogWrite(MOTOR_PIN, 255); // Adjust speed (0-255)
-}
-
-// Function to stop the motor
-void stopMotor() {
-    digitalWrite(MOTOR_IN1, LOW);
-    digitalWrite(MOTOR_IN2, LOW);
-    analogWrite(MOTOR_PIN, 0); // Ensure no power is sent
-}`,
-        images: [
-          '/images/doorbell1.jpg',
-          '/images/doorbell2.jpg',
-          '/images/doorbell3.jpg'
-        ],
-        video: '/videos/doorbell-demo.mp4'
-      }
     };
   
     const project = projects[projectId];
