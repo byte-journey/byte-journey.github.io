@@ -222,6 +222,8 @@ html {
 .card-content h3 {
     font-size: 1.1rem;
     margin: 1px -5px;
+    overflow-wrap: break-word;
+    white-space: normal;
 }
 
 .card-content p {
@@ -819,6 +821,7 @@ footer {
         font-size: 1.5rem;
         margin-bottom: 20px;
     }
+    
     .project-carousel {
         scroll-snap-type: x mandatory;
         scroll-behavior: smooth;
@@ -836,15 +839,20 @@ footer {
 
     .card-content {
         text-align: center;
+        max-width: 100%;
+        overflow-wrap: break-word; /* modern alternative to word-wrap */
     }
 
     .card-content h3 {   
         word-wrap: break-word;
         white-space: normal; /* Ensures text wraps properly */
+        overflow-wrap: break-word; /* fallback support */
+        line-height: 1.2;
+        font-size: 1.1rem;
     }
 
     .card-content p {
-        font-size: 20px;   
+        font-size: 16px;   
         word-wrap: break-word;
         white-space: normal; /* Ensures text wraps properly */
         overflow-wrap: break-word;    
