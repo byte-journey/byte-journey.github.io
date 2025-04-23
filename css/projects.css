@@ -829,13 +829,18 @@ footer {
     .project-card {
         color: inherit;
         text-decoration: none;
-        min-width: 100%;
+        max-width: 100%;
         scroll-snap-align: center;
         padding: 20px;
     }
 
     .card-content {
         text-align: center;
+    }
+
+    .card-content h3 {   
+        word-wrap: break-word;
+        white-space: normal; /* Ensures text wraps properly */
     }
 
     .card-content p {

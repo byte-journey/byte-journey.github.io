@@ -191,7 +191,8 @@ function openCodeViewer(projectId) {
     const projects = {
         'ir-controlled-motor': {
             // Project code here
-            code: `// Wiring
+            code: `
+            // Wiring
             /*
             // Arduino/Motor driver/Dc Motor:
             Connect GND from the arduino board to (negative pin) of the power supply on the bread board.
@@ -307,10 +308,157 @@ function openCodeViewer(projectId) {
             }`,
             // Project images here
             images: [
-            '/images/arduino/ard0.jpeg',
-            '/images/arduino/ard1.jpeg',
-            '/images/arduino/ard2.jpeg',
-            '/images/arduino/ard3.jpeg'
+                '/images/arduino/ard0.jpeg',
+                '/images/arduino/ard1.jpeg',
+                '/images/arduino/ard2.jpeg',
+                '/images/arduino/ard3.jpeg'
+            ],
+            // Project video here
+            video: '/videos/doorbell-demo.mp4'
+        },
+
+        'auto-mood-light': {
+            // Project code here
+            code: `
+            // AutoColorMoodLight.ino
+            // Smoothly cycles through colors using HSV model and RGB LED
+
+            int redPin = 11;
+            int greenPin = 10;
+            int bluePin = 9;
+
+            float hue = 0.0;  // Current hue value (0 to 360)
+
+            void setup() {
+                pinMode(redPin, OUTPUT);
+                pinMode(greenPin, OUTPUT);
+                pinMode(bluePin, OUTPUT);
+            }
+
+            void loop() {
+                // Convert hue (HSV) to RGB and display it
+                byte r, g, b;
+                hsvToRgb(hue, 1.0, 1.0, &r, &g, &b);
+
+                analogWrite(redPin, r);
+                analogWrite(greenPin, g);
+                analogWrite(bluePin, b);
+
+                hue += 1;                 // Gradually change hue
+                if (hue > 360) hue = 0;   // Wrap around the color wheel
+
+                delay(10);  // Smooth fading delay
+            }
+
+            // Converts HSV color values to RGB
+            void hsvToRgb(float h, float s, float v, byte* r, byte* g, byte* b) {
+                float c = v * s;
+                float x = c * (1 - abs(fmod(h / 60.0, 2) - 1));
+                float m = v - c;
+                float r1, g1, b1;
+
+                if (h < 60)       { r1 = c; g1 = x; b1 = 0; }
+                else if (h < 120) { r1 = x; g1 = c; b1 = 0; }
+                else if (h < 180) { r1 = 0; g1 = c; b1 = x; }
+                else if (h < 240) { r1 = 0; g1 = x; b1 = c; }
+                else if (h < 300) { r1 = x; g1 = 0; b1 = c; }
+                else              { r1 = c; g1 = 0; b1 = x; }
+
+                *r = (r1 + m) * 255;
+                *g = (g1 + m) * 255;
+                *b = (b1 + m) * 255;
+            }`,
+            // Project images here
+            images: [
+                '/images/arduino/image-path-here',
+                '/images/arduino/image-path-here',
+                '/images/arduino/image-path-here',
+                '/images/arduino/image-path-here'
+            ],
+            // Project video here
+            video: '/videos/doorbell-demo.mp4'
+        },
+
+        'manually-controlled-mood-light': {
+            // Project code here
+            code: `
+            // Pin connected to the potentiometer
+            int aPin = A0;
+
+            int potVal; // For reading analog values from the potentiometer
+
+            // Pins connected to the RGB LED
+            int redPin = 11;
+            int greenPin = 10;
+            int bluePin = 9;
+
+            void setup() {
+                Serial.begin(9600); // Optinal: Start serial communication for debugging
+
+                // Set RGB LED pins as outputs
+                pinMode(redPin, OUTPUT);
+                pinMode(greenPin, OUTPUT);
+                pinMode(bluePin, OUTPUT);
+            }
+
+            void loop() {
+                // Read analog value from the potentiometer (range: 0 to 1023)
+                potVal = analogRead(aPin);
+
+                // Map the potentiometer value to a hue value (range: 0 to 360 degrees)
+                int hue = map(potVal, 0, 1023, 0, 360);
+
+                // Variables to store RGB color values
+                byte r, g, b;
+
+                // Convert hue, saturation, and value (brightness) to RGB
+                // Using full saturation (1.0) and full brightness (1.0)
+                hsvToRgb(hue, 1.0, 1.0, &r, &g, &b);
+
+                // Set the PWM output to the RGB LED with the calculated RGB values
+                analogWrite(redPin, r);
+                analogWrite(greenPin, g);
+                analogWrite(bluePin, b);
+
+                // Short delay for smooth color transitions
+                delay(10);
+            }
+
+            // Function to convert HSV color to RGB color
+            // h: Hue (0–360 degrees), s: Saturation (0–1), v: Value/Brightness (0–1)
+            // Outputs: r, g, b (0–255)
+            void hsvToRgb(float h, float s, float v, byte* r, byte* g, byte* b) {
+                float c = v * s; // Chroma: the difference between the max and min RGB values
+                float x = c * (1 - abs(fmod(h / 60.0, 2) - 1)); // Intermediate value
+                float m = v - c; // To add back after chroma shift
+                float r1, g1, b1;
+
+                // Determine the RGB values based on the hue range
+                if (h < 60) {
+                    r1 = c; g1 = x; b1 = 0;
+                } else if (h < 120) {
+                    r1 = x; g1 = c; b1 = 0;
+                } else if (h < 180) {
+                    r1 = 0; g1 = c; b1 = x;
+                } else if (h < 240) {
+                    r1 = 0; g1 = x; b1 = c;
+                } else if (h < 300) {
+                    r1 = x; g1 = 0; b1 = c;
+                } else {
+                    r1 = c; g1 = 0; b1 = x;
+                }
+
+                // Convert final values to 0–255 scale and assign them
+                *r = (r1 + m) * 255;
+                *g = (g1 + m) * 255;
+                *b = (b1 + m) * 255;
+            }`,
+            // Project images here
+            images: [
+                '/images/arduino/image-path-here',
+                '/images/arduino/image-path-here',
+                '/images/arduino/image-path-here',
+                '/images/arduino/image-path-here'
             ],
             // Project video here
             video: '/videos/doorbell-demo.mp4'
