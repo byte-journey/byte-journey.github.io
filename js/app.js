@@ -462,6 +462,156 @@ function openCodeViewer(projectId) {
             ],
             // Project video here
             video: '/videos/doorbell-demo.mp4'
+        },
+
+        'distance-meter': {
+            // Project code here
+            code: `
+            // Wiring
+            /*
+            * connect poentiometer to bread board / A resistor with reasonable resistance (2.1kΩ - 4kΩ)
+            * connect VSS(first pin) on the LCD to GND on Arduino
+            * connect VDD to 5V
+            * connect V0 to read pin(single pin) on the potentiometer
+            * connect pins RS, E and (D4 to D7) to a digital pins on the Arduino
+            * connect RW to GND on the Arduino
+            * connect A(second to last LCD pin) to 5V
+            * connect K(last LCD pin) to GND
+            */
+
+            // ----- LIBRARY FOR LCD -----
+            #include <LiquidCrystal.h>
+
+            // ----- LCD PIN CONFIGURATION -----
+            int rs = 2, en = 3, d4 = 4, d5 = 5, d6 = 6, d7 = 7;
+
+            // ----- INITIALIZE LCD OBJECT -----
+            LiquidCrystal LCD(rs, en, d4, d5, d6, d7);
+
+            // ----- HC-SR04 PINS -----
+            const int trigPin = 12;
+            const int echoPin = 11;
+
+            // ----- Buzzer pin -----
+            int buzPin = 9; 
+            unsigned long previousBuzzerMillis = 0;
+            const long buzzerInterval = 200; // Total period (ON + OFF)
+            bool buzzerState = false;
+            unsigned long lastBeepTime = 0;
+            unsigned long beepInterval = 1000;  // Default 1 second
+            bool buzzerOn = false;
+
+            long pingTravelTime;
+            float distance_m = 0;
+            float distance_cm = 0;
+            float prev_distance_cm = 0;
+            float smoothed_distance_cm = 0;
+
+            // ----- TIMING SETTINGS-----
+            int dms = 10;      // Microseconds for trigger pulse
+            int dt = 100;      // Delay between loop cycles
+            int dt1 = 1000;    // Initial splash delay
+
+            // ----- SMOOTHING SETTINGS -----
+            const int numReadings = 5;
+            float readings[numReadings]; // Circular buffer
+            int readIndex = 0;
+            float total = 0;
+
+            void setup() {
+                Serial.begin(19200);      // Start serial monitor
+                LCD.begin(16, 2);         // LCD dimensions: 16 columns, 2 rows
+
+                pinMode(trigPin, OUTPUT);
+                pinMode(echoPin, INPUT);
+                pinMode(buzPin, OUTPUT);
+
+                // Show startup message
+                LCD.setCursor(0, 0);
+                LCD.print(" DISTANCE METER! ");
+                delay(dt1);
+                LCD.clear();
+
+                // Initialize smoothing array
+                for (int i = 0; i < numReadings; i++) {
+                    readings[i] = 0;
+                }
+            }
+
+            void loop() {
+                // ----- Trigger the Ultrasonic Pulse -----
+                digitalWrite(trigPin, LOW);
+                delayMicroseconds(dms);
+                digitalWrite(trigPin, HIGH);
+                delayMicroseconds(dms);
+                digitalWrite(trigPin, LOW);
+
+                // ----- Read Pulse Duration in Microseconds -----
+                pingTravelTime = pulseIn(echoPin, HIGH);
+                delay(dt);
+
+                // ----- Calculate distance in meters centimeters -----
+                distance_m = pingTravelTime *0.0001715;
+                distance_cm = pingTravelTime * 0.034 / 2;   // Speed of sound = 0.034 cm/μs
+
+                // ----- Moving Average Filter -----
+                total -= readings[readIndex];
+                readings[readIndex] = distance_cm;
+                total += readings[readIndex];
+                readIndex = (readIndex + 1) % numReadings;
+                smoothed_distance_cm = total / numReadings;
+                distance_m = smoothed_distance_cm / 100;
+
+                // --- Buzzer beep logic ---
+                if (distance_m < 0.5) {
+                    // Calculate beep speed: closer = faster
+                    // At 0.1m: beep every 100ms | At 0.5m: beep every 1000ms
+                    beepInterval = map(distance_m * 100, 10, 150, 100, 1000);
+                    beepInterval = constrain(beepInterval, 100, 1000);
+
+                    if (millis() - lastBeepTime >= beepInterval) {
+                    buzzerOn = !buzzerOn;
+                    digitalWrite(buzPin, buzzerOn ? HIGH : LOW);
+                    lastBeepTime = millis();
+                    }
+                } 
+                else {
+                    digitalWrite(buzPin, LOW); // Too far = silent
+                    buzzerOn = false;
+                }
+
+
+                // Only update display if distance changed by 1 cm or more
+                if (abs(smoothed_distance_cm - prev_distance_cm) >= 1.0) {
+                    LCD.setCursor(0, 0);
+                    LCD.print("Distance:       "); // Clear leftover chars
+
+                    LCD.setCursor(0, 1);
+                    LCD.print(distance_m, 2);
+                    LCD.print("m / ");
+                    LCD.print(smoothed_distance_cm, 1);
+                    LCD.print("cm  ");
+
+                    prev_distance_cm = smoothed_distance_cm;
+
+                    // Serial debug
+                    Serial.print("Distance: ");
+                    Serial.print(distance_m, 1);
+                    Serial.print("m / ");
+                    Serial.print(smoothed_distance_cm, 1);
+                    Serial.println("cm");
+                }
+            }
+            }`,
+            // Project images here
+            images: [
+                '/images/arduino/image-path-here',
+                '/images/arduino/image-path-here',
+                '/images/arduino/image-path-here',
+                '/images/arduino/image-path-here'
+            ],
+            // Project video here
+            video: '/videos/doorbell-demo.mp4'
         }
     };
   
