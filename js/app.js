@@ -605,10 +605,11 @@ function openCodeViewer(projectId) {
             }`,
             // Project images here
             images: [
-                '/images/arduino/image-path-here',
-                '/images/arduino/image-path-here',
-                '/images/arduino/image-path-here',
-                '/images/arduino/image-path-here'
+                '/images/arduino/udm1.jpg',
+                '/images/arduino/udm2.jpg',
+                '/images/arduino/udm3.jpg',
+                '/images/arduino/udm4.jpg',
+                '/images/arduino/udm5.jpg'
             ],
             // Project video here
             video: '/videos/doorbell-demo.mp4'
