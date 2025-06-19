@@ -1,0 +1,34 @@
+#post-container {
+  max-width: 800px;
+  margin: auto;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
+
+#post-title {
+  font-size: 2em;
+  margin-bottom: 10px;
+}
+
+#post-meta {
+  color: #666;
+  margin-bottom: 20px;
+}
+
+#cover-image {
+  max-width: 100%;
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+
+#post-tags {
+  margin-bottom: 20px;
+}
+.tag {
+  background: #eee;
+  border-radius: 5px;
+  padding: 4px 8px;
+  margin-right: 5px;
+  display: inline-block;
+  font-size: 0.9em;
+}

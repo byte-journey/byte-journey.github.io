@@ -1,0 +1,85 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 2rem;
+    background-color: #f7f7f7;
+}
+
+h1 {
+    text-align: center;
+}
+
+.search-bar {
+    max-width: 600px;
+    margin: 0 auto 2rem;
+    display: flex;
+}      
+
+.search-bar input {
+    flex: 1;
+    padding: 0.5rem;
+    font-size: 1rem;
+}
+
+.tags {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.tags button {
+    margin: 0.3rem;
+    padding: 0.5rem 1rem;
+    border: none;
+    background-color: #ddd;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+.tags button.active {
+    background-color: #333;
+    color: white;
+}
+
+.post-card {
+    display: flex;
+    justify-content: space-between;
+    background-color: white;
+    margin-bottom: 1rem;
+    padding: 1rem;
+    border-radius: 10px;
+    box-shadow: 0 0 5px rgba(0,0,0,0.1);
+}
+
+.post-info {
+    flex: 1;
+    margin-right: 1rem;
+}
+
+.post-info h2 {
+    margin: 0;
+}
+
+.post-info .meta {
+    font-size: 0.9rem;
+    color: #777;
+    margin-bottom: 0.5rem;
+}
+
+.post-info .tags {
+    margin-top: 0.5rem;
+}
+
+.post-info .tags span {
+    font-size: 0.8rem;
+    background-color: #eee;
+    margin-right: 5px;
+    padding: 2px 6px;
+    border-radius: 12px;
+}
+
+.cover-image {
+    width: 120px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 5px;
+}

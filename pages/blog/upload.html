@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Upload Blog Post</title>
+        <link rel="stylesheet" href="../../css/blog-upload.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/browser-image-compression/1.0.15/browser-image-compression.min.js"></script>
+        <!-- <style>
+            body { font-family: sans-serif; max-width: 800px; margin: auto; padding: 2rem; }
+            input, textarea, button, select { width: 100%; margin: 0.5rem 0; padding: 0.5rem; }
+            .block { border: 1px solid #ccc; padding: 1rem; margin-bottom: 1rem; position: relative; }
+            .add-block-btn { position: absolute; right: -10px; bottom: -10px; border-radius: 50%; width: 30px; height: 30px; background: #0d6efd; color: white; border: none; cursor: pointer; }
+            .preview-img { max-width: 100%; margin-top: 0.5rem; }
+        </style> -->
+    </head>
+
+    <body>
+        <h1>Upload a New Blog Post</h1>
+
+        <input id="title" type="text" placeholder="Post Title">
+        <input id="author" type="text" placeholder="Author Name">
+        <input id="description" type="text" placeholder="Short Description">
+        <input id="tags" type="text" placeholder="Tags (comma-separated)">
+
+        <h3>Content Blocks</h3>
+        <div id="content-blocks"></div>
+        <button onclick="addTextBlock()">Add First Text Block</button>
+
+        <br /><br />
+        <button onclick="submitPost()">Submit & Upload to GitHub</button>
+
+        <script>
+            let blockCount = 0;
+
+            function addTextBlock(afterIndex = null) {
+                const container = document.getElementById('content-blocks');
+                const block = document.createElement('div');
+                block.className = 'block';
+                block.dataset.type = 'text';
+                block.dataset.index = blockCount;
+                block.innerHTML = `
+                    <textarea placeholder="Enter text..." rows="4"></textarea>
+                    <button class="add-block-btn" onclick="showAddOptions(${blockCount})">+</button>
+                `;
+                insertBlock(container, block, afterIndex);
+                blockCount++;
+            }
+
+            function addImageBlock(afterIndex) {
+                const container = document.getElementById('content-blocks');
+                const block = document.createElement('div');
+                block.className = 'block';
+                block.dataset.type = 'image';
+                block.dataset.index = blockCount;
+                block.innerHTML = `
+                    <input type="file" accept="image/*" onchange="previewImage(event, ${blockCount})" style="display: none;" id="image-input-${blockCount}">
+                    <img id="preview-${blockCount}" class="preview-img" onclick="document.getElementById('image-input-${blockCount}').click()" src="https://via.placeholder.com/300x150?text=Click+to+Upload+Image">
+                    <button class="add-block-btn" onclick="showAddOptions(${blockCount})">+</button>
+                `;
+                insertBlock(container, block, afterIndex);
+                blockCount++;
+            }
+
+            function insertBlock(container, block, afterIndex) {
+                if (afterIndex === null) {
+                    container.appendChild(block);
+                } 
+                else {
+                    const blocks = container.querySelectorAll(".block");
+                    for (let i = 0; i < blocks.length; i++) {
+                        if (parseInt(blocks[i].dataset.index) === afterIndex) {
+                            blocks[i].after(block);
+                            break;
+                        }
+                    }
+                }
+            }
+
+            function showAddOptions(index) {
+                const choice = prompt("Add: text, image");
+                if (choice === 'text') addTextBlock(index);
+                if (choice === 'image') addImageBlock(index);
+            }
+
+            function previewImage(event, id) {
+                const output = document.getElementById('preview-' + id);
+                output.src = URL.createObjectURL(event.target.files[0]);
+            }
+
+            function slugify(text) {
+                return text.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)+/g, '');
+            }
+
+            async function compressImage(file) {
+                const options = {
+                    maxSizeMB: 0.5,
+                    maxWidthOrHeight: 1024,
+                    useWebWorker: true
+                };
+                return await imageCompression(file, options);
+            }
+
+            async function uploadToGitHub(path, contentBase64, message, isBinary = false) {
+                const response = await fetch('https://your-backend-endpoint.com/github-upload', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ path, content: contentBase64, message, isBinary })
+                });
+                if (!response.ok) throw new Error('Upload failed: ' + path);
+            }
+
+            async function submitPost() {
+                const title = document.getElementById('title').value;
+                const author = document.getElementById('author').value;
+                const description = document.getElementById('description').value;
+                const tags = document.getElementById('tags').value.split(',').map((t) => t.trim());
+                const date = new Date().toISOString().slice(0, 10);
+                const slug = slugify(title);
+
+                const imageUploads = [];
+                let markdown = `# ${title}\n\n${description}\n\n`;
+
+                const blocks = document.querySelectorAll('.block');
+
+                for (let block of blocks) {
+                    if (block.dataset.type === "text") {
+                        markdown += block.querySelector("textarea").value + "\n\n";
+                    } else if (block.dataset.type === "image") {
+                        const input = block.querySelector("input[type=file]");
+                        if (input.files.length > 0) {
+                        const file = input.files[0];
+                        const compressed = await compressImage(file);
+                        const reader = new FileReader();
+                        await new Promise((resolve) => {
+                            reader.onload = () => resolve();
+                            reader.readAsDataURL(compressed);
+                        });
+                        const base64 = reader.result.split(",")[1];
+                        const filename = file.name;
+                        const imagePath = `images/blog_images/${filename}`;
+                        await uploadToGitHub(imagePath, base64, `Upload image: ${filename}`, true);
+                        markdown += `![alt text](../../images/blog_images/${filename})\n\n`;
+                        }
+                    }
+                }
+
+                const mdPath = `pages/blog/posts/${slug}.md`;
+                const jsonPath = `pages/blog/posts/${slug}.json`;
+                const metadata = { title, author, description, tags, date, slug, filename: `${slug}.md` };
+
+                await uploadToGitHub(mdPath, btoa(markdown), `Upload post: ${slug}.md`);
+                await uploadToGitHub(jsonPath, btoa(JSON.stringify(metadata, null, 2)), `Upload metadata for ${slug}`);
+
+                    alert("Upload complete! Check GitHub for your files.");
+                // blocks.forEach(block => {
+                //     if (block.dataset.type === 'text') {
+                //     markdown += block.querySelector('textarea').value + '\n\n';
+                //     } else if (block.dataset.type === 'image') {
+                //     const input = block.querySelector('input[type=file]');
+                //     if (input.files.length > 0) {
+                //         const filename = input.files[0].name;
+                //         markdown += `![alt text](../../images/blog_images/${filename})\n\n`;
+                //     }
+                //     }
+                // });
+
+                // // 🔽 This JSON helps us update the blog homepage and metadata like title, author, tags, etc.
+                // const json = {
+                //     title, author, description, tags, date, slug, filename: `${slug}.md`
+                // };
+
+                // download(`${slug}.md`, markdown);
+                // download(`${slug}.json`, JSON.stringify(json, null, 2));
+                // alert("✅ Markdown and JSON downloaded.\n\n📌 Remember to manually:\n- Move `.md` to: pages/blog/posts/\n- Move images to: images/blog_images/\n- Add this JSON entry to posts.json.");
+            }
+
+            // function download(filename, content) {
+            //     const element = document.createElement('a');
+            //     element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(content));
+            //     element.setAttribute('download', filename);
+            //     document.body.appendChild(element);
+            //     element.click();
+            //     document.body.removeChild(element);
+            // }            
+        </script>
+
+
+    </body>
+</html>
