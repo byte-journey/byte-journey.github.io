@@ -6,14 +6,23 @@
     </head>
 
     <body>
-        <h2>Login to Upload Blog</h2>
+        <h2>Login to Blog Upload Page</h2>
         <button onclick="netlifyIdentity.open()">Login / Register</button>
 
         <script>
-            netlifyIdentity.init();
-            netlifyIdentity.on("login", user => {
-            window.location = "/pages/blog/upload.html";
-            });
+            if (window.netlifyIdentity) {
+                window.netlifyIdentity.on("init", user => {
+                    if (!user) {
+                        window.netlifyIdentity.on("login", user => {
+                            window.location = "/pages/blog/upload.html";
+                        });
+                    } else {
+                        window.location = "/pages/blog/upload.html";
+                    }
+                });
+
+                window.netlifyIdentity.init();
+            }
         </script>
     </body>
 </html>
