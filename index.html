@@ -23,6 +23,50 @@
     </head>
 
     <body>
+        <!-- =============== NETLIFY TOKEN HANDLER ============== -->
+        <script>
+            (function () {
+                const hash = location.hash || "";
+                if (!hash.includes("confirmation_token=") &&
+                    !hash.includes("invite_token=")) return;
+                
+                // Make sure the widget library is present
+                function ready (cb) {
+                    if (window.netlifyIdentity) return cb();
+                    const s = document.createElement("script");
+                    s.src = "https://identity.netlify.com/v1/netlify-identity-widget.js";
+                    s.onload = cb; document.head.appendChild(s);
+                }
+
+                ready(() => {
+                    //run AFTER the widget boots
+                    netlifyIdentity.on("init", () => {
+                        // 1) email‑confirmation flow
+                        if (hash.includes("confirmation_token=")) {
+                            const token = hash.split("confirmation_token=")[1];
+                            netlifyIdentity.confirm(token).then(() => {
+                                netlifyIdentity.open("signup"); // ask user to set password
+                                location.hash = ""              // clean url bar
+                            })
+                            .catch(err = alert(err.message || "Email confirmation failed"));
+                        }
+
+                        // 2) invitation flow
+                        if (hash.includes("invite_token=")) {
+                            const token = hash.split("invite_token=")[1];
+                            netlifyIdentity.acceptInvite(token, true).then(() => {       // true = start session
+                                netlifyIdentity.open("signup");
+                                location.hash = "";
+                            })
+                            .catch(err => alert(err.message || "Invite acceptance failed"));
+                        }
+                    });
+
+                    netlifyIdentity.init();     // boots the widget
+                });
+            })();
+        </script>
+        
         <div class="main-container"> 
             <!-- Intro content container -->
             <div class="intro-content">
