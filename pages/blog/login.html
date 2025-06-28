@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <meta charset="UTF-8"/>
         <title>Login</title>
         <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
     </head>
@@ -10,19 +11,20 @@
         <button onclick="netlifyIdentity.open()">Login / Register</button>
 
         <script>
-            if (window.netlifyIdentity) {
-                window.netlifyIdentity.on("init", user => {
-                    if (!user) {
-                        window.netlifyIdentity.on("login", user => {
-                            window.location = "/pages/blog/upload.html";
-                        });
-                    } else {
-                        window.location = "/pages/blog/upload.html";
-                    }
-                });
+            document.addEventListener("DOMContentLoaded", () => {
+                netlifyIdentity.init();
 
-                window.netlifyIdentity.init();
-            }
+                netlifyIdentity.on("init", (user) => {
+                if (!user) {
+                    netlifyIdentity.on("login", (user) => {
+                        window.location.href = "/pages/blog/upload.html";
+                    });
+                } else {
+                    window.location.href = "/pages/blog/upload.html";
+                }
+                });
+            });
         </script>
+
     </body>
 </html>

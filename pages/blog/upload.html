@@ -422,7 +422,7 @@
             netlifyIdentity.init();
         </script>-->
 
-        <script>
+        <!--<script>
             if (window.netlifyIdentity) {
                 window.netlifyIdentity.on("init", user => {
                     if (!user) {
@@ -447,6 +447,42 @@
 
                 window.netlifyIdentity.init();  // ✅ Make sure this is high up
             }
+        </script>-->
+
+        <script>
+            document.addEventListener("DOMContentLoaded", () => {
+                netlifyIdentity.init();
+
+                netlifyIdentity.on("init", (user) => {
+                    const wrapper = document.getElementById("upload-wrapper");
+                    const userEmail = document.getElementById("user-email");
+
+                    if (!user) {
+                        window.location.href = "/pages/blog/login.html";
+                    }
+                    else if (
+                        user.app_metadata &&
+                        user.app_metadata.roles &&
+                        user.app_metadata.roles.include("admin")
+                    ) {
+                        wrapper.style.display = "block";
+                        userEmail.textContent = "Signed in as: " + user.email;
+                    }
+                    else {
+                        alert("Only admin users can upload posts.");
+                        window.location.href = "/";
+                    }
+                });
+
+                netlifyIdentity.on("login", (user) => {
+                    const userEmail = document.getElementById("user-email");
+                    userEmail.textContent = "Signed in as: " + user.email;
+                });
+
+                netlifyIdentity.on("logout", () => {
+                    window.location.href = "/pages/blog/login.html";
+                });
+            });
         </script>
 
 
