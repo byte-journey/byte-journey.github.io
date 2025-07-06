@@ -211,6 +211,19 @@
 
         <script defer src="/js/netlify-auth-gate.js"></script>
 
+        <script>
+            // If auth‑gate already redirected here and the user is admin,
+            // show the form and the email badge.
+            netlifyIdentity.on("init", (u) => {
+                if (u && Array.isArray(u.app_metadata?.roles) &&
+                    u.app_metadata.roles.includes("admin")) {
+                document.getElementById("upload-wrapper").style.display = "block";
+                document.getElementById("user-email").textContent =
+                    "Signed in as: " + u.email;
+                }
+            });
+        </script>
+
         <!-- Include Back to Top Button -->
         <div id="back-to-top-container"></div>
 
