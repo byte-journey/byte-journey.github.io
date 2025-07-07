@@ -14,8 +14,15 @@ netlifyIdentity.on("init", (user) => {
 
   // Handle #invite_token or #confirmation_token links
   const h = window.location.hash || "";
-  if (h.startsWith("#invite_token=") || h.startsWith("#confirmation_token=")) {
-    netlifyIdentity.open();
+
+  if (h.startsWith("#invite_token=")) {
+    // netlifyIdentity.open();
+    netlifyIdentity.open("invite");
+    return;
+  }
+
+  if (h.startsWith("#confirmation_token=")) {
+    netlifyIdentity.open("login");
   }
 });
 
