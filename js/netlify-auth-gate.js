@@ -1,21 +1,27 @@
-<script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
-  // Quick helper
-  const goToUpload = () =>
-    (window.location.href = "/pages/blog/upload.html");
+// Quick helper
+const goToUpload = () => {
+  window.location.href = ("/pages/blog/upload.html");
+};
 
-  function isAdmin(u) {
-    return Array.isArray(u?.app_metadata?.roles) &&
-           u.app_metadata.roles.includes("admin");
+const isAdmin = (user) =>
+  Array.isArray(user?.app_metadata?.roles) &&
+  user.app_metadata.roles.includes("admin");
+
+// Run once widget is ready
+netlifyIdentity.on("init", (user) => {
+  // if we're already logged in AND admin → jump immediately
+  if (user && isAdmin(user)) goToUpload();
+
+  // Handle #invite_token or #confirmation_token links
+  const h = window.location.hash || "";
+  if (h.startsWith("#invite_token=") || h.startsWith("#confirmation_token=")) {
+    netlifyIdentity.open();
   }
+});
 
-  // Fired once widget is ready
-  netlifyIdentity.on("init", (user) => {
-    if (user && isAdmin(user)) goToUpload();
-  });
+// Run after successful login / password‑set / email‑confirm
+netlifyIdentity.on("login", (user) => {
+  if (isAdmin(user)) goToUpload();
+});
 
-  // Fired after login / password‑set / email‑confirm
-  netlifyIdentity.on("login", (user) => {
-    if (isAdmin(user)) goToUpload();
-  });
-
-  netlifyIdentity.init();
+netlifyIdentity.init();
