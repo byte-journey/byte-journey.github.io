@@ -254,6 +254,10 @@
                 return await imageCompression(file, options);
             }
 
+            const FUNC_BASE = location.hostname.endsWith('netlify.app')
+            ? '/.netlify/functions'                              // editor is on Netlify
+            : 'https://byte-journey-blog.netlify.app/.netlify/functions'; // editor on GitHub
+            
             async function uploadToGitHub(path, contentBase64, message, isBinary = false) {
                 const response = await fetch('/.netlify/functions/github-upload', {
                     method: 'POST',
