@@ -5,17 +5,71 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Blog - Byte Journey</title>
     <link rel="stylesheet" href="/css/blog-home.css" />
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 </head>
 
 <body>
-    <h1>Byte Journey Blog</h1>
+    <!-- <h1>Byte Journey Blog</h1>
     <div class="search-bar">
-    <input type="text" id="searchInput" placeholder="Search posts..." />
+        <input type="text" id="searchInput" placeholder="Search posts..." />
     </div>
     <div class="tags" id="tagContainer"></div>
     <div id="postsContainer"></div>
     
-    <script type="text/javasript" src="/js/blog.js"> </script>
+    <script type="text/javasript" src="/js/blog.js"> </script> -->
+
+    <header class="blog-header">
+        <h1>Blog</h1>
+
+        <select id="categoryFilter">
+        <option value="">All categories</option>
+        </select>
+    </header>
+
+    <section id="postsGrid" class="posts-grid"></section>
+
+    <script type="module">
+        const grid     = document.getElementById('postsGrid');
+        const category = document.getElementById('categoryFilter');
+
+        const posts = await (await fetch('/pages/blog/posts.json',
+                                        {cache:'no-cache'})).json();
+
+        // fill category dropdown
+        [...new Set(posts.flatMap(p => p.categories || []))]
+        .forEach(c => {
+            const o = document.createElement('option');
+            o.value = o.textContent = c; category.appendChild(o);
+        });
+
+        category.addEventListener('change', render);
+        render();
+
+        function render () {
+        grid.innerHTML = '';
+        const sel = category.value;
+        posts
+            .filter(p => !sel || (p.categories||[]).includes(sel))
+            .sort((a,b) => new Date(b.date) - new Date(a.date))
+            .forEach(p => grid.appendChild(card(p)));
+        }
+
+        function card (p) {
+        const a  = document.createElement('a');
+        a.href   = `/pages/blog/view.html?slug=${p.slug}`;
+        a.className = 'post-card';
+        a.innerHTML = `
+            ${p.cover ? `<img src="/${p.cover}" alt="">` : ''}
+            <div class="card-body">
+            <h3>${p.title}</h3>
+            <p class="meta">${p.date} · ${p.author}</p>
+            <p>${p.description}</p>
+            <div class="tags">${(p.tags||[])
+                .map(t => `<span>#${t}</span>`).join(' ')}</div>
+            </div>`;
+        return a;
+        }
+    </script>
 
 
 </body>

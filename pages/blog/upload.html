@@ -339,23 +339,32 @@
                     await uploadToGitHub(mdPath, btoa(markdown), `Upload post: ${slug}.md`);
                     await uploadToGitHub(jsonPath, btoa(JSON.stringify(metadata, null, 2)), `Upload metadata for ${slug}`);
 
-                    //alert("Upload complete! Check GitHub for your files.");
-                    /*blocks.forEach(block => {
-                        if (block.dataset.type === 'text') {
-                        markdown += block.querySelector('textarea').value + '\n\n';
-                        } else if (block.dataset.type === 'image') {
-                        const input = block.querySelector('input[type=file]');
-                        if (input.files.length > 0) {
-                            const filename = input.files[0].name;
-                            markdown += `![alt text](../../images/blog_images/${filename})\n\n`;
-                        }
-                        }
-                    });*/
+                    // Create master list fro posts
+                    let list = [];
+                    try {
+                        const res = await fetch('/pages/blog/posts.json',
+                            {cache: 'no-cache'}
+                        );
+                        if (res.ok) list = await res.json();
+                    }
+                    catch (_) {/* first post: ignore 404 */ }
 
                     // 🔽 This JSON helps us update the blog homepage and metadata like title, author, tags, etc.
-                    const json = {
-                        title, author, categories, description, tags, date, slug, filename: `${slug}.md`
+                    // const json = {
+                    //     title, author, categories, description, tags, date, slug, filename: `${slug}.md`
+                    // };
+                    const entry = {
+                        title, author, description,
+                        categories, tags, date, slug,
+                        cover: firstImageFilename || ""     // for thumb
                     };
+
+                    // Push the updated list back to GitHub
+                    await uploadToGitHub(
+                        'pages/blog/posts.json',
+                        btoa(JSON.stringify(list, null, 2)),
+                        'Update posts index'
+                    )
 
                     // download(`${slug}.md`, markdown);
                     // download(`${slug}.json`, JSON.stringify(json, null, 2));
@@ -422,69 +431,6 @@
 
             netlifyIdentity.init();
         </script>
-
-        <!--<script>
-            if (window.netlifyIdentity) {
-                window.netlifyIdentity.on("init", user => {
-                    if (!user) {
-                        window.netlifyIdentity.on("login", user => {
-                            document.getElementById("user-email").textContent = "Signed in as: " + user.email;
-                            document.getElementById("upload-wrapper").style.display = "block";
-                        });
-                    } else {
-                        if (!user.app_metadata.roles.includes("admin")) {
-                            alert("Only admin users can upload posts.");
-                            window.location.href = "/";
-                        } else {
-                            document.getElementById("user-email").textContent = "Signed in as: " + user.email;
-                            document.getElementById("upload-wrapper").style.display = "block";
-                        }
-                    }
-                });
-
-                window.netlifyIdentity.on("logout", () => {
-                    window.location.href = "/pages/blog/login.html";
-                });
-
-                window.netlifyIdentity.init();  // ✅ Make sure this is high up
-            }
-        </script>-->
-
-        <!--<script>
-            document.addEventListener("DOMContentLoaded", () => {
-                netlifyIdentity.init();
-
-                netlifyIdentity.on("init", (user) => {
-                    const wrapper = document.getElementById("upload-wrapper");
-                    const userEmail = document.getElementById("user-email");
-
-                    if (!user) {
-                        window.location.href = "/pages/blog/login.html";
-                    }
-                    else if (
-                        user.app_metadata &&
-                        user.app_metadata.roles &&
-                        user.app_metadata.roles.include("admin")
-                    ) {
-                        wrapper.style.display = "block";
-                        userEmail.textContent = "Signed in as: " + user.email;
-                    }
-                    else {
-                        alert("Only admin users can upload posts.");
-                        window.location.href = "/";
-                    }
-                });
-
-                netlifyIdentity.on("login", (user) => {
-                    const userEmail = document.getElementById("user-email");
-                    userEmail.textContent = "Signed in as: " + user.email;
-                });
-
-                netlifyIdentity.on("logout", () => {
-                    window.location.href = "/pages/blog/login.html";
-                });
-            });
-        </script>-->
 
 
 

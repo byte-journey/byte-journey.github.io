@@ -1,31 +1,31 @@
 <!-- pages/blog/view.html -->
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>View Post</title>
-    <link rel="stylesheet" href="../../css/blog-view.css">
-</head>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <title>View Post</title>
+        <link rel="stylesheet" href="../../css/blog-view.css">
+    </head>
 
-<body>
-    <div id="post-container">
-        <div id="post-header">
-            <h1 id="post-title"></h1>
-            <p id="post-meta"></p>
-            <img id="cover-image" src="" alt="Cover" style="display:none;" />
-            <div id="post-tags"></div>
+    <body>
+        <div id="post-container">
+            <div id="post-header">
+                <h1 id="post-title"></h1>
+                <p id="post-meta"></p>
+                <img id="cover-image" src="" alt="Cover" style="display:none;" />
+                <div id="post-tags"></div>
+            </div>
+            <hr/>
+            <div id="post-content"></div>
         </div>
-        <hr/>
-        <div id="post-content"></div>
-    </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 
-    <script src="../../js/blog.js"></script>
-    <script>
-        loadBlogPostFromURL(); // Run post-loader
-    </script>
+        <script src="../../js/blog.js"></script>
+        <script>
+            loadBlogPostFromURL(); // Run post-loader
+        </script>
 
-</body>
+    </body>
 </html>
