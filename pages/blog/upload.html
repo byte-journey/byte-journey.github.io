@@ -107,7 +107,7 @@
             <button onclick="addTextBlock()">Add Text Block</button>
             
 
-            <button onclick="netlifyIdentity.logout()"
+            <!-- <button onclick="netlifyIdentity.logout()"
                 style="
                     width: 100%; text-align: center; 
                     background-color: #dc3545; color: white;
@@ -115,7 +115,7 @@
                     border-radius: 15px;
                     cursor: pointer;
                     font-weight: 800;
-                    margin-top: 100px;">Logout</button>
+                    margin-top: 100px;">Logout</button> -->
         </div>
 
 
@@ -136,9 +136,9 @@
                 const mde = new SimpleMDE({ element: block.querySelector('textarea') });
                 block.simplemde = mde;          // stash reference for later
 
-                if(block.dataset.type==="text"){
-                    markdown += block.simplemde.value() + "\n\n";
-                }
+                // if(block.dataset.type==="text"){
+                //     markdown += block.simplemde.value() + "\n\n";
+                // }
 
 
                 const btn = document.createElement('button');
@@ -303,7 +303,8 @@
 
                     for (let block of blocks) {
                         if (block.dataset.type === "text") {
-                            markdown += block.querySelector("textarea").value + "\n\n";
+                            // grab the SimpleMDE value we stored earlier
+                            markdown += (block.simplemde?.value() || "") + "\n\n";
                         } else if (block.dataset.type === "image") {
                             const input = block.querySelector("input[type=file]");
                             if (input.files.length > 0) {
