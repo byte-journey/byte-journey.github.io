@@ -301,6 +301,8 @@
                     const slug = slugify(title);
 
                     const imageUploads = [];
+                    let coverImage = ""; 
+
                     let markdown = `# ${title}\n\n${description}\n\n`;
 
                     const blocks = document.querySelectorAll('.block');
@@ -332,6 +334,8 @@
                                 const imagePath = `images/blog_images/${filename}`;
                                 await uploadToGitHub(imagePath, base64, `Upload image: ${filename}`, true);
                                 markdown += `![alt text](../../images/blog_images/${filename})\n\n`;
+
+                                if (!coverImage) coverImage = filename;
                             }
                         }
                     }
@@ -360,8 +364,10 @@
                     const entry = {
                         title, author, description,
                         categories, tags, date, slug,
-                        cover: filename || ""     // for thumb
+                        cover: coverImage || ""     // for thumb
                     };
+
+                    list.push(entry);
 
                     // Push the updated list back to GitHub
                     await uploadToGitHub(
