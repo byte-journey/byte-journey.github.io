@@ -1,0 +1,18 @@
+[
+  {
+    "title": "Live Test",
+    "author": "Gideon",
+    "description": "The first tech test post",
+    "categories": [
+      "Technology"
+    ],
+    "tags": [
+      "tech",
+      "github",
+      "blog"
+    ],
+    "date": "2025-07-08",
+    "slug": "live-test",
+    "cover": "pizza.jpg"
+  }
+]
