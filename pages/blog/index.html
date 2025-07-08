@@ -9,17 +9,9 @@
 </head>
 
 <body>
-    <!-- <h1>Byte Journey Blog</h1>
-    <div class="search-bar">
-        <input type="text" id="searchInput" placeholder="Search posts..." />
-    </div>
-    <div class="tags" id="tagContainer"></div>
-    <div id="postsContainer"></div>
-    
-    <script type="text/javasript" src="/js/blog.js"> </script> -->
 
     <header class="blog-header">
-        <h1>Blog</h1>
+        <h1>Byte-Journey Blog</h1>
 
         <select id="categoryFilter">
         <option value="">All categories</option>
@@ -59,7 +51,7 @@
         a.href   = `/pages/blog/view.html?slug=${p.slug}`;
         a.className = 'post-card';
         a.innerHTML = `
-            ${p.cover ? `<img src="/${p.cover}" alt="">` : ''}
+            ${p.cover ? `<img src="/images/blog_images/${p.cover}" alt="">` : ''}
             <div class="card-body">
             <h3>${p.title}</h3>
             <p class="meta">${p.date} · ${p.author}</p>
