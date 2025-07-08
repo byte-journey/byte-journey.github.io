@@ -259,7 +259,7 @@
             : 'https://byte-journey-blog.netlify.app/.netlify/functions'; // editor on GitHub
             
             async function uploadToGitHub(path, contentBase64, message, isBinary = false) {
-                const response = await fetch('/.netlify/functions/github-upload', {
+                const response = await fetch(`${FUNC_BASE}/github-upload`, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ path, content: contentBase64, message, isBinary })
