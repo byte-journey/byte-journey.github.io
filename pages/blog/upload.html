@@ -344,8 +344,16 @@
                     const jsonPath = `pages/blog/posts/${slug}.json`;
                     const metadata = { title, author, description, tags, date, slug, filename: `${slug}.md` };
 
-                    await uploadToGitHub(mdPath, btoa(markdown), `Upload post: ${slug}.md`);
-                    await uploadToGitHub(jsonPath, btoa(JSON.stringify(metadata, null, 2)), `Upload metadata for ${slug}`);
+                    await uploadToGitHub(
+                        mdPath, 
+                        markdown, 
+                        `Upload post: ${slug}.md`
+                    );
+                    await uploadToGitHub(
+                        jsonPath, 
+                        JSON.stringify(metadata, null, 2), 
+                        `Upload metadata for ${slug}`
+                    );
 
                     // Create master list fro posts
                     let list = [];
@@ -372,7 +380,7 @@
                     // Push the updated list back to GitHub
                     await uploadToGitHub(
                         'pages/blog/posts.json',
-                        btoa(JSON.stringify(list, null, 2)),
+                        JSON.stringify(list, null, 2),
                         'Update posts index'
                     )
 
