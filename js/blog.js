@@ -70,25 +70,75 @@ searchInput.addEventListener('input', filterPosts);
 
 // =======  VIEW POST PAGE SCRIPT =======
 // js/blog.js
-function loadBlogPostFromURL() {const urlParams = new URLSearchParams(window.location.search);
-    const postFile = urlParams.get("post");
+async function loadBlogPostFromURL() {
+    // get slug
+    const slug = new URLSearchParams(location.search).get('slug');
 
-    if (!postFile) {
-        document.getElementById("post-content").innerHTML = "<p>No post selected.</p>";
+    if (!slug) {
+        document.getElementById("post-content").textContent = "No post selected.";
         return;
     }
 
-    fetch(`posts/${postFile}`)
-        .then((res) => {
-        if (!res.ok) throw new Error("Post not found");
-        return res.text();
-        })
-        .then((markdown) => {
-        renderPost(markdown);
-        })
-        .catch((err) => {
-        document.getElementById("post-content").innerHTML = `<p>Error: ${err.message}</p>`;
-        });
+    try {
+        // pull metadata JSON written by the uploader
+        const metaUrl = `/pages/blog/posts/${slug}.json`;
+        const meta = await (await fetch(metaUrl, {cache:'no-cache'})).json();
+        
+        // pull markdown body
+        const mdUrl = `/pages/blog/posts/${slug}.md`;
+        let mdText = await (await fetch(mdUrl, {cache:'no-cache'})).text();
+
+        mdText = mdText.replace(/^#.*(\r?\n)+/, '');
+
+        if (meta.description) {
+            const lines = mdText.trimStart().split('\n');
+            if (lines.length && lines[0].trim() === meta.description.trim()) {
+                lines.shift();
+                mdText = lines.join('\n');
+            }
+        }
+
+        // render markdown   (marked.js is already loaded in view.html)
+        const html = marked.parse(mdText);
+
+        // fill DOM
+        document.getElementById('post-title').textContent = meta.title;        
+        document.getElementById('post-desc' ).textContent = meta.description || '';
+        document.getElementById('post-meta').textContent = timeAgo(meta.date) + ' by ' + meta.author;
+
+        // cover image if present
+        if (meta.cover) {
+            const img = document.getElementById('cover-image');
+            img.src          = `/images/blog_images/${meta.cover}`;
+            img.style.display = 'block';
+        }
+
+        // tags
+        // document.getElementById('post-tags').innerHTML =
+        //     (meta.tags || []).map(t => `<span>#${t}</span>`).join(' ');
+
+        // body
+        document.getElementById('post-content').innerHTML = html;
+
+    }
+    catch (err){
+        console.error(err);
+        document.getElementById('post-content').textContent = 'Failed to load the post.';
+    }
+
+    /* pretty “time‑ago” helper (same as on index) */
+    function timeAgo (iso){
+        const d   = new Date(iso);
+        const diff= Date.now() - d.getTime();
+        const day = 864e5, month = day*30, year = day*365;
+        if (diff <  day)         return 'today';
+        if (diff < day*2) return 'A day ago'
+        if (diff <  day*7)       return Math.floor(diff/day)+' days ago';
+        if (diff <  month*2)     return Math.floor(diff/day/7)+' wks ago';
+        if (diff <  year)        return Math.floor(diff/month)+' mo ago';
+        return Math.floor(diff/year)+' yr ago';
+    }
+
 }
 
 function renderPost(markdown) {
