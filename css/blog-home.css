@@ -41,13 +41,49 @@ h1 {
 }
 
 .post-card {
-    display: flex;
-    justify-content: space-between;
-    background-color: white;
-    margin-bottom: 1rem;
-    padding: 1rem;
-    border-radius: 10px;
-    box-shadow: 0 0 5px rgba(0,0,0,0.1);
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:1.25rem;
+    padding:1rem;
+    border:1px solid #e5e5e5;
+    border-radius:12px;
+    box-shadow:0 2px 6px rgb(0 0 0 / .05);
+    text-decoration:none;
+    color:inherit;
+    margin-bottom:1.5rem;
+}
+
+/* text side */
+.post-card .card-body{
+    flex:1 1 auto;
+}
+
+.card-body {
+    height: 100%;
+}
+
+/* title */
+.post-card h3{
+    margin:0 0 .35rem;
+    font-size:1.35rem;
+    font-weight:700;
+}
+
+/* meta row */
+.meta{
+  font-size:1rem;
+  color:#ff3c3c;
+  margin-bottom:.6rem;
+}
+
+/* tags */
+.tags span{
+  font-size:.8rem;
+  background:#f1f1f1;
+  border-radius:4px;
+  padding:2px 6px;
+  margin-right:4px;
 }
 
 .post-info {
@@ -59,8 +95,8 @@ h1 {
     margin: 0;
 }
 
-.post-info .meta {
-    font-size: 0.9rem;
+.post-info {
+    font-size: 2rem;
     color: #777;
     margin-bottom: 0.5rem;
 }
@@ -88,15 +124,39 @@ h1 {
     display:flex;justify-content:space-between;align-items:center;
 }
 .posts-grid{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-    gap:1.5rem;margin-top:1rem;
+    max-width: 80%;
 }
 .post-card{
-    background:#fff;border-radius:8px;text-decoration:none;color:#111;
+    background:#fff;border-radius:10px;text-decoration:none;color:#111;
     box-shadow:0 2px 6px rgba(0,0,0,.08);overflow:hidden;transition:.2s}
 .post-card:hover{transform:translateY(-4px);box-shadow:0 4px 12px rgba(0,0,0,.1)}
-.post-card img{width:100%;aspect-ratio:16/9;object-fit:cover}
-.card-body{padding:1rem}
-.meta{font-size:.8rem;color:#666;margin:.25rem 0 .5rem}
-.tags span{font-size:.75rem;background:#eee;border-radius:4px;padding:2px 6px;margin-right:4px}
+.post-card img{
+    width: 150px;
+    height: 150px;
+    aspect-ratio:16/9;
+    object-fit:cover;
+    border-radius: 10px;
+}
+.meta{
+    font-size:.8rem;
+    color:#5e5e5e;
+}
+.by-word {
+    font-weight: lighter;
+    color: #1a1a1a;
+    font-style: italic;
+}
+.tags span{
+    font-size:.75rem;
+    background:#1b4a22;
+    color: white;
+    border-radius:4px;
+    padding:2px 6px;
+    margin-right:4px
+}
+
+
+/* Responsive adjustments */
+
+@media(max-width: 600px){
+}

@@ -38,31 +38,49 @@
         render();
 
         function render () {
-        grid.innerHTML = '';
-        const sel = category.value;
-        posts
-            .filter(p => !sel || (p.categories||[]).includes(sel))
-            .sort((a,b) => new Date(b.date) - new Date(a.date))
-            .forEach(p => grid.appendChild(card(p)));
+            grid.innerHTML = '';
+            const sel = category.value;
+            posts
+                .filter(p => !sel || (p.categories||[]).includes(sel))
+                .sort((a,b) => new Date(b.date) - new Date(a.date))
+                .forEach(p => grid.appendChild(card(p)));
         }
 
         function card (p) {
-        const a  = document.createElement('a');
-        a.href   = `/pages/blog/view.html?slug=${p.slug}`;
-        a.className = 'post-card';
-        a.innerHTML = `
-            ${p.cover ? `<img src="/images/blog_images/${p.cover}" alt="">` : ''}
-            <div class="card-body">
-            <h3>${p.title}</h3>
-            <p class="meta">${p.date} · ${p.author}</p>
-            <p>${p.description}</p>
-            <div class="tags">${(p.tags||[])
-                .map(t => `<span>#${t}</span>`).join(' ')}</div>
-            </div>`;
-        return a;
+            const a  = document.createElement('a');
+            a.href   = `/pages/blog/view.html?slug=${p.slug}`;
+            a.className = 'post-card';
+
+            const relTime = timeAgo(p.date);
+                
+            a.innerHTML = `
+                <div class="card-body">
+                <h3>${p.title}</h3>
+                <p>${p.description}</p>
+                <p class="meta">${relTime} <span class="by-word">by</span> ${p.author}</p>
+                <div class="tags">${(p.tags||[])
+                    .map(t => `<span>#${t}</span>`).join(' ')}</div>
+                </div>
+                
+                ${p.cover ? `<img src="/images/blog_images/${p.cover}" alt="">` : ''}`;
+                return a;
+
+            /* helper: YYYY‑MM‑DD → Time post was created */
+            function timeAgo (isoDate) {
+                const diffMs = Date.now() - new Date(isoDate).getTime();
+                const day = 864e5;
+                const month = day * 30;
+                const year = day * 365;
+
+                if (diffMs < day) return "today";
+                if (diffMs < day*2) return `A day ago`;
+                if (diffMs < day*7) return `${Math.floor(diffMs/day)} days ago`;
+                if (diffMs < month*2) return `${Math.floor(diffMs/day/7)} weeks ago`;
+                if (diffMs < year) return `${Math.floor(diffMs/month)} months ago`;
+                return `${Math.floor(diffMs/year)} yr ago`
+            }
         }
     </script>
-
 
 </body>
 </html>
