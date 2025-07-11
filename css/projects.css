@@ -38,6 +38,58 @@ html {
     padding: 5px;
 }
 
+/* =============== DROPDOWN MENU STYLING =============== */
+.nav-header .dropdown {
+    position: relative;
+}
+
+.drop-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: white;
+    font: inherit;
+}
+
+.drop-menu {
+    display: none; /* hidden by default */
+    position: absolute;
+    left: 0;
+    top: 100%;
+    background: #fff;
+    list-style: none;
+    margin: 0;
+    min-width: 200px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    text-align: left;  
+    animation: fadeSlideIn 0.3s ease forwards;
+}
+
+/* === Fade + slide animation === */
+@keyframes fadeSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-8px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.drop-menu li {
+    margin: 10px;
+}
+
+.drop-menu li a {
+    padding: 2.5rem -1rem;
+    text-decoration: none;
+    font-size: 0.95rem;
+}
+
 /* Sticky navigation state */
 .nav-header.sticky {
     position: fixed;

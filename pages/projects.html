@@ -64,13 +64,20 @@
                 <img class="site-logo" src="/images/site logo.png" alt="Website Logo">
 
                 <!-- Navigation links -->
-                <ul>
-                    <li><a href="/index.html">Home</a></li>
-                    <li><a href="/pages/about.html">About Me</a></li>
-                    <li><a href="/pages/skills.html">Skills</a></li>
-                    <li><a href="/pages/contact.html">Contact</a></li>
-                    <li><a href="/pages/projects.html">Projects</a></li>
-                    <li><a href="/pages/services.html">Services</a></li>
+                <ul id="main-menu">
+                    <li><a href="/index.html">HOME</a></li>
+                    <li><a href="/pages/skills.html">SKILLS</a></li>
+                    <!--  DROPDOWN MENU -->
+                    <li class="dropdown">
+                        <button class="drop-btn">EXPLORE <span aria-hidden="true">▾</span></button>
+                        <ul class="drop-menu">                        
+                            <li><a href="/pages/about.html">ABOUT ME</a></li>                        
+                            <li><a href="/pages/projects.html">PROJECTS</a></li>
+                            <li><a href="/pages/contact.html">CONTACT</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="/pages/services.html">SERVICES</a></li>
+                <li><a href="/pages/blog/index.html">BLOG</a></li>
                 </ul>
 
                 <!-- Contact buttons -->
@@ -252,84 +259,116 @@
             </div>
         </div>
 
+        <script>
+            document.addEventListener('DOMContentLoaded', () => {
+                // ========== DROPDOWN MENU (Explore) ==========
+                const dropButtons = document.querySelectorAll('.drop-btn');
+
+                dropButtons.forEach(button => {
+                const menu = button.nextElementSibling;
+
+                // Always hide at first
+                menu.style.display = 'none';
+
+                button.addEventListener('click', (e) => {
+                    e.stopPropagation();
+
+                    // Hide all others
+                    document.querySelectorAll('.drop-menu').forEach(m => {
+                    if (m !== menu) m.style.display = 'none';
+                    });
+
+                    // Toggle this one
+                    menu.style.display = (menu.style.display === 'block') ? 'none' : 'block';
+                });
+                });
+
+                // Close dropdown if clicked outside
+                document.addEventListener('click', () => {
+                    document.querySelectorAll('.drop-menu').forEach(menu => {
+                        menu.style.display = 'none';
+                    });
+                });
+            });
+        </script>
+
         <footer>Byte Journey &copy; 2025. All Rights Reserved</footer>
         
 
 
 
-    <!-- Project Modal -->
-    <div id="project-modal" class="modal">
-        <div class="modal-content">
-        <span class="close-button" onclick="closeProjectModal()">&times;</span>
+        <!-- Project Modal -->
+        <div id="project-modal" class="modal">
+            <div class="modal-content">
+            <span class="close-button" onclick="closeProjectModal()">&times;</span>
+            
+            <div class="tabs">
+                <button class="tab-btn active" onclick="showTab('code')">Code</button>
+                <button class="tab-btn" onclick="showTab('images')">Images</button>
+                <button class="tab-btn" onclick="showTab('video')">Video</button>
+            </div>
         
-        <div class="tabs">
-            <button class="tab-btn active" onclick="showTab('code')">Code</button>
-            <button class="tab-btn" onclick="showTab('images')">Images</button>
-            <button class="tab-btn" onclick="showTab('video')">Video</button>
-        </div>
-    
-        <!-- CODE TAB -->
-        <div id="tab-content-code" class="tab-content active">
-            <div class="code-toolbar">
-            <button class="copy-btn" onclick="copyCode()">📋 Copy</button>
+            <!-- CODE TAB -->
+            <div id="tab-content-code" class="tab-content active">
+                <div class="code-toolbar">
+                <button class="copy-btn" onclick="copyCode()">📋 Copy</button>
+                </div>
+                <pre><code id="project-code" class="language-cpp">// Your code will be loaded here</code></pre>
             </div>
-            <pre><code id="project-code" class="language-cpp">// Your code will be loaded here</code></pre>
-        </div>
-    
-        <!-- IMAGES TAB -->
-        <div id="tab-content-images" class="tab-content">
-            <div id="project-images" class="media-gallery">
-            <!-- Images will be inserted here -->
+        
+            <!-- IMAGES TAB -->
+            <div id="tab-content-images" class="tab-content">
+                <div id="project-images" class="media-gallery">
+                <!-- Images will be inserted here -->
+                </div>
+            </div>
+        
+            <!-- VIDEO TAB -->
+            <div id="tab-content-video" class="tab-content">
+                <video id="project-video" controls style="max-width: 100%; border-radius: 10px;"></video>
+            </div>
+            </div>
+        </div>  
+
+        <!-- Video Modal View -->
+        <div id="video-modal" style="
+        display: none;
+        position: fixed;
+        top: 0; left: 0;
+        width: 100%; height: 100%;
+        background-color: rgba(0,0,0,0.8);
+        z-index: 1000;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+        box-sizing: border-box;
+        flex-direction: column;">
+
+            <span onclick="closeVideoModal()" style="
+                color: white;
+                font-size: 32px;
+                cursor: pointer;
+                margin-bottom: 10px;
+                text-align: center;
+                user-select: none;">&#10005;</span> <!-- This is the × sign -->
+            
+            <div style="
+                position: relative;
+                width: 100%;
+                max-width: 800px;
+                aspect-ratio: 16 / 9;">
+                <iframe
+                    id="video-frame"
+                    width="100%"
+                    height="100%"
+                    style="border: none;"
+                    allowfullscreen>
+                </iframe>
             </div>
         </div>
-    
-        <!-- VIDEO TAB -->
-        <div id="tab-content-video" class="tab-content">
-            <video id="project-video" controls style="max-width: 100%; border-radius: 10px;"></video>
-        </div>
-        </div>
-    </div>  
-
-    <!-- Video Modal View -->
-    <div id="video-modal" style="
-    display: none;
-    position: fixed;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    background-color: rgba(0,0,0,0.8);
-    z-index: 1000;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
-    box-sizing: border-box;
-    flex-direction: column;">
-
-    <span onclick="closeVideoModal()" style="
-        color: white;
-        font-size: 32px;
-        cursor: pointer;
-        margin-bottom: 10px;
-        text-align: center;
-        user-select: none;">&#10005;</span> <!-- This is the × sign -->
-    
-    <div style="
-        position: relative;
-        width: 100%;
-        max-width: 800px;
-        aspect-ratio: 16 / 9;">
-        <iframe
-            id="video-frame"
-            width="100%"
-            height="100%"
-            style="border: none;"
-            allowfullscreen>
-        </iframe>
-    </div>
-</div>
 
 
-
-    <script type="text/javascript" src="/js/app.js"></script>  
+        <script type="text/javascript" src="/js/app.js"></script>  
         
     </body>
 </html>

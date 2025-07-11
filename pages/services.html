@@ -59,13 +59,21 @@
                 <img class="site-logo" src="/images/site logo.png" alt="Website Logo">
 
                 <!-- Navigation links -->
-                <ul>
-                    <li><a href="/index.html">Home</a></li>
-                    <li><a href="/pages/about.html">About Me</a></li>
-                    <li><a href="/pages/skills.html">Skills</a></li>
-                    <li><a href="/pages/contact.html">Contact</a></li>
-                    <li><a href="/pages/projects.html">Projects</a></li>
-                    <li><a href="/pages/services.html">Services</a></li>
+                <ul id="main-menu">
+                    <li><a href="/index.html">HOME</a></li>
+                    <li><a href="/pages/skills.html">SKILLS</a></li>
+                    <!--  DROPDOWN MENU -->
+                    <li class="dropdown">
+                        <button class="drop-btn">EXPLORE <span aria-hidden="true">▾</span></button>
+                        <ul class="drop-menu">                        
+                            <li><a href="/pages/about.html">ABOUT ME</a></li>                        
+                            <li><a href="/pages/projects.html">PROJECTS</a></li>
+                            <li><a href="/pages/contact.html">CONTACT</a></li>
+                        </ul>
+                    </li>
+
+                    <li><a href="/pages/services.html">SERVICES</a></li>
+                    <li><a href="/pages/blog/index.html">BLOG</a></li>
                 </ul>
 
                 <!-- Contact buttons -->
@@ -339,6 +347,39 @@
             </div>
 
         </div>
+
+        <script>
+            document.addEventListener('DOMContentLoaded', () => {
+                // ========== DROPDOWN MENU (Explore) ==========
+                const dropButtons = document.querySelectorAll('.drop-btn');
+
+                dropButtons.forEach(button => {
+                const menu = button.nextElementSibling;
+
+                // Always hide at first
+                menu.style.display = 'none';
+
+                button.addEventListener('click', (e) => {
+                    e.stopPropagation();
+
+                    // Hide all others
+                    document.querySelectorAll('.drop-menu').forEach(m => {
+                    if (m !== menu) m.style.display = 'none';
+                    });
+
+                    // Toggle this one
+                    menu.style.display = (menu.style.display === 'block') ? 'none' : 'block';
+                });
+                });
+
+                // Close dropdown if clicked outside
+                document.addEventListener('click', () => {
+                    document.querySelectorAll('.drop-menu').forEach(menu => {
+                        menu.style.display = 'none';
+                    });
+                });
+            });
+        </script>
 
         <footer>Byte Journey &copy; 2025. All Rights Reserved</footer>
         <script type="text/javascript" src="/js/app.js"></script>

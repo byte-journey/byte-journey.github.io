@@ -98,6 +98,58 @@ html {
     padding: 5px;
 }
 
+/* =============== DROPDOWN MENU STYLING =============== */
+.nav-header .dropdown {
+    position: relative;
+}
+
+.drop-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: white;
+    font: inherit;
+}
+
+.drop-menu {
+    display: none; /* hidden by default */
+    position: absolute;
+    left: 0;
+    top: 100%;
+    background: #fff;
+    list-style: none;
+    margin: 0;
+    min-width: 200px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    text-align: left;  
+    animation: fadeSlideIn 0.3s ease forwards;
+}
+
+/* === Fade + slide animation === */
+@keyframes fadeSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-8px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.drop-menu li {
+    margin: 10px;
+}
+
+.drop-menu li a {
+    padding: 2.5rem -1rem;
+    text-decoration: none;
+    font-size: 0.95rem;
+}
+
 /* Sticky navigation state */
 .nav-header.sticky {
     position: fixed;
@@ -437,11 +489,49 @@ footer {
 
     .nav-header ul.active {
         display: flex; /* Show when active */
+        flex-direction: column;
     }
     
     .nav-header li {
         margin: 10px 0;
         text-align: center;
+    }
+
+    
+    /* =============== MOBILE ADJUSTMENTS =============== */
+    .dropdown .drop-menu {
+        position: static; /* no absolute positioning on mobile */
+        box-shadow: none;
+        border: none;
+        margin: 0;
+        animation: none;
+        display: none;
+        padding-left: 1rem;
+        background-color: transparent;
+    }
+
+    .dropdown.open .drop-menu {
+        display: block !important;
+        position: static;
+        text-decoration: none;
+    }
+
+    .drop-btn {
+        text-align: left;
+        background: none;
+        border: none;
+        font: inherit;
+        font-size: 1.2rem;
+        cursor: pointer;
+        text-decoration: none;
+        margin-left: -5px;
+    }
+      
+    
+    .drop-btn:focus,
+    .drop-btn:active {
+        text-decoration: none !important;
+        outline: none;
     }
 
     .intro-content {
@@ -513,4 +603,40 @@ footer {
         width: 100%;
         height: 16em;
     }    
+
+    /* =============== MOBILE ADJUSTMENTS =============== */
+
+    .dropdown .drop-menu {
+        box-shadow: none;
+        border: none;
+        margin: 0;
+        animation: none;
+        display: grid;
+        padding-left: 1rem;
+        background-color: transparent;
+    }
+
+    .dropdown.open .drop-menu {
+        display: block !important;
+        position: static;
+        text-decoration: none;
+    }
+
+    .drop-btn {
+        text-align: left;
+        background: none;
+        border: none;
+        font: inherit;
+        font-size: 1.2rem;
+        cursor: pointer;
+        text-decoration: none;
+        margin-left: -5px;
+    }
+      
+    
+    .drop-btn:focus,
+    .drop-btn:active {
+        text-decoration: none !important;
+        outline: none;
+    }
 }

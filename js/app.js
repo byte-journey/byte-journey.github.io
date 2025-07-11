@@ -1,9 +1,10 @@
 const roles = [
     "Mobile Software Developer",
     "Embedded Systems Programmer",
-    "Web Developer (Frontend)",
+    "Web Developer",
     "Photographer",
-    "WordPress Developer"   
+    "WordPress Developer",
+    "Database Developer"   
 ];
 
 const dynamicText = document.querySelector('.dynamic-text');
@@ -57,18 +58,50 @@ function toggleMenu() {
     }
 }
 
-//Event listener for mobile menu toggle hamburger
-document.addEventListener("DOMContentLoaded", function () {
-    const menuCheckbox = document.querySelector('.hamburger .checkbox');
-    const navMenu = document.querySelector('.nav-header ul');
 
-    if (menuCheckbox && navMenu) {
-        // Ensure the checkbox is unchecked when navigating back
-        if (menuCheckbox.checked) {
-            menuCheckbox.checked = false;
-        }
-    }
+document.addEventListener('DOMContentLoaded', () => {
+    console.log("Dropdown logic loaded ✅");
+    // ========== DROPDOWN MENU (Explore) ==========
+    const dropButtons = document.querySelectorAll('.drop-btn');
+
+    dropButtons.forEach(button => {
+        const menu = button.nextElementSibling;
+
+        // Always hide at first
+        menu.style.display = 'none';
+
+        button.addEventListener('click', (e) => {
+            e.stopPropagation();
+
+            // Hide all others
+            document.querySelectorAll('.drop-menu').forEach(m => {
+                if (m !== menu) m.style.display = 'none';
+            });
+
+            // Toggle this one
+            menu.style.display = (menu.style.display === 'block') ? 'none' : 'block';
+        });
+    });
+
+    // Close dropdown if clicked outside
+    document.addEventListener('click', () => {
+        document.querySelectorAll('.drop-menu').forEach(menu => {
+            menu.style.display = 'none';
+        });
+    });
+
+    // ========== MOBILE MENU TOGGLE ==========
+    // const menuCheckbox = document.querySelector('.hamburger .checkbox');
+    // const navMenu = document.querySelector('.nav-header ul');
+
+    // if (menuCheckbox && navMenu) {
+    //     menuCheckbox.addEventListener('change', () => {
+    //         navMenu.classList.toggle('active');
+    //     });
+    // }
 });
+
+
 
 //Expandable div toggle function on skills page
 function toggleSkill(skillId) {
