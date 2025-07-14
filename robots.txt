@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://byte-journey.github.io/sitemap.xml
