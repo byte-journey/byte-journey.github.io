@@ -1,99 +1,197 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q5ZWRQQLJ6"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
+    <head>
+        <!-- Google tag (gtag.js) -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q5ZWRQQLJ6"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
 
-        gtag('config', 'G-Q5ZWRQQLJ6');
-    </script>
+            gtag('config', 'G-Q5ZWRQQLJ6');
+        </script>
 
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Blog - Byte Journey</title>
-    <link rel="stylesheet" href="/css/blog-home.css" />
-    <link rel="stylesheet" type="text/css" href="/css/back-to-top.css">
-    <link rel="icon" type="image/png" href="favicon.png">
-    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet">
-</head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Blog - Byte Journey</title>
+        <link rel="stylesheet" href="/css/blog-home.css" />
+        <link rel="stylesheet" type="text/css" href="/css/back-to-top.css">
+        <link rel="icon" type="image/png" href="favicon.png">
+        <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet">
+    </head>
 
-<body>
+    <body>
 
-    <header class="blog-header">
-        <h1>Byte-Journey</h1>
-
-        <select id="categoryFilter">
-        <option value="">All categories</option>
-        </select>
-    </header>
-
-    <section id="postsGrid" class="posts-grid"></section>
-
-    <script type="module">
-        const grid     = document.getElementById('postsGrid');
-        const category = document.getElementById('categoryFilter');
-
-        const posts = await (await fetch('/pages/blog/posts.json',
-                                        {cache:'no-cache'})).json();
-
-        // fill category dropdown
-        [...new Set(posts.flatMap(p => p.categories || []))]
-        .forEach(c => {
-            const o = document.createElement('option');
-            o.value = o.textContent = c; category.appendChild(o);
-        });
-
-        category.addEventListener('change', render);
-        render();
-
-        function render () {
-            grid.innerHTML = '';
-            const sel = category.value;
-            posts
-                .filter(p => !sel || (p.categories||[]).includes(sel))
-                .sort((a,b) => new Date(b.date) - new Date(a.date))
-                .forEach(p => grid.appendChild(card(p)));
-        }
-
-        function card (p) {
-            const a  = document.createElement('a');
-            a.href   = `/pages/blog/view.html?slug=${p.slug}`;
-            a.className = 'post-card';
-
-            const relTime = timeAgo(p.date);
-                
-            a.innerHTML = `
-                <div class="card-body">
-                <h3>${p.title}</h3>
-                <p>${p.description}</p>
-                <p class="meta">${relTime} <span class="by-word">by</span> ${p.author}</p>
-                <div class="tags">${(p.tags||[])
-                    .map(t => `<span>#${t}</span>`).join(' ')}</div>
+        <!-- Navigation Bar -->
+            <nav class="nav-header">
+                <!-- Menu Button (Hamburger Icon) -->
+                <div class="hamburger" onclick="toggleMenu()">
+                    <input class="checkbox" type="checkbox" />
+                    <svg fill="none" viewBox="0 0 50 50" height="35" width="50">
+                    <path
+                        class="lineTop line"
+                        stroke-linecap="round"
+                        stroke-width="4"
+                        stroke="black"
+                        d="M6 11L44 11"
+                    ></path>
+                    <path
+                        stroke-linecap="round"
+                        stroke-width="4"
+                        stroke="black"
+                        d="M6 24H43"
+                        class="lineMid line"
+                    ></path>
+                    <path
+                        stroke-linecap="round"
+                        stroke-width="4"
+                        stroke="black"
+                        d="M6 37H43"
+                        class="lineBottom line"
+                    ></path>
+                    </svg>
                 </div>
-                
-                ${p.cover ? `<img src="/images/blog_images/${p.cover}" alt="">` : ''}`;
-                return a;
 
-            /* helper: YYYY‑MM‑DD → Time post was created */
-            function timeAgo (isoDate) {
-                const diffMs = Date.now() - new Date(isoDate).getTime();
-                const day = 864e5;
-                const month = day * 30;
-                const year = day * 365;
 
-                if (diffMs < day) return "today";
-                if (diffMs < day*2) return `A day ago`;
-                if (diffMs < day*7) return `${Math.floor(diffMs/day)} days ago`;
-                if (diffMs < month*2) return `${Math.floor(diffMs/day/7)} weeks ago`;
-                if (diffMs < year) return `${Math.floor(diffMs/month)} months ago`;
-                return `${Math.floor(diffMs/year)} yr ago`
+                <!-- Site logo -->
+                <img class="site-logo" src="/images/site logo.png" alt="Website Logo">
+
+                <!-- Navigation Links -->
+                <ul id="main-menu">
+                    <li><a href="/index.html">HOME</a></li>
+                    <li><a href="/pages/skills.html">SKILLS</a></li>
+                    
+                    <!--  DROPDOWN MENU -->
+                    <li class="dropdown">
+                        <button class="drop-btn">EXPLORE <span aria-hidden="true">▾</span></button>
+                        <ul class="drop-menu">                        
+                            <li><a href="/pages/about.html">ABOUT ME</a></li>                        
+                            <li><a href="/pages/projects.html">PROJECTS</a></li>
+                            <li><a href="/pages/contact.html">CONTACT</a></li>
+                        </ul>
+                    </li>
+
+                    <li><a href="/pages/services.html">SERVICES</a></li>
+                    <li><a href="/pages/blog/index.html">BLOG</a></li>
+
+                </ul>
+
+                <!-- Contact buttons -->
+                <div class="nav-buttons">
+                    <a href="tel:+233540340066" class="nav-btn call-btn">Call</a>
+                    <a href="mailto:ggakpetor21@gmail.com" class="nav-btn email-btn">Send a Mail</a>
+                </div>
+            </nav>
+
+        <header class="blog-header">
+            <h1>Byte-Journey</h1>
+
+            <select id="categoryFilter">
+            <option value="">All categories</option>
+            </select>
+        </header>
+
+        <section id="postsGrid" class="posts-grid"></section>
+
+        <script type="module">
+            const grid     = document.getElementById('postsGrid');
+            const category = document.getElementById('categoryFilter');
+
+            const posts = await (await fetch('/pages/blog/posts.json',
+                                            {cache:'no-cache'})).json();
+
+            // fill category dropdown
+            [...new Set(posts.flatMap(p => p.categories || []))]
+            .forEach(c => {
+                const o = document.createElement('option');
+                o.value = o.textContent = c; category.appendChild(o);
+            });
+
+            category.addEventListener('change', render);
+            render();
+
+            function render () {
+                grid.innerHTML = '';
+                const sel = category.value;
+                posts
+                    .filter(p => !sel || (p.categories||[]).includes(sel))
+                    .sort((a,b) => new Date(b.date) - new Date(a.date))
+                    .forEach(p => grid.appendChild(card(p)));
             }
-        }
-    </script>
 
-</body>
+            function card (p) {
+                const a  = document.createElement('a');
+                a.href   = `/pages/blog/view.html?slug=${p.slug}`;
+                a.className = 'post-card';
+
+                const relTime = timeAgo(p.date);
+                    
+                a.innerHTML = `
+                    <div class="card-body">
+                    <h3>${p.title}</h3>
+                    <p>${p.description}</p>
+                    <p class="meta">${relTime} <span class="by-word">by</span> ${p.author}</p>
+                    <div class="tags">${(p.tags||[])
+                        .map(t => `<span>#${t}</span>`).join(' ')}</div>
+                    </div>
+                    
+                    ${p.cover ? `<img src="/images/blog_images/${p.cover}" alt="">` : ''}`;
+                    return a;
+
+                /* helper: YYYY‑MM‑DD → Time post was created */
+                function timeAgo (isoDate) {
+                    const diffMs = Date.now() - new Date(isoDate).getTime();
+                    const day = 864e5;
+                    const month = day * 30;
+                    const year = day * 365;
+
+                    if (diffMs < day) return "today";
+                    if (diffMs < day*2) return `A day ago`;
+                    if (diffMs < day*7) return `${Math.floor(diffMs/day)} days ago`;
+                    if (diffMs < month*2) return `${Math.floor(diffMs/day/7)} weeks ago`;
+                    if (diffMs < year) return `${Math.floor(diffMs/month)} months ago`;
+                    return `${Math.floor(diffMs/year)} yr ago`
+                }
+            }
+        </script>
+
+        <script>
+            document.addEventListener('DOMContentLoaded', () => {
+                // ========== DROPDOWN MENU (Explore) ==========
+                const dropButtons = document.querySelectorAll('.drop-btn');
+
+                dropButtons.forEach(button => {
+                const menu = button.nextElementSibling;
+
+                // Always hide at first
+                menu.style.display = 'none';
+
+                button.addEventListener('click', (e) => {
+                    e.stopPropagation();
+
+                    // Hide all others
+                    document.querySelectorAll('.drop-menu').forEach(m => {
+                    if (m !== menu) m.style.display = 'none';
+                    });
+
+                    // Toggle this one
+                    menu.style.display = (menu.style.display === 'block') ? 'none' : 'block';
+                });
+                });
+
+                // Close dropdown if clicked outside
+                document.addEventListener('click', () => {
+                    document.querySelectorAll('.drop-menu').forEach(menu => {
+                        menu.style.display = 'none';
+                    });
+                });
+            });
+        </script>
+
+        <footer>Byte Journey &copy; 2025. All Rights Reserved</footer>
+
+        <script type="text/javascript" src="/js/app.js"></script>
+
+    </body>
 </html>

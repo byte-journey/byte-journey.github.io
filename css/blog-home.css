@@ -1,8 +1,172 @@
 body {
     font-family: Arial, sans-serif;
+    margin: 0 auto;
+    background-color: #f7f7f7;    
+    min-height: calc(100vh - 50px); /* Subtract nav height */
+    bottom: auto;
+}
+
+html {scroll-behavior: smooth;}
+
+* {
+    box-sizing: border-box;
+}
+
+/* Navigation header styling */
+.nav-header {
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    background-color: #333;
+    transition: transform 0.3s ease-in-out;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Keeps space between logo & links */
+    padding: 5px;
+}
+
+/* =============== DROPDOWN MENU STYLING =============== */
+.nav-header .dropdown {
+    position: relative;
+}
+
+.drop-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: white;
+    font: inherit;
+}
+
+.drop-menu {
+    display: none; /* hidden by default */
+    position: absolute;
+    left: 0;
+    top: 100%;
+    background: #fff;
+    list-style: none;
     margin: 0;
-    padding: 2rem;
-    background-color: #f7f7f7;
+    min-width: 200px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    text-align: left;  
+    animation: fadeSlideIn 0.3s ease forwards;
+}
+
+/* === Fade + slide animation === */
+@keyframes fadeSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-8px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.drop-menu li {
+    margin: 10px;
+}
+
+.drop-menu li a {
+    padding: 2.5rem -1rem;
+    text-decoration: none;
+    font-size: 0.95rem;
+}
+
+/* Sticky navigation state */
+.nav-header.sticky {
+    position: fixed;
+    top: 0;
+    bottom: auto;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.nav-header img {
+    width: 50px;
+    height: 50px;
+}   
+
+/* Navigation menu */
+.nav-header ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    margin: 0;
+    padding: 15px 0;
+    background-color: #333;
+}
+
+/* Navigation items */
+.nav-header li {
+    margin: 0 20px;
+    padding: 0;
+}
+
+/* Navigation items hover effect*/
+.nav-header li:hover{    
+    text-decoration: underline;
+    text-decoration-color: tomato;
+}
+
+/* Navigation links */
+.nav-header a {
+    color: white;
+    text-decoration: none;
+    font-size: 1.1em;
+    transition: color 0.3s ease;
+}
+
+.nav-header a:hover {
+    color: #ffffff;
+    left: 0;
+    width: 0;
+    transition: width 0.3s color 0.5s ease;
+}
+
+.nav-header a:hover::after {
+    width: 100%; /* Full underline */
+}
+
+/* For active or focused links */
+.nav-header a:focus::after {
+    width: 100%;
+}
+
+/* NAV BUTTONS */
+.nav-buttons {
+    gap: 10px; /* Adds space between buttons */
+    margin-right: 20px;
+}
+
+/* BUTTONS STYLE */
+.nav-btn {
+    padding: 8px 15px;
+    border-radius: 15px;
+    font-weight: bold;
+}
+
+.nav-btn:hover {
+    background-color: grey;
+    transition: 0.5s ease;
+}
+
+.hamburger {
+    display: none;
+}
+
+.call-btn {
+    background-color: #28a745; /* Green */
+    color: rgb(21, 21, 21);
+}
+
+.email-btn {
+    background-color: #007bff; /* Blue */
+    color: white;
 }
 
 h1 {
@@ -121,10 +285,14 @@ h1 {
 }
 
 .blog-header{
-    display:flex;justify-content:space-between;align-items:center;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding: 0 30px 0 30px;    
 }
 .posts-grid{
     max-width: 80%;
+    padding: 2rem;
 }
 .post-card{
     background:#fff;border-radius:10px;text-decoration:none;color:#111;
@@ -155,8 +323,176 @@ h1 {
     margin-right:4px
 }
 
+/* Footer styling */
+footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #f8f9fa;
+    border-top: 1px solid #dee2e6;
+    z-index: 10;
+    width: 100%;
+    bottom: 0;
+}
+
 
 /* Responsive adjustments */
 
-@media(max-width: 600px){
+@media screen and (max-width: 768px) {
+    html, body {
+        scroll-behavior: smooth;
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        overflow-x: hidden;
+    }
+
+    * {
+        box-sizing: border-box;
+    }
+
+    /* Make nav layout stack properly */
+    .nav-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 15px;
+        margin: 0;
+    }
+
+    /* Center the logo */
+    .nav-header img {
+        position: absolute;
+        width: 40px;
+        height: 40px;
+    }
+
+    /* Contact buttons stay on the right */
+    .nav-buttons {
+        position: absolute;
+        right: 60px;
+        font-size: 10px;
+    }
+
+    .nav-btn {
+        border-radius: 10px;
+    }
+
+    .nav-header ul {
+        flex-direction: column;
+        display: none; /* Initially hidden */
+        background-color: #333;
+        position: absolute;
+        top: 50px; /* Below button */
+        right: 0;
+        width: 60%;
+        padding: 15px;
+        border-radius: 0 0 15px 15px;
+        transition: ease-in 0.5s;
+    }
+
+    /* Align text to the right */
+    .nav-header ul li {
+        padding: 8px 10px;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start; /* Align text to the right */
+        font-size: 18px;
+    }
+
+    .nav-header ul.active {
+        display: flex !important; /* Show when active */
+        flex-direction: column;
+    }
+    
+    .nav-header li {
+        margin: 10px 0;
+        text-align: center;
+    }
+
+    .hamburger {
+        display: block;
+        height: 35px;
+        width: 35px;
+        transform: 0.2s;
+        margin-left: auto; /* Pushes it to the far right*/
+        margin-top: 1px;
+        margin-bottom: -2px;
+        margin-right: 10px;
+        padding: 1;
+    }
+    .hamburger .checkbox {
+        position: absolute;
+        opacity: 0;
+        height: 100%;
+        width: 100%;
+        cursor: pointer;
+    }
+    .line {
+        transition: 0.5s;
+        stroke-width: 6px;
+        stroke: whitesmoke;
+    }
+    .lineTop {
+        stroke-dasharray: 40 40;
+        stroke-dashoffset: 25;
+    }
+    .lineBottom {
+        stroke-dasharray: 40 40;
+        stroke-dashoffset: 60;
+    }
+    .lineMid {
+        stroke-dasharray: 40 40;
+    }
+    .hamburger .checkbox:checked + svg .line {
+        stroke: crimson;
+    }
+    .hamburger .checkbox:checked + svg .lineTop {
+        stroke-dashoffset: 0;
+        transform-origin: left;
+        transform: rotateZ(45deg) translate(-7px, -5px);
+    }
+    .hamburger .checkbox:checked + svg .lineMid {
+        stroke-dashoffset: 40;
+    }
+    .hamburger .checkbox:checked + svg .lineBottom {
+        stroke-dashoffset: 0;
+        transform-origin: left;
+        transform: rotateZ(-45deg) translate(-5px, 5px);
+    }
+
+    /* Footer styling */
+    footer {
+        text-align: center;
+        padding: 20px;
+        background-color: #f8f9fa;
+        border-top: 1px solid #dee2e6;
+        font-size: 15px;
+    }
+}
+
+@media  screen and (max-width: 320px) {
+    /* Menu item styling */
+    .nav-header ul {
+        flex-direction: column;
+        display: none; /* Initially hidden */
+        background-color: #333;
+        position: absolute;
+        top: 50px; /* Below button */
+        right: 0;
+        width: 60%;
+        padding: 15px;
+        border-radius: 0 0 15px 15px;
+        transition: ease-in 0.5s;
+        line-height: 3px;
+    }
+
+    /* Footer styling */
+    footer {
+        text-align: center;
+        padding: 20px;
+        background-color: #f8f9fa;
+        border-top: 1px solid #dee2e6;
+        font-size: 15px;
+    }        
 }
