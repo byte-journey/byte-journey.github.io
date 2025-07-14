@@ -75,6 +75,7 @@ body, html {
 
 .drop-menu li {
     margin: 10px;
+    height: 25px;
 }
 
 .drop-menu li a {
