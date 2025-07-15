@@ -60,7 +60,7 @@
 }
 
 /* ─────────────────  ≤ 768 px  ───────────────────────────────────────*/
-@media (max-width: 768px){
+@media screen and (max-width: 768px){
   #post-container{ 
     padding: 1rem; 
   }
@@ -78,6 +78,10 @@
   #post-meta { 
     font-size: .8rem; 
   }
+
+  #post-content {
+    font-size: 12px;
+  }
 }
 
 /* ─────────────────  ≤ 480 px  ───────────────────────────────────────*/
@@ -90,6 +94,6 @@
   }
 
   /* body text */
-  #post-content{ font-size: 2px; }
+  #post-content{ font-size: 12px; }
 }
 
