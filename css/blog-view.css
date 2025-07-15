@@ -10,10 +10,16 @@
   margin-bottom: 10px;
 }
 
-#post-meta {
+/* #post-meta {
   color: #666;
   margin-bottom: 20px;
-}
+} */
+
+#post-meta { 
+    font-size: 1rem; 
+    color: rgb(28, 101, 27);
+    font-weight: 700;
+  }
 
 #post-tags {
   margin-bottom: 20px;
@@ -76,11 +82,13 @@
     font-size: 2.2rem; 
   }
   #post-meta { 
-    font-size: .8rem; 
+    font-size: 1rem; 
+    color: rgb(28, 101, 27);
+    font-weight: 700;
   }
 
   #post-content {
-    font-size: 12px;
+    font-size: 16px;
   }
 }
 
@@ -93,7 +101,13 @@
     height: 120px; 
   }
 
+  #post-meta { 
+    font-size: 1rem; 
+    color: rgb(28, 101, 27);
+    font-weight: 700;
+  }
+
   /* body text */
-  #post-content{ font-size: 12px; }
+  #post-content{ font-size: 16px; }
 }
 
