@@ -65,6 +65,43 @@
   margin-right:4px;
 }
 
+.back-button {
+  display: inline-block;
+  margin: 1rem;
+  padding: 0.5rem 1rem;
+  background: #eee;
+  color: #333;
+  text-decoration: none;
+  border-radius: 5px;
+  font-weight: 600;
+  font-family: Arial,  sans-serif;
+}
+.back-button:hover {
+  background: #464646;
+  color: white;
+  transition: .5s;
+}
+
+.post-engagement {
+  margin-top: 2rem;
+  font-size: 1rem;
+}
+
+#like-btn {
+  padding: 0.5rem 1rem;
+  background: #007bff;
+  border: none;
+  color: white;
+  font-weight: bold;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+#like-btn:hover {
+  background: #0056b3;
+}
+
+
 /* ─────────────────  ≤ 768 px  ───────────────────────────────────────*/
 @media screen and (max-width: 768px){
   #post-container{ 

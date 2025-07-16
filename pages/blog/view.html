@@ -8,9 +8,16 @@
     </head>
 
     <body>
+        <a href="/pages/blog/index.html" class="back-button"><strong>◀ Back to Blog</strong></a>
+
         <div id="post-container">
             <div id="post-header">
                 <h1 id="post-title"></h1>
+                <div class="post-engagement">
+                    <p id="view-count">Loading views...</p>
+                    <p id="like-count">Loading likes...</p>
+                    <button id="like-btn">👍 Like this post</button>
+                </div>
                 <p id="post-desc" class="desc"></p>
                 <p id="post-meta"></p>
                 <img id="cover-image" src="" alt="Cover" style="display:none;" />
@@ -20,12 +27,49 @@
             <div id="post-content"></div>
         </div>
 
+        <a href="/pages/blog/index.html" class="back-button"><strong>◀ Back to Blog</strong></a>
+
         <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 
         <script src="../../js/blog.js"></script>
         <script>
             loadBlogPostFromURL(); // Run post-loader
         </script>
+
+        //Firebase
+        <script type="module">
+            import { db, firebaseRef, get, set, update } from '/js/firebase-blog.js';
+
+            const slug = new URLSearchParams(window.location.search).get('slug');
+            if (!slug) return;
+
+            // 1. Track and show view count
+            const viewRef = firebaseRef(db, `views/${slug}`);
+            get(viewRef).then(snapshot => {
+                const count = snapshot.exists() ? snapshot.val() + 1 : 1;
+                set(viewRef, count);
+
+                const viewEl = document.getElementById('view-count');
+                if (viewEl) viewEl.textContent = `${count} view${count === 1 ? '' : 's'}`;
+            });
+
+            // 2. Get and show like count
+            const likeRef = firebaseRef(db, `likes/${slug}`);
+            get(likeRef).then(snapshot => {
+                const count = snapshot.exists() ? snapshot.val() : 0;
+                const likeEl = document.getElementById('like-count');
+                if (likeEl) likeEl.textContent = `${count} like${count === 1 ? '' : 's'}`;
+            });
+
+            // 3. Like button functionality
+            document.getElementById('like-btn')?.addEventListener('click', async () => {
+                const snapshot = await get(likeRef);
+                const newCount = snapshot.exists() ? snapshot.val() + 1 : 1;
+                await set(likeRef, newCount);
+                document.getElementById('like-count').textContent = `${newCount} like${newCount === 1 ? '' : 's'}`;
+            });
+        </script>
+
 
     </body>
 </html>
