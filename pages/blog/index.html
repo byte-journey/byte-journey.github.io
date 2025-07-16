@@ -19,7 +19,7 @@
         <meta name="author" content="Gideon Gakpetor">
         <meta name="robots" content="index, follow">
         <!-- Open Graph -->
-        <meta property="og:title" content="Byte Journey Blog">
+        <meta property="og:title" content="Byte-Journey">
         <meta property="og:description" content="Tech tips, tutorials, and project insights.">
         <meta property="og:image" content="https://byte-journey.github.io/images/og-image.jpg">
         <meta property="og:url" content="https://byte-journey.github.io/">
@@ -27,7 +27,7 @@
 
         <!-- Twitter Card -->
         <meta name="twitter:card" content="summary_large_image">
-        <meta name="twitter:title" content="Byte-Journey Blog">
+        <meta name="twitter:title" content="Byte-Journey">
         <meta name="twitter:description" content="Tech tutorials, web dev, and embedded insights.">
         <meta name="twitter:image" content="https://byte-journey.github.io/images/og-image.jpg">
         
@@ -174,32 +174,35 @@
                         <h3>${p.title}</h3>
                         <p>${p.description}</p>
                         <p class="meta">${relTime} <span class="by-word">by</span> ${p.author}</p>
-                        <div class="tags">${(p.tags||[])
-                            .map(t => `<span>#${t}</span>`).join(' ')}</div>
+                        <div class="tags">${
+                            (p.tags||[]).map(t => `<span>#${t}</span>`).join(' ')}</div>
                         </div>
 
-                        <div class="engagement">
-                            <span id="views-${p.slug}">Views: </span>
-                            <span id="likes-${p.slug}">Likes: </span>
-                            </div>
+                        <div class="engagement" data-slug="${p.slug}">
+                            <span class="views">Views: ...</span>
+                            <span class="likes">Likes: ...</span>
                         </div>
                         
                         ${p.cover ? `<img src="/images/blog_images/${p.cover}" alt="">` : ''}`;
 
-                        // 🔄 Fetch view and like counts for this post from Firebase
-                        const viewsRef = firebaseRef(db, `views/${p.slug}`);
+                        // After setting innerHTML, fetch views and likes
+                        const engagement = a.querySelector('.engagement');
+                        const slug = engagement.dataset.slug;
+
+                        const viewsRef = firebaseRef(db, `views/${slug}`);
                         get(viewsRef).then(snapshot => {
                             const count = snapshot.exists() ? snapshot.val() : 0;
-                            const el = a.querySelector(`#views-${p.slug}`);
+                            const el = engagement.querySelector('.views');
                             if (el) el.textContent = `Views: ${count}`;
                         });
 
-                        const likesRef = firebaseRef(db, `likes/${p.slug}`);
+                        const likesRef = firebaseRef(db, `likes/${slug}`);
                         get(likesRef).then(snapshot => {
                             const count = snapshot.exists() ? snapshot.val() : 0;
-                            const el = a.querySelector(`#likes-${p.slug}`);
+                            const el = engagement.querySelector('.likes');
                             if (el) el.textContent = `Likes: ${count}`;
                         });
+
                         return a;
 
                     /* helper: YYYY‑MM‑DD → Time post was created */
