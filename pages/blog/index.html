@@ -141,25 +141,25 @@
                 }
 
                 // After rendering all cards, load views and likes for each
-                posts.forEach(p => {
-                const slug = p.slug;
+                /*posts.forEach(p => {
+                    const slug = p.slug;
 
-                // Get views
-                const viewsRef = firebaseRef(db, `views/${slug}`);
-                get(viewsRef).then(snapshot => {
-                    const count = snapshot.exists() ? snapshot.val() : 0;
-                    const el = document.getElementById(`views-${slug}`);
-                    if (el) el.textContent = `Views: ${count}`;
-                });
+                    // Get views
+                    const viewsRef = firebaseRef(db, `views/${slug}`);
+                    get(viewsRef).then(snapshot => {
+                        const count = snapshot.exists() ? snapshot.val() : 0;
+                        const el = document.getElementById(`views-${slug}`);
+                        if (el) el.textContent = `Views: ${count}`;
+                    });
 
-                // Get likes
-                const likesRef = firebaseRef(db, `likes/${slug}`);
-                get(likesRef).then(snapshot => {
-                    const count = snapshot.exists() ? snapshot.val() : 0;
-                    const el = document.getElementById(`likes-${slug}`);
-                    if (el) el.textContent = `Likes: ${count}`;
-                });
-                });
+                    // Get likes
+                    const likesRef = firebaseRef(db, `likes/${slug}`);
+                    get(likesRef).then(snapshot => {
+                        const count = snapshot.exists() ? snapshot.val() : 0;
+                        const el = document.getElementById(`likes-${slug}`);
+                        if (el) el.textContent = `Likes: ${count}`;
+                    });
+                });*/
 
 
                 function card (p) {
@@ -185,6 +185,21 @@
                         </div>
                         
                         ${p.cover ? `<img src="/images/blog_images/${p.cover}" alt="">` : ''}`;
+
+                        // 🔄 Fetch view and like counts for this post from Firebase
+                        const viewsRef = firebaseRef(db, `views/${p.slug}`);
+                        get(viewsRef).then(snapshot => {
+                            const count = snapshot.exists() ? snapshot.val() : 0;
+                            const el = a.querySelector(`#views-${p.slug}`);
+                            if (el) el.textContent = `Views: ${count}`;
+                        });
+
+                        const likesRef = firebaseRef(db, `likes/${p.slug}`);
+                        get(likesRef).then(snapshot => {
+                            const count = snapshot.exists() ? snapshot.val() : 0;
+                            const el = a.querySelector(`#likes-${p.slug}`);
+                            if (el) el.textContent = `Likes: ${count}`;
+                        });
                         return a;
 
                     /* helper: YYYY‑MM‑DD → Time post was created */
