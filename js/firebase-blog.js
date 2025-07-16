@@ -16,6 +16,9 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 
+const db = getDatabase(app);
+
+
 // View Counter
 const slug = window.location.pathname.split('/').pop().replace('.html', '');
 const viewsRef = ref(db, `views/${slug}`);
