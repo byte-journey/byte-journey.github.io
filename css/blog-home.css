@@ -218,6 +218,20 @@ h1 {
     margin-bottom:1.5rem;
 }
 
+/* Card media group (image + engagement) */
+.card-media {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.5rem;
+}
+.card-media img {
+  width: 120px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 5px;
+}
+
 /* text side */
 .post-card .card-body{
     flex:1 1 auto;
@@ -467,6 +481,34 @@ footer {
         transform-origin: left;
         transform: rotateZ(-45deg) translate(-5px, 5px);
     }
+
+    .post-card {
+        flex-direction: column;
+        align-items: flex-start;
+        width: 100%;
+    }
+
+    .posts-grid {
+        max-width: 800px;
+        margin: auto;
+    }
+
+    .card-media {
+        width: 100%;
+        align-items: center;
+    }
+    .card-media img {
+        width: 90%;
+        max-width: 320px;
+        height: auto;
+    }
+    .engagement {
+        margin-top: 0.5rem;
+        font-size: 0.9rem;
+        text-align: center;
+        width: 100%;
+    }
+
 
     /* Footer styling */
     footer {

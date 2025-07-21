@@ -140,27 +140,6 @@
                         .forEach(p => grid.appendChild(card(p)));
                 }
 
-                // After rendering all cards, load views and likes for each
-                /*posts.forEach(p => {
-                    const slug = p.slug;
-
-                    // Get views
-                    const viewsRef = firebaseRef(db, `views/${slug}`);
-                    get(viewsRef).then(snapshot => {
-                        const count = snapshot.exists() ? snapshot.val() : 0;
-                        const el = document.getElementById(`views-${slug}`);
-                        if (el) el.textContent = `Views: ${count}`;
-                    });
-
-                    // Get likes
-                    const likesRef = firebaseRef(db, `likes/${slug}`);
-                    get(likesRef).then(snapshot => {
-                        const count = snapshot.exists() ? snapshot.val() : 0;
-                        const el = document.getElementById(`likes-${slug}`);
-                        if (el) el.textContent = `Likes: ${count}`;
-                    });
-                });*/
-
 
                 function card (p) {
                     const a  = document.createElement('a');
@@ -171,19 +150,22 @@
                         
                     a.innerHTML = `
                         <div class="card-body">
-                        <h3>${p.title}</h3>
-                        <p>${p.description}</p>
-                        <p class="meta">${relTime} <span class="by-word">by</span> ${p.author}</p>
-                        <div class="tags">${
-                            (p.tags||[]).map(t => `<span>#${t}</span>`).join(' ')}</div>
+                            <h3>${p.title}</h3>
+                            <p>${p.description}</p>
+                            <p class="meta">${relTime} <span class="by-word">by</span> ${p.author}</p>
+                            <div class="tags">${
+                                (p.tags|| []).map(t => `<span>#${t}</span>`).join(' ')
+                            }</div>
                         </div>
 
-                        <div class="engagement" data-slug="${p.slug}">
-                            <span class="views">Views: ...</span>
-                            <span class="likes">Likes: ...</span>
+                        <div class="card-media">
+                            <div class="engagement" data-slug="${p.slug}">
+                                <span class="views">Views: ...</span>
+                                <span class="likes">Likes: ...</span>
+                            </div>
+                            ${p.cover ? `<img src="/images/blog_images/${p.cover}" alt="">` : ''}
                         </div>
-                        
-                        ${p.cover ? `<img src="/images/blog_images/${p.cover}" alt="">` : ''}`;
+                        `;
 
                         // After setting innerHTML, fetch views and likes
                         const engagement = a.querySelector('.engagement');
