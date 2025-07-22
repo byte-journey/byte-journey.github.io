@@ -41,5 +41,22 @@
     "date": "2025-07-18",
     "slug": "ai-agents-the-future-of-autonomous-technology-in-2025",
     "cover": "Screenshot_82.png"
+  },
+  {
+    "title": "10 Simple Tricks to Speed Up Your Windows PC",
+    "author": "Gideon",
+    "description": "Clean-up tips, startup manager, disk defragmentation to make your Window PC run smoother and faster.",
+    "categories": [
+      "Windows Tips"
+    ],
+    "tags": [
+      "windows",
+      "speed",
+      "performance",
+      "tips"
+    ],
+    "date": "2025-07-22",
+    "slug": "10-simple-tricks-to-speed-up-your-windows-pc",
+    "cover": "Screenshot_2025-07-22_184553.png"
   }
 ]
