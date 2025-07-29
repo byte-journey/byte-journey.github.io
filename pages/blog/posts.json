@@ -58,5 +58,24 @@
     "date": "2025-07-22",
     "slug": "10-simple-tricks-to-speed-up-your-windows-pc",
     "cover": "Screenshot_2025-07-22_184553.png"
+  },
+  {
+    "title": "Your Home Wi-Fi Security Checklist: Protect Your Network",
+    "author": "Gideon",
+    "description": "Secure your home network from unauthorized access. This comprehensive checklist covers essential steps like changing default router credentials, enabling WPA3 encryption, setting up a guest network, and regularly updating firmware, for a secure internet access and router management.",
+    "categories": [
+      "Cybersecurity & Digital Privacy"
+    ],
+    "tags": [
+      "wi-fi security",
+      "home network",
+      "router settings",
+      "cybersecurity",
+      "WPA3",
+      "network protection"
+    ],
+    "date": "2025-07-29",
+    "slug": "your-home-wi-fi-security-checklist-protect-your-network",
+    "cover": ""
   }
 ]
