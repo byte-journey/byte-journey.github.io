@@ -2,42 +2,48 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://byte-journey.github.io/</loc>
-    <lastmod>2025-08-08</lastmod>
+    <lastmod>2025-08-12</lastmod>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://byte-journey.github.io/pages/blog/</loc>
-    <lastmod>2025-08-08</lastmod>
+    <lastmod>2025-08-12</lastmod>
     <priority>0.8</priority>
   </url>
   
   <url>
     <loc>https://byte-journey.github.io/pages/blog/posts/10-simple-tricks-to-speed-up-your-windows-pc.html</loc>
-    <lastmod>2025-08-08</lastmod>
+    <lastmod>2025-08-12</lastmod>
     <priority>0.6</priority>
   </url>
 
   <url>
     <loc>https://byte-journey.github.io/pages/blog/posts/ai-agents-the-future-of-autonomous-technology-in-2025.html</loc>
-    <lastmod>2025-08-08</lastmod>
+    <lastmod>2025-08-12</lastmod>
     <priority>0.6</priority>
   </url>
 
   <url>
     <loc>https://byte-journey.github.io/pages/blog/posts/best-free-pdf-editors-online-offline.html</loc>
-    <lastmod>2025-08-08</lastmod>
+    <lastmod>2025-08-12</lastmod>
     <priority>0.6</priority>
   </url>
 
   <url>
     <loc>https://byte-journey.github.io/pages/blog/posts/prompt-engineering-101-master-the-art-of-talking-to-ai.html</loc>
-    <lastmod>2025-08-08</lastmod>
+    <lastmod>2025-08-12</lastmod>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://byte-journey.github.io/pages/blog/posts/windows-11-hidden-features-13-pro-tips-every-user-should-know.html</loc>
+    <lastmod>2025-08-12</lastmod>
     <priority>0.6</priority>
   </url>
 
   <url>
     <loc>https://byte-journey.github.io/pages/blog/posts/your-home-wi-fi-security-checklist-protect-your-network.html</loc>
-    <lastmod>2025-08-08</lastmod>
+    <lastmod>2025-08-12</lastmod>
     <priority>0.6</priority>
   </url>
 </urlset>
