@@ -112,20 +112,20 @@
         <section id="postsGrid" class="posts-grid"></section>
 
         <script type="module">
-            import { db, firebaseRef, get } from '/js/firebase-blog.js';
+            import { getEngagementData } from '/js/firebase-blog.js';
             
             (async function() {
                 const grid     = document.getElementById('postsGrid');
                 const category = document.getElementById('categoryFilter');
 
-                const posts = await (await fetch('/pages/blog/posts.json',
-                                                {cache:'no-cache'})).json();
+                const posts = await (await fetch('/pages/blog/posts.json', {cache:'no-cache'})).json();
 
-                // fill category dropdown
+                // Fill category dropdown
                 [...new Set(posts.flatMap(p => p.categories || []))]
                 .forEach(c => {
                     const o = document.createElement('option');
-                    o.value = o.textContent = c; category.appendChild(o);
+                    o.value = o.textContent = c; 
+                    category.appendChild(o);
                 });
 
                 category.addEventListener('change', render);
@@ -167,40 +167,49 @@
                         </div>
                         `;
 
-                        // After setting innerHTML, fetch views and likes
-                        const engagement = a.querySelector('.engagement');
-                        const slug = engagement.dataset.slug;
-
-                        const viewsRef = firebaseRef(db, `views/${slug}`);
-                        get(viewsRef).then(snapshot => {
-                            const count = snapshot.exists() ? snapshot.val() : 0;
-                            const el = engagement.querySelector('.views');
-                            if (el) el.textContent = `Views: ${count}`;
-                        });
-
-                        const likesRef = firebaseRef(db, `likes/${slug}`);
-                        get(likesRef).then(snapshot => {
-                            const count = snapshot.exists() ? snapshot.val() : 0;
-                            const el = engagement.querySelector('.likes');
-                            if (el) el.textContent = `Likes: ${count}`;
-                        });
-
+                        // Load engagement data asynchronously
+                        loadEngagementData(a, p.slug);
                         return a;
+                }
 
-                    /* helper: YYYY‑MM‑DD → Time post was created */
-                    function timeAgo (isoDate) {
-                        const diffMs = Date.now() - new Date(isoDate).getTime();
-                        const day = 864e5;
-                        const month = day * 30;
-                        const year = day * 365;
-
-                        if (diffMs < day) return "today";
-                        if (diffMs < day*2) return `A day ago`;
-                        if (diffMs < day*7) return `${Math.floor(diffMs/day)} days ago`;
-                        if (diffMs < month*2) return `${Math.floor(diffMs/day/7)} weeks ago`;
-                        if (diffMs < year) return `${Math.floor(diffMs/month)} months ago`;
-                        return `${Math.floor(diffMs/year)} yr ago`
+                // Separate function to load engagement data
+                async function loadEngagementData(cardElement, slug) {
+                    try {
+                        const data = await getEngagementData(slug);
+                        const engagement = cardElement.querySelector('.engagement');
+                        
+                        if (engagement) {
+                            const viewsEl = engagement.querySelector('.views');
+                            const likesEl = engagement.querySelector('.likes');
+                            
+                            if (viewsEl) viewsEl.textContent = `Views: ${data.views}`;
+                            if (likesEl) likesEl.textContent = `Likes: ${data.likes}`;
+                        }
+                    } catch (error) {
+                        console.error(`Failed to load engagement for ${slug}:`, error);
+                        const engagement = cardElement.querySelector('.engagement');
+                        if (engagement) {
+                            engagement.innerHTML = `
+                                <span class="views">Views: --</span>
+                                <span class="likes">Likes: --</span>
+                            `;
+                        }
                     }
+                }
+
+                /* Helper: YYYY‑MM‑DD → Time post was created */
+                function timeAgo(isoDate) {
+                    const diffMs = Date.now() - new Date(isoDate).getTime();
+                    const day = 864e5;
+                    const month = day * 30;
+                    const year = day * 365;
+
+                    if (diffMs < day) return "today";
+                    if (diffMs < day*2) return `A day ago`;
+                    if (diffMs < day*7) return `${Math.floor(diffMs/day)} days ago`;
+                    if (diffMs < month*2) return `${Math.floor(diffMs/day/7)} weeks ago`;
+                    if (diffMs < year) return `${Math.floor(diffMs/month)} months ago`;
+                    return `${Math.floor(diffMs/year)} yr ago`
                 }
             })();
         </script>

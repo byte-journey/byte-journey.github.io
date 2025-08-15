@@ -19,29 +19,72 @@ const db = getDatabase(app);
 
 // --- UTILITY FUNCTIONS ---
 async function incrementViewCount(slug) {
-  const viewsRef = ref(db, `views/${slug}`);
-  const snapshot = await get(viewsRef);
-  const count = snapshot.exists() ? snapshot.val() + 1 : 1;
-  await set(viewsRef, count);
-  return count;
+  try {
+    const viewsRef = ref(db, `views/${slug}`);
+    const snapshot = await get(viewsRef);
+    const count = snapshot.exists() ? snapshot.val() + 1 : 1;
+    await set(viewsRef, count);
+    return count;
+  }
+  catch (error) {
+    console.error('Error incrementing view count:', error);
+    return 0;
+  }
 }
 
 async function getViewCount(slug) {
-  const snapshot = await get(ref(db, `views/${slug}`));
-  return snapshot.exists() ? snapshot.val() : 0;
+  try {
+    const snapshot = await get(ref(db, `views/${slug}`));
+    return snapshot.exists() ? snapshot.val() : 0;
+  }
+  catch (error) {
+    console.error('Error getting view count:', error);
+    return 0;
+  }
 }
 
 async function getLikeCount(slug) {
-  const snapshot = await get(ref(db, `likes/${slug}`));
-  return snapshot.exists() ? snapshot.val() : 0;
+  try {
+    const snapshot = await get(ref(db, `likes/${slug}`));
+    return snapshot.exists() ? snapshot.val() : 0;
+  }
+  catch (error) {
+    console.error('Error getting like count', error);
+    return 0;
+  }
 }
 
 async function addLike(slug) {
-  const likesRef = ref(db, `likes/${slug}`);
-  const snapshot = await get(likesRef);
-  const count = snapshot.exists() ? snapshot.val() + 1 : 1;
-  await set(likesRef, count);
-  return count;
+  try {
+    const likesRef = ref(db, `likes/${slug}`);
+    const snapshot = await get(likesRef);
+    const count = snapshot.exists() ? snapshot.val() + 1 : 1;
+    await set(likesRef, count);
+    return count;
+  }
+  catch (error) {
+    console.error('Error adding like:', error)
+    // Return current count on error
+    return getLikeCount(slug);
+  }
+}
+
+async function getEngagementData(slug) {
+  try {
+    const [viewSnapshot, likeSnapshot] = await Promise.all([
+      get(ref(db, `views/${slug}`)),
+      get(ref(db, `likes/${slug}`))
+    ]);
+
+    return {
+      views: viewSnapshot.exists() ? viewSnapshot.val() : 0,
+      likes: likeSnapshot.exists() ? likeSnapshot.val() : 0
+    };
+  }
+  catch (error) {
+    console.error('Error getting engagement data:', error);
+    return { views: 0, likes: 0 };
+  }  
 }
 
 export {
@@ -53,21 +96,6 @@ export {
   incrementViewCount,
   getViewCount,
   getLikeCount,
-  addLike
+  addLike,
+  getEngagementData
 };
-
-// // View Counter
-// const slug = window.location.pathname.split('/').pop().replace('.html', '');
-// const viewsRef = ref(db, `views/${slug}`);
-
-// get(viewsRef).then(snapshot => {
-//   let count = snapshot.exists() ? snapshot.val() + 1 : 1;
-//   set(viewsRef, count);
-
-//   // Show count on page (if you want)
-//   const el = document.getElementById('view-count');
-//   if (el) el.textContent = `${count} view${count === 1 ? '' : 's'}`;
-// });
-
-// export { db };
-// export { ref as firebaseRef, get, set, update };
