@@ -42,70 +42,97 @@
             import { incrementViewCount, getLikeCount, addLike } from '/js/firebase-blog.js';
 
             const slug = new URLSearchParams(window.location.search).get('slug');
-            if (!slug) {
-                console.error('No slug parameter found');
-                return;
-            }
+            if (!slug) return;
 
-            // Wait for DOM to be ready
-            document.addEventListener('DOMContentLoaded', async () => {
-                // VIEW COUNT - increment and display
-                try {
-                    const viewCount = await incrementViewCount(slug);
-                    const viewEl = document.getElementById('view-count');
-                    if (viewEl) {
-                        viewEl.textContent = `${viewCount} view${viewCount === 1 ? '' : 's'}`;
-                    }
-                }
-                catch (error) {
-                    console.error('Failed to load view count:', error);
-                    const viewEl = document.getElementById('view-count');
-                    if (viewEl) viewEl.textContent = 'Views unavailable';
+            // CRITICAL: Wait for the blog content to load first
+            // Use a short delay to ensure blog.js has finished creating elements
+            setTimeout(async () => {
+                // VIEW COUNT
+                const viewCount = await incrementViewCount(slug);
+                const viewEl = document.getElementById('view-count');
+                if (viewEl) {
+                    viewEl.textContent = `${viewCount} view${viewCount === 1 ? '' : 's'}`;
                 }
 
-                // LIKE COUNT - get and display
-                try {
-                    const likeCount = await getLikeCount(slug);
-                    const likeEl = document.getElementById('like-count');
-                    if (likeEl) {
-                        likeEl.textContent = `${likeCount} like${likeCount === 1 ? '' : 's'}`;
-                    }
-                }
-                catch (error) {
-                    console.error('Failed to load like count:', error);
-                    const likeEl = document.getElementById('like-count');
-                    if (likeEl) likeEl.textContent = 'Likes unavailable';
+                // LIKES
+                const likeCount = await getLikeCount(slug);
+                const likeEl = document.getElementById('like-count');
+                if (likeEl) {
+                    likeEl.textContent = `${likeCount} like${likeCount === 1 ? '' : 's'}`;
                 }
 
-                // LIKE BUTTON - add click handler
+                // BUTTON
                 const likeBtn = document.getElementById('like-btn');
                 if (likeBtn) {
                     likeBtn.addEventListener('click', async () => {
-                        likeBtn.disabled = true; // Prevent double clicks
-                        likeBtn.textContent = 'Liking...';
-
-                        try {
-                            const newCount = await addLike(slug);
-                            const likeEl = document.getElementById('like-count');
-                            if (likeEl) {
-                                likeEl.textContent = `${newCount} like${newCount === 1 ? '' : 's'}`;
-                            }
-                            likeBtn.textContent = '👍 Liked!';
-
-                            // Reset button after 2 seconds
-                            setTimeout(() => {
-                                likeBtn.textContent = '👍 Like this post';
-                                likeBtn.disabled = false;
-                            }, 2000);
-                        }
-                        catch (error) {
-                            console.error('Failed to add like:', error);
-                            likeBtn.textContent = '👍 Like this post';
-                            likeBtn.disabled = false;
+                        const count = await addLike(slug);
+                        const likeEl = document.getElementById('like-count');
+                        if (likeEl) {
+                            likeEl.textContent = `${count} like${count === 1 ? '' : 's'}`;
                         }
                     });
                 }
-            });
+            }, 500); // 500ms delay to ensure DOM elements exist
+
+            // Wait for DOM to be ready
+            // document.addEventListener('DOMContentLoaded', async () => {
+            //     // VIEW COUNT - increment and display
+            //     try {
+            //         const viewCount = await incrementViewCount(slug);
+            //         const viewEl = document.getElementById('view-count');
+            //         if (viewEl) {
+            //             viewEl.textContent = `${viewCount} view${viewCount === 1 ? '' : 's'}`;
+            //         }
+            //     }
+            //     catch (error) {
+            //         console.error('Failed to load view count:', error);
+            //         const viewEl = document.getElementById('view-count');
+            //         if (viewEl) viewEl.textContent = 'Views unavailable';
+            //     }
+
+            //     // LIKE COUNT - get and display
+            //     try {
+            //         const likeCount = await getLikeCount(slug);
+            //         const likeEl = document.getElementById('like-count');
+            //         if (likeEl) {
+            //             likeEl.textContent = `${likeCount} like${likeCount === 1 ? '' : 's'}`;
+            //         }
+            //     }
+            //     catch (error) {
+            //         console.error('Failed to load like count:', error);
+            //         const likeEl = document.getElementById('like-count');
+            //         if (likeEl) likeEl.textContent = 'Likes unavailable';
+            //     }
+
+            //     // LIKE BUTTON - add click handler
+            //     const likeBtn = document.getElementById('like-btn');
+            //     if (likeBtn) {
+            //         likeBtn.addEventListener('click', async () => {
+            //             likeBtn.disabled = true; // Prevent double clicks
+            //             likeBtn.textContent = 'Liking...';
+
+            //             try {
+            //                 const newCount = await addLike(slug);
+            //                 const likeEl = document.getElementById('like-count');
+            //                 if (likeEl) {
+            //                     likeEl.textContent = `${newCount} like${newCount === 1 ? '' : 's'}`;
+            //                 }
+            //                 likeBtn.textContent = '👍 Liked!';
+
+            //                 // Reset button after 2 seconds
+            //                 setTimeout(() => {
+            //                     likeBtn.textContent = '👍 Like this post';
+            //                     likeBtn.disabled = false;
+            //                 }, 2000);
+            //             }
+            //             catch (error) {
+            //                 console.error('Failed to add like:', error);
+            //                 likeBtn.textContent = '👍 Like this post';
+            //                 likeBtn.disabled = false;
+            //             }
+            //         });
+            //     }
+            // });
         </script>
 
 

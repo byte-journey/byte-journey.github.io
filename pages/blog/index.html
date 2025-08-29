@@ -187,13 +187,6 @@
                         }
                     } catch (error) {
                         console.error(`Failed to load engagement for ${slug}:`, error);
-                        const engagement = cardElement.querySelector('.engagement');
-                        if (engagement) {
-                            engagement.innerHTML = `
-                                <span class="views">Views: --</span>
-                                <span class="likes">Likes: --</span>
-                            `;
-                        }
                     }
                 }
 
@@ -251,7 +244,7 @@
 
         <script type="text/javascript" src="/js/app.js"></script>
 
-        <script type="module" src="/js/firebase-blog.js"></script>
+        <!-- <script type="module" src="/js/firebase-blog.js"></script> -->
 
     </body>
 </html>
