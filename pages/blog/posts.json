@@ -132,5 +132,28 @@
     "date": "2025-08-15",
     "slug": "understanding-agentic-ai-autonomous-agents-changing-the-game",
     "cover": ""
+  },
+  {
+    "title": "Protecting Your Digital Life: Ultimate Guide to Disinformation Security",
+    "author": "Gideon",
+    "description": "Learn to identify and protect against AI-generated disinformation and deepfakes",
+    "categories": [
+      "Cybersecurity & Digital Privacy"
+    ],
+    "tags": [
+      "cybersecurity",
+      "disinformation",
+      "deepfakes",
+      "digital security",
+      "ai threats",
+      "fact-checking",
+      "media literacy",
+      "information verification",
+      "online safety",
+      "digital citizenship"
+    ],
+    "date": "2025-08-28",
+    "slug": "protecting-your-digital-life-ultimate-guide-to-disinformation-security",
+    "cover": "Screenshot_134.png"
   }
 ]
